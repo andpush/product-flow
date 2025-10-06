@@ -7,24 +7,25 @@ The Flow facilitates AI Assisted Development by defining:
 - Slash Commands
 - Agent Hooks
 - Sub-Agents
+- Rules files for various tech stacks
 
 That together make AI Agent to drive the development process on all phases of SDLC.
 
 ```mermaid
 graph TB
     IN[Initial vision and BA files in
-    ./docs/initial/] 
+    ./product/initial-docs/] 
         -->|/define-product| PR[product.md]
     
     
-    PR-->|/mockup-product|PM[ /docs/mockups/ ]
+    PR-->|/mockup-product|PM[ /product/mockups/ ]
     IN--> PM
 
     IN -->|/define-architecture| AR[architecture.md]
     
-    PR --> |/define-feature| F[features/000-featname/feature.md]
+    PR --> |/define-feature| F[features/F000-FeatureName/feature.md]
 
-    F --> |/mockup-feature| FM[features/000-featname/mockups]
+    F --> |/mockup-feature| FM[features/F000-FeatureName/mockups]
 
     F-->|/plan-feature| FP[plan.md]
     FM-->FP
@@ -39,7 +40,7 @@ graph TB
 
 ### Agent purpose at this phase
 
-Based on the files in /docs/inital/ folder, such as:
+Based on the files in /product/inital-product/ folder, such as:
 
 - Problem domain definition
 - Market Research
@@ -134,14 +135,14 @@ sequenceDiagram
 
 
     %% Discovery & Definition phase
-    U->>R: Store the Vision and initial docs in /docs/initial/
+    U->>R: Store the Vision and initial docs in /product/initial-docs/
     U->>C: /define-product <name>
-    C->>R: Read initial inputs from /docs/initial/
+    C->>R: Read initial inputs from /product/initial-docs/
     C-->>U: Ask clarifying questions
-    C->>R: Generate /docs/product.md with product card, features and open questions
+    C->>R: Generate /product/product.md with product card, features and open questions
 
     %% High Level definition verification
-    U->>R: User (BA) reviews and validates /docs/product.md file, and ensures that no open questions left unanswered.
+    U->>R: User (BA) reviews and validates /product/product.md file, and ensures that no open questions left unanswered.
     U->>R: User commits the product.md file.
 
 ```
@@ -209,9 +210,9 @@ sequenceDiagram
     participant C as ClaudeCode
 
     U->>C: /define-architecture
-    C-->>C: based on docs/inital/ folder content and files CLAUDE.md, AGENTS.md architecture.md if they exist, think about architectural optons
+    C-->>C: based on product/inital/ folder content and files CLAUDE.md, AGENTS.md architecture.md if they exist, think about architectural optons
     C-->>U: ask clarifying questions on architecture including components, tech stack, coding stlyle
-    C-->>R: saves created or updated docs/architecture.md
+    C-->>R: saves created or updated product/architecture.md
 
     U->>R: Review and commit the architecture.md
     
@@ -220,7 +221,7 @@ sequenceDiagram
 ## Feature Definition
 
 Each High Level Feature or Epic is to be defined in separate folder prefixed by sequence number:
-/docs/features/000-short_feature_name/
+/product/features/000-short_feature_name/
 
 The folder contains documentation related to this feature:
 
@@ -267,20 +268,20 @@ sequenceDiagram
     participant C as Claude Code
 
     %% Derive features from Product definition
-    U->>C: /define-product-features
-    C->>R: Read /docs/product.md
+    U->>C: /mvp-features
+    C->>R: Read /product/product.md
     C->>C: Identify main features and invoke /define-feature for each one
 
-    %% Define Feature
-    U->>C: /define-feature FEAT-123
-    C->>R: Read the folder content or create new one /docs/features/FEAT-123/
+    %% Add Feature
+    U->>C: /add-feature F000-FeatureName
+    C->>R: Read the folder content or create new one /product/features/F000-FeatureName/
     C-->>U: Clarify feature requirements with the user (BA)
-    C->>R: Generate/update corresponding /docs/features/FEAT-123/feature.md
+    C->>R: Generate/update corresponding /product/features/F000-FeatureName/feature.md
     U->>R: BA verifies/updates feature.md content and commits changes in repo
     U->>R: User optionally adds user stories files to the feature folder and commits them
 
     %% UI Design Mockups
-    U->>C: /mockup-feature FEAT-123
+    U->>C: /mockup-feature F000-FeatureName
     C->>C: Generate several mockups using UI Sub-Agent in the form of self-contained html file
     C->>R: Save mockups for user review
     U->>R: User reviews mockups
@@ -288,10 +289,10 @@ sequenceDiagram
     U->>R: user commits selected mockup
 
     %% Plan feature
-    U->>C: /plan-feature FEAT-123
+    U->>C: /plan-feature F000-FeatureName
     C->>C: Think plan and tasks based on architecture and design mockups
     C-->>U: Ask clarifying questions
-    C->>R: Generate docs/features/FEAT-123/plan.md
+    C->>R: Generate product/features/F000-FeatureName/plan.md
     U->>R: User reviews/updates/commits the plan
     
 ```
@@ -306,7 +307,7 @@ sequenceDiagram
     participant C as Claude Code
     
     %% Implement feature
-    U->>C: /impl-feature FEAT-123
+    U->>C: /implement-feature F001-FeatureName
     C->>R: bash: create feature branch
     C->>R: set feature status to in Progress
     C->>R: generate/update the codebase and mark tasks in plan.md completed, commit after each task
@@ -325,7 +326,7 @@ sequenceDiagram
 
     C->>R: Commit the code with proper comments, starting with feature id
 
-    C->>R: If there any significant architectural decisions, made during this session for the feature implementation, document it in docs/ADR.md file
+    C->>R: If there any significant architectural decisions, made during this session for the feature implementation, document it in product/adr/adr-YYYY-MM-DD.md file
 
     C->>R: set feature status to Done
     
