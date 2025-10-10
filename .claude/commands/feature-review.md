@@ -3,8 +3,7 @@ description: Perform comprehensive code review for an implemented feature
 argument-hint: [feature_id]
 allowed-tools: Task, Read, Bash, Glob, Grep
 ---
-
-# Feature Review
+# Command Instructions
 
 Perform a comprehensive code review for feature "$1" using the code-reviewer subagent.
 

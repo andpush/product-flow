@@ -35,44 +35,31 @@
 
 #### Acceptance Criteria
 
-Scenario 1: [Primary Happy Path]
+**Scenario 1: [Primary Happy Path]**
 
 - **Given** [initial_context_or_preconditions]
 - **When** [user_action_or_system_trigger]
 - **Then** [expected_result_or_behavior]
 - **And** [additional_expected_outcomes]
 
-Scenario 2: [Alternative Path or Edge Case]
-
-- **Given** [different_context]
-- **When** [different_action]
-- **Then** [expected_result]
-
-Scenario 3: [Error Handling]
+**Scenario 2: [Alternative / Edge Case / Error Handling - Optional]**
 
 - **Given** [error_condition_context]
 - **When** [action_that_triggers_error]
 - **Then** [error_handling_behavior]
 - **And** [user_feedback_or_recovery_option]
 
-Scenario 4: [Validation or Edge Case]
-
-- **Given** [boundary_condition]
-- **When** [boundary_action]
-- **Then** [boundary_behavior]
-
 ### US-2: User Story 2 Title
-<!-- here goes similar description -->
+
+[...]
 
 ## Functional Requirements
 
 ### Core Functionality
 
-- [Specific functional requirement 1]
-- [Specific functional requirement 2]
-- [Specific functional requirement 3]
+- [Specific functional requirements]
 
-### User Interface Requirements
+### User Experience
 
 - [Navigation requirements]
 - [UI Components Needed]
@@ -85,11 +72,9 @@ Scenario 4: [Validation or Edge Case]
 - **Data Validation**: [Validation rules and constraints]
 - **Data Storage**: [What needs to be persisted]
 
-### Business Rules
+### Business Rules [Optional. When complex business logic]
 
-- [Business rule 1]
-- [Business rule 2]
-- [Business rule 3]
+- [Business rules]
 
 ### Error Handling
 
@@ -97,7 +82,7 @@ Scenario 4: [Validation or Edge Case]
 
 ## Risk Assessment
 
-[List Business and Technological Risks here]
+- [List Business and Technological Risks here]
 
 ### Technical Risks
 
@@ -133,23 +118,23 @@ Scenario 4: [Validation or Edge Case]
 
 ## Open Questions
 
-### Technical Questions
-
-- [ ] [Technical decision that needs research]
-- [ ] [Architectural choice that affects implementation]
-- [ ] [Performance or scalability question]
-
 ### Business Questions
 
 - [ ] [Business rule that needs clarification]
 - [ ] [Stakeholder decision required]
 - [ ] [User experience choice to validate]
 
-### Design Questions
+### User Experience Questions
 
 - [ ] [UI/UX decision to make]
 - [ ] [Workflow or interaction to define]
 - [ ] [Accessibility approach to confirm]
+
+### Technical Questions
+
+- [ ] [Technical decision that needs research]
+- [ ] [Architectural choice that affects implementation]
+- [ ] [Performance or scalability question]
 
 ## Approval & Sign-off
 

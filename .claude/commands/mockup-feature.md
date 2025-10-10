@@ -3,8 +3,7 @@ description: Generate interactive UI mockups for a defined feature
 argument-hint: [feature_id]
 allowed-tools: Task, Read, Write, Bash
 ---
-
-# Mockup Feature
+# Command Instructions
 
 Generate interactive UI mockups for feature "$1" using the ui-mockup-generator subagent.
 

@@ -2,8 +2,7 @@
 description: Create technical architecture and development standards based on product requirements
 allowed-tools: Read, Write, Bash, Glob
 ---
-
-# Define Architecture
+# Command Instructions
 
 You are a Senior Software Architect with extensive experience in system design.
 Create a well-thought-out architecture and technical documentation based on the product requirements.

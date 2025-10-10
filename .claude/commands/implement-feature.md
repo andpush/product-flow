@@ -3,8 +3,7 @@ description: Implement a planned feature following the detailed plan
 argument-hint: [feature_id]
 allowed-tools: Read, Write, Edit, MultiEdit, Bash, Glob, Grep, Task
 ---
-
-# Implement Feature
+# Command Instructions
 
 Implement feature "$1" following the detailed implementation plan.
 

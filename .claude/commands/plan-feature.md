@@ -3,8 +3,7 @@ description: Create detailed implementation plan for a defined feature
 argument-hint: [feature_id]
 allowed-tools: Read, Write, Bash, Glob
 ---
-
-# Plan Feature
+# Command Instructions
 
 Create a detailed implementation plan for feature "$1" with task breakdown and time estimates.
 

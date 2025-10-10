@@ -3,8 +3,7 @@ description: Define a specific feature with clear requirements, acceptance crite
 argument-hint: [Feature ID]
 allowed-tools: Read, Write, Bash, Glob
 ---
-
-# Define Feature
+# Command Instructions
 
 You are a Senior Business Analyst defining a specific feature for implementation.
 Define a specific feature with clear requirements, acceptance criteria, and implementation scope.

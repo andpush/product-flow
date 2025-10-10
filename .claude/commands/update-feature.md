@@ -3,8 +3,7 @@ description: Sync feature definition with new files in feature folder or changes
 argument-hint: [Feature ID]
 allowed-tools: Read, Write, Bash, Glob
 ---
-
-# Update Feature
+# Command Instructions
 
 Update the feature definition for "$1" by syncing with:
 - New files added to the feature directory (mockups, documents, user stories, images)
