@@ -14,26 +14,28 @@ That together make AI Agent to drive the development process on all phases of SD
 ```mermaid
 graph TB
     IN[Initial vision and BA files in
-    ./product/initial-docs/] 
+    ./product/initial-docs/]
         -->|/define-product| PR[product.md]
-    
-    
-    PR-->|/mockup-product|PM[ /product/mockups/ ]
-    IN--> PM
+
+
+    PR-->|/mockup-product|PM[/product/mockups/]
+    IN-->|/figma-mockup|PM
 
     IN -->|/define-architecture| AR[architecture.md]
-    
-    PR --> |/define-feature| F[features/F000-FeatureName/feature.md]
 
-    F --> |/mockup-feature| FM[features/F000-FeatureName/mockups]
+    PR -->|/add-mvp-features| F[features/F000-FeatureName/feature.md]
+    PR -->|/add-feature| F
+
+    F -->|/update-feature| F
+    F -->|/mockup-feature| FM[features/F000-FeatureName/mockups/]
 
     F-->|/plan-feature| FP[plan.md]
     FM-->FP
     AR-->FP
 
     FP-->|/implement-feature| FB[branch w. Code & Tests]
-    FB-->|/feature-review|FB
-    
+    FB-->|/feature-review|RV[review.md]
+
 ```
 
 ## Product Definition
@@ -258,7 +260,7 @@ Definition of Done that can be used to test the feature.
 Questions that should be resolved by the time of implementation.
 ```
 
-### Featre Definition Workflow
+### Feature Definition Workflow
 
 ```mermaid
 sequenceDiagram
@@ -268,9 +270,9 @@ sequenceDiagram
     participant C as Claude Code
 
     %% Derive features from Product definition
-    U->>C: /mvp-features
+    U->>C: /add-mvp-features
     C->>R: Read /product/product.md
-    C->>C: Identify main features and invoke /define-feature for each one
+    C->>C: Identify main features and invoke /add-feature for each one
 
     %% Add Feature
     U->>C: /add-feature F000-FeatureName
@@ -280,21 +282,34 @@ sequenceDiagram
     U->>R: BA verifies/updates feature.md content and commits changes in repo
     U->>R: User optionally adds user stories files to the feature folder and commits them
 
+    %% Update Feature
+    U->>C: /update-feature F000-FeatureName
+    C->>R: Sync feature.md with new files in folder or changes in product.md
+    C->>R: Update feature.md with synced content
+    U->>R: User reviews and commits changes
+
     %% UI Design Mockups
     U->>C: /mockup-feature F000-FeatureName
-    C->>C: Generate several mockups using UI Sub-Agent in the form of self-contained html file
-    C->>R: Save mockups for user review
+    C->>C: Generate mockups using UI Sub-Agent in the form of self-contained html files
+    C->>R: Save mockups in /product/features/F000-FeatureName/
     U->>R: User reviews mockups
-    U->>C: Optionally re-run /mockup-feature 
-    U->>R: user commits selected mockup
+    U->>C: Optionally re-run /mockup-feature
+    U->>R: User commits selected mockup
+
+    %% Figma-based Mockups (alternative)
+    U->>C: /figma-mockup <figma_url>
+    C->>R: Extract Figma design and assets
+    C->>R: Save HTML mockup and assets to outputs/mockups/
+    U->>R: User reviews and integrates into feature folder
 
     %% Plan feature
     U->>C: /plan-feature F000-FeatureName
+    C->>R: Read feature.md, architecture.md, and mockups
     C->>C: Think plan and tasks based on architecture and design mockups
     C-->>U: Ask clarifying questions
     C->>R: Generate product/features/F000-FeatureName/plan.md
     U->>R: User reviews/updates/commits the plan
-    
+
 ```
 
 ## Feature Implementation
@@ -305,32 +320,53 @@ sequenceDiagram
     actor U as DEVELOPER
     participant R as Repository
     participant C as Claude Code
-    
-    %% Implement feature
+    participant CR as Code Reviewer Agent
+
+    %% Prerequisites check
     U->>C: /implement-feature F001-FeatureName
-    C->>R: bash: create feature branch
-    C->>R: set feature status to in Progress
-    C->>R: generate/update the codebase and mark tasks in plan.md completed, commit after each task
+    C->>R: Verify feature.md, plan.md, and architecture.md exist
+    C->>R: Create feature branch: feature/F001-FeatureName
+    C->>R: Update feature status to "In Progress"
 
-    %% Perform Code Review of the branch changes
-    C->>C: review the code on coding style, security and best practices usage
+    %% Implementation phase
+    C->>R: Read plan.md for task breakdown
+    loop For each task in plan
+        C->>C: Write tests first (TDD)
+        C->>R: Implement functionality to pass tests
+        C->>C: Run unit tests and validate
+        C->>R: Mark task as completed in plan.md
+        C->>R: Commit changes with descriptive message
+    end
 
-    %% Build and run tests, debug if needed
-    C->>C: run build with unit tests
+    %% Testing phase
+    C->>C: Run complete test suite (unit + integration)
+    C->>C: Debug and fix any test failures
+    C->>C: Verify acceptance criteria from feature.md
 
-    C->>C: debug on errors and fix code and rerun
+    %% Documentation phase
+    C->>R: Update code documentation and comments
+    C->>R: Document significant architectural decisions in product/adr/
 
-    C->>C: use MCP and tools to perform end-to-end tests
+    %% Code Review
+    U->>C: /feature-review F001-FeatureName
+    C->>CR: Launch code-reviewer subagent
+    CR->>R: Analyze all code changes for the feature
+    CR->>CR: Review security, performance, quality
+    CR->>CR: Check test coverage and acceptance criteria
+    CR->>R: Generate review report: product/features/F001-FeatureName/review.md
+    CR-->>C: Report findings and recommendations
+    C-->>U: Present review results
 
-    C->>C: verify if acceptance criteria defined in featre met
+    %% Address review feedback
+    alt Review has blocking issues
+        U->>C: Fix identified issues
+        C->>R: Make corrections and commit
+        U->>C: /feature-review F001-FeatureName (re-review)
+    end
 
-    C->>R: Commit the code with proper comments, starting with feature id
+    %% Finalization
+    C->>R: Update feature status to "Done"
+    C->>R: Push branch to remote
+    C->>R: Create Pull Request with detailed description
 
-    C->>R: If there any significant architectural decisions, made during this session for the feature implementation, document it in product/adr/adr-YYYY-MM-DD.md file
-
-    C->>R: set feature status to Done
-    
-    %% Push and create Pull Request
-    C->>R: perform pull (merge) request 
-    
 ```
