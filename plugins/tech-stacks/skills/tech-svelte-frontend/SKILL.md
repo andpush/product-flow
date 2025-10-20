@@ -3,7 +3,7 @@ name: tech-svelte-frontend
 description: Svelte 5 + TypeScript frontend development with Tailwind CSS
 version: 1.0.0
 ---
-
+<!-- TODO: NEEDS REVIEW! -->
 # Svelte 5 + TypeScript Frontend Development
 
 Best practices and standards for building modern web applications with Svelte 5.

@@ -3,7 +3,7 @@ name: tech-java-quarkus
 description: Java 21 + Quarkus backend development with simplified layered architecture
 version: 1.0.0
 ---
-
+<!-- TODO: NEEDS REVIEW! -->
 # Java + Quarkus Backend Development
 
 Best practices and standards for backend development with Java and Quarkus.
