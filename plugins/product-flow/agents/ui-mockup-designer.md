@@ -43,7 +43,7 @@ Think hard how to satisfy both business requriements and design principles in vi
 - Embed JavaScript in `<script>` tags
 - Use inline SVGs or base64-encoded images for icons/small graphics
 - Use CDN for: Tailwind CSS, Google Fonts, Shadcn components
-
+- Use realistic placeholder content that demonstrates the interface
 
 ### Step 4: Report Back
 
