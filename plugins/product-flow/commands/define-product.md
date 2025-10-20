@@ -7,7 +7,6 @@ allowed-tools: Read, Write, Bash, Glob
 
 ## Validation gate
 
-![ -d "product/initial-docs" ] || { echo "❌ Missing product/initial-docs/"; exit 1; }
 
 ## Your Mission
 
@@ -32,7 +31,7 @@ Read `.claude/templates/product-template.md` to understand required sections. Th
 
 Explore all files in `product/initial-docs/` folder and its subfolders:
 
-!ls -AR product/initial-docs/
+!ls -AR "product/initial-docs"
 
 Look for the files containing the most relevant information about the product:
 
@@ -44,7 +43,7 @@ Look for the files containing the most relevant information about the product:
 - Business needs and requirements
 - Use cases and user journeys
 
-Load the UI materials if present:
+Load the UI materials if present in `product/ui-reference/`:
 
 - Design system, UI/UX guides
 - Wireframes, reference UI

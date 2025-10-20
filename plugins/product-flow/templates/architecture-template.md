@@ -1,10 +1,11 @@
+---
+Created: [YYYY-MM-DD]
+Updated: [YYYY-MM-DD]
+Status: [Draft/Complete]
+---
 <!-- Use this template when creating `product/architecture.md` -->
 
 # Architecture Definition
-
-| Created | Last Updated | Status |
-|---------|--------------|--------|
-| [YYYY-MM-DD]  | [YYYY-MM-DD] | [Draft/Complete] |
 
 ## Executive Summary
 
@@ -20,7 +21,7 @@
 
 ## System Architecture
 
-[Visualize architecture with the help of (1) High Level Design - component  diagram, (2) Data Flow Diagram, (3) Sequence or Activity Diagram or BPMN - choose which is more appropriate to the domain, (4) Entity Relationship Diagram (from business perspective), (5) State diagram (if state machine is at the heart of functionality and state flow is important)]
+[Visualize architecture with the help of (1) High Level Design - component diagram, (2) Data Flow Diagram, (3) Sequence or Activity Diagram or BPMN - choose which is more appropriate to the domain, (4) Entity Relationship Diagram (from business perspective), (5) State diagram (if state machine is at the heart of functionality and state flow is important)]
 
 ### High-Level Design
 
@@ -114,7 +115,8 @@ graph TB
 ### Code Organization
 
 [Tree-like structure, example:]
-```
+
+```sh
 project-root/
 ├── frontend/              # Client-side application
 │   ├── src/

@@ -1,372 +1,92 @@
+# Product Flow
 
-# AI-first Product Development Flow for Claude Code
+AI-first product development workflow for Claude Code. From idea to production.
 
-The Flow facilitates AI Assisted Development by defining:
+## What You Get
 
-- Templates
-- Slash Commands
-- Agent Hooks
-- Sub-Agents
-- Rules files for various tech stacks
+`product-flow` plugin includes everything you need - commands, agents, templates, and product discovery expertise:
 
-That together make AI Agent to drive the development process on all phases of SDLC.
+- **Commands** - `/define-product`, `/plan-feature`, `/implement-feature`, etc.
+- **Agents** - UI mockup designer, test generator, code reviewer
+- **Skills** - Business analysis, UI/UX design, lean startup, workflow coordination
+- **Templates** - Product, feature, plan, architecture, review docs
 
-```mermaid
-graph TB
-    IN[Initial vision and BA files in
-    ./product/initial-docs/]
-        -->|/define-product| PR[product.md]
+## Installation
 
-
-    PR-->|/mockup-product|PM[/product/mockups/]
-    IN-->|/figma-mockup|PM
-
-    IN -->|/define-architecture| AR[architecture.md]
-
-    PR -->|/add-mvp-features| F[features/F000-FeatureName/feature.md]
-    PR -->|/add-feature| F
-
-    F -->|/update-feature| F
-    F -->|/mockup-feature| FM[features/F000-FeatureName/mockups/]
-
-    F-->|/plan-feature| FP[plan.md]
-    FM-->FP
-    AR-->FP
-
-    FP-->|/implement-feature| FB[branch w. Code & Tests]
-    FB-->|/feature-review|RV[review.md]
-
+```claude
+/plugin marketplace add andpush/product-flow
+/plugin install product-flow
 ```
 
-## Product Definition
+**Optional** - Add tech stack expertise:
 
-### Agent purpose at this phase
-
-Based on the files in /product/inital-product/ folder, such as:
-
-- Problem domain definition
-- Market Research
-- Solution Ideation
-- Recrorded meetings conversations with stakeholders
-- Business Requirements / Use Cases / User Journey Map
-- Vision of the MVP
-
-generates directory structure and detailed functional requirements.
-
-The agent able to find gaps and contradictions and ask clarifying questions to ensure consistency by involving human in the loop.
-
-### Template for product.md
-
-```text
----
-Product Name:
-Creation Date:
-Status:
----
-# Product Definition
-
-## Product Purpose
-
-The What
-
-## Target Audience
-
-The Who
-
-## Problem Solved
-
-The Why
-
-## Concise Solution Description: 
-
-The How
-
-## Competitors 
-
-## UVP
-
-## Concerns, Risks and Limitations
-
-
-
-## UI/UX Considerations
-
-Define:
-
-- The required type of UI (if any): mobile, web, other;
-- Reference design(s) in the form of links or screenshots;
-- Styling and design system if requested;
-
-## Non-functional Requirements
-
-Define if there any expectations:
-
-- Internationalization
-- Peformance related: Response time, latency
-- Scalability related: User growth, Data volume, Geo-distribution
-- Avalability: uptime requriements, fault tolerance, backups
-- Security & Compliance: data protection, authentication, audit trails, GDPR, HIPAA, etc.
-
-
-## Core Features
-
-### Feature 001
-
-High level feature 001 description
-
-### EFearure 002
-
-High level feature 002 description
-
-...
-
-## OPEN QUESTONS
-
-Questions that need to be resolved before implementaion started.
-
+```claude
+/plugin install tech-stacks
 ```
 
-### Product Definition Workflow
+### What's Included
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor U as Business Analyst
-    participant R as Repository
-    participant C as Claude Code
+**product-flow** - Complete workflow in one plugin:
 
+- **Commands**: `/define-product`, `/define-architecture`, `/add-feature`, `/plan-feature`, `/implement-feature`, `/feature-review`, `/mockup-product`, `/mockup-feature`, `/figma-mockup`
+- **Agents**: UI mockup designer, test generator, code reviewer
+- **Skills**: Product discovery (requirements, validation, user research), workflow coordination, UI/UX design
+- **Templates**: Product, architecture, feature, plan, review, ADR, mockup
 
-    %% Discovery & Definition phase
-    U->>R: Store the Vision and initial docs in /product/initial-docs/
-    U->>C: /define-product <name>
-    C->>R: Read initial inputs from /product/initial-docs/
-    C-->>U: Ask clarifying questions
-    C->>R: Generate /product/product.md with product card, features and open questions
+**tech-stacks** (optional):
 
-    %% High Level definition verification
-    U->>R: User (BA) reviews and validates /product/product.md file, and ensures that no open questions left unanswered.
-    U->>R: User commits the product.md file.
+- Java/Quarkus backend patterns
+- Svelte frontend patterns
+- Flutter mobile patterns
 
+## Quick Start
+
+```bash
+mkdir -p product/initial-docs
+# Add your vision docs, requirements, research...
+
+/define-product my-startup
+/mockup-product
+/define-architecture
+/add-mvp-features
+/plan-feature F001-UserAuth
+/implement-feature F001-UserAuth
+/feature-review F001-UserAuth
 ```
 
-## Architecture Definition
+## Workflow
 
-### Architecture Definiton Template
-
-```text
-# Architecture and Deveopment Rules
-
-## General Rules
-
-KISS, ...
-
-## Components
-
-| Companent name | Purpose | Repository | Has UI? |
-|----------------|---------|------------|---------|
-
-## Component XXX
-
-Tech Stack:
-
-* Programming Language
-* Framework(s)
-* Main dependencies
-* Database and data migration tools
-* Build and package/dependency management tools
-
-Tools: 
-
-* Version control
-* CI/CD
-* Containerization
-
-Deployment:
-
-* Target Platform (e.g. GCP)
-* QA & Release Process
-
-Integrations:
-
-* External APIs, etc.
-
-Tech Design:
-
-Taking into account non-functional requirements, define:
-
-* API type
-* DTOs and Persistent Objects
-* Concurrency
-* Performance
-
-
+```sequence
+product/initial-docs/          Your vision, research, requirements
+  ↓ /define-product
+product/product.md             Structured product definition
+  ↓ /add-mvp-features
+product/features/F001-*/       Feature specs
+  ↓ /plan-feature
+product/features/F001-*/plan.md  Implementation plan
+  ↓ /implement-feature
+feature/F001-* branch          Code + tests
+  ↓ /feature-review
+product/features/F001-*/review.md  Quality review
 ```
 
-### Architecture Definition Workflow
+## Directory Structure
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor U as Architect
-    participant R as Repository
-    participant C as ClaudeCode
-
-    U->>C: /define-architecture
-    C-->>C: based on product/inital/ folder content and files CLAUDE.md, AGENTS.md architecture.md if they exist, think about architectural optons
-    C-->>U: ask clarifying questions on architecture including components, tech stack, coding stlyle
-    C-->>R: saves created or updated product/architecture.md
-
-    U->>R: Review and commit the architecture.md
-    
+```sh
+product/
+├── initial-docs/        # Input: your vision, research, requirements
+├── product.md           # Output: structured product definition
+├── architecture.md      # Output: technical architecture
+├── features/
+│   └── F001-Name/
+│       ├── feature.md   # Feature specification
+│       ├── plan.md      # Implementation plan
+│       ├── review.md    # Code review
+│       └── mockups/     # UI designs
+├── mockups/             # Product-level mockups
+└── adr/                 # Architecture decision records
 ```
 
-## Feature Definition
+## License
 
-Each High Level Feature or Epic is to be defined in separate folder prefixed by sequence number:
-/product/features/000-short_feature_name/
-
-The folder contains documentation related to this feature:
-
-- The main feature.md document, generated by /define-feature command and reviewed and updated by user (BA)
-- Additional sub-features or user stories in the form of story-000-name.md files created by user (BA)
-
-Files feature.md and story-000-name.md should following typical JIRA issue template like below:
-
-### Feature Template
-
-Feature and User Story template:
-
-```text
----
-Title:
-Created Date:
-Updated Date:
-Status:
----
-# Feature Definition
-
-## Description
-
-## User Interface
-
-References to mockups or examples of UI (if the feature includes components that has UI)
-
-## Acceptance Criteria
-
-Definition of Done that can be used to test the feature.
-
-## Open Questions
-
-Questions that should be resolved by the time of implementation.
-```
-
-### Feature Definition Workflow
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor U as Business Analyst
-    participant R as Repository
-    participant C as Claude Code
-
-    %% Derive features from Product definition
-    U->>C: /add-mvp-features
-    C->>R: Read /product/product.md
-    C->>C: Identify main features and invoke /add-feature for each one
-
-    %% Add Feature
-    U->>C: /add-feature F000-FeatureName
-    C->>R: Read the folder content or create new one /product/features/F000-FeatureName/
-    C-->>U: Clarify feature requirements with the user (BA)
-    C->>R: Generate/update corresponding /product/features/F000-FeatureName/feature.md
-    U->>R: BA verifies/updates feature.md content and commits changes in repo
-    U->>R: User optionally adds user stories files to the feature folder and commits them
-
-    %% Update Feature
-    U->>C: /update-feature F000-FeatureName
-    C->>R: Sync feature.md with new files in folder or changes in product.md
-    C->>R: Update feature.md with synced content
-    U->>R: User reviews and commits changes
-
-    %% UI Design Mockups
-    U->>C: /mockup-feature F000-FeatureName
-    C->>C: Generate mockups using UI Sub-Agent in the form of self-contained html files
-    C->>R: Save mockups in /product/features/F000-FeatureName/
-    U->>R: User reviews mockups
-    U->>C: Optionally re-run /mockup-feature
-    U->>R: User commits selected mockup
-
-    %% Figma-based Mockups (alternative)
-    U->>C: /figma-mockup <figma_url>
-    C->>R: Extract Figma design and assets
-    C->>R: Save HTML mockup and assets to outputs/mockups/
-    U->>R: User reviews and integrates into feature folder
-
-    %% Plan feature
-    U->>C: /plan-feature F000-FeatureName
-    C->>R: Read feature.md, architecture.md, and mockups
-    C->>C: Think plan and tasks based on architecture and design mockups
-    C-->>U: Ask clarifying questions
-    C->>R: Generate product/features/F000-FeatureName/plan.md
-    U->>R: User reviews/updates/commits the plan
-
-```
-
-## Feature Implementation
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor U as DEVELOPER
-    participant R as Repository
-    participant C as Claude Code
-    participant CR as Code Reviewer Agent
-
-    %% Prerequisites check
-    U->>C: /implement-feature F001-FeatureName
-    C->>R: Verify feature.md, plan.md, and architecture.md exist
-    C->>R: Create feature branch: feature/F001-FeatureName
-    C->>R: Update feature status to "In Progress"
-
-    %% Implementation phase
-    C->>R: Read plan.md for task breakdown
-    loop For each task in plan
-        C->>C: Write tests first (TDD)
-        C->>R: Implement functionality to pass tests
-        C->>C: Run unit tests and validate
-        C->>R: Mark task as completed in plan.md
-        C->>R: Commit changes with descriptive message
-    end
-
-    %% Testing phase
-    C->>C: Run complete test suite (unit + integration)
-    C->>C: Debug and fix any test failures
-    C->>C: Verify acceptance criteria from feature.md
-
-    %% Documentation phase
-    C->>R: Update code documentation and comments
-    C->>R: Document significant architectural decisions in product/adr/
-
-    %% Code Review
-    U->>C: /feature-review F001-FeatureName
-    C->>CR: Launch code-reviewer subagent
-    CR->>R: Analyze all code changes for the feature
-    CR->>CR: Review security, performance, quality
-    CR->>CR: Check test coverage and acceptance criteria
-    CR->>R: Generate review report: product/features/F001-FeatureName/review.md
-    CR-->>C: Report findings and recommendations
-    C-->>U: Present review results
-
-    %% Address review feedback
-    alt Review has blocking issues
-        U->>C: Fix identified issues
-        C->>R: Make corrections and commit
-        U->>C: /feature-review F001-FeatureName (re-review)
-    end
-
-    %% Finalization
-    C->>R: Update feature status to "Done"
-    C->>R: Push branch to remote
-    C->>R: Create Pull Request with detailed description
-
-```
+MIT

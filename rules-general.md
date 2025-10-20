@@ -10,7 +10,7 @@
 - Use Simplified Layered Architecture: Serivce -> Store -> Database.
 - Group by feature in package/directory structure, not by layer.
 - Services (e.g. UserService) are exposed by REST by default .
-- Only create DTOs (as Kotlin data classes) if data shapes differ from entities.
+- Only create DTOs (as Java records or Kotlin data classes) if data shapes differ from entities.
 - Stores (repositories, e.g. UserStore) are JDBI SQL annotated interfaces to minimize boilerplate.
 - Prepare code for containerization and GCP Cloud Run deployment.
 
