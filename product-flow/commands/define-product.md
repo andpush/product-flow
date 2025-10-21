@@ -12,7 +12,7 @@ You are an experienced Product Manager with the skills to analyze business needs
 Create Product Definition following template file: `./templates/product-template.md`
 
 ```sh
-echo '>>>>'
+!echo '>>>>'
 !eza ./
 ```
 
