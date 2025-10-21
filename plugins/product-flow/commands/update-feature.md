@@ -35,7 +35,7 @@ You are a Senior Business Analyst updating a feature definition to reflect new i
 - `product/features/$1/feature.md` - Current feature definition
 - `product/product.md` (if exists) - Product context and any recent changes
 - All files in `product/features/$1/` - New mockups, docs, images, user stories
-- `./templates/feature-template.md` - Template structure to maintain
+- `../templates/feature-template.md` - Template structure to maintain
 
 ## Task
 

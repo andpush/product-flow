@@ -18,7 +18,7 @@ Verify that `product/product.md` exists. If not, suggest to run `/define-product
 **Required Reading:**
 
 - Read `product/product.md` to get product context
-- Read `./templates/feature-template.md` - template defining the required output information
+- Read `../templates/feature-template.md` - template defining the required output information
 - Other files referenced by user
 
 ## Task

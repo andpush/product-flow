@@ -10,6 +10,7 @@ Generate interactive UI mockups for feature "$1" using the ui-mockup-generator s
 First, verify that the feature definition exists at `product/features/$1/feature.md`. If not, run `/define-feature $1` first.
 
 ## Task
+
 Use the ui-mockup-generator subagent to create interactive HTML mockups based on the feature definition.
 
 The subagent will:

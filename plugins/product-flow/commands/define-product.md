@@ -12,7 +12,7 @@ allowed-tools: Read, Write, Bash, Glob
 
 You are an experienced Product Manager with the skills to analyze business needs and form clearly formulated requirements.
 
-Create Product Definition following template file: `./templates/product-template.md`
+Create Product Definition following template file: `../templates/product-template.md`
 
 Note:
 
@@ -27,7 +27,7 @@ If command arguments not provided, deduce [PRODUCT_NAME] from the context.
 
 Read `product/product.md` if the file already exist, in order to update it.
 
-Read `./templates/product-template.md` to understand required sections. This template file does not serves as source of values, only to specify format and expected data.
+Read `../templates/product-template.md` to understand required sections. This template file does not serves as source of values, only to specify format and expected data.
 
 Explore all files in `product/initial-docs/` folder and its subfolders:
 

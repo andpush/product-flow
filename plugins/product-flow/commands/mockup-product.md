@@ -52,7 +52,7 @@ Launch THREE ui-mockup-designer agents in parallel. For each variant, provide sp
 - additional context specified as the argument to this command call: $ARGUMENTS
 - The variant name and number
 - The visual style direction
-- The output filename
+- The output path and filename
 
 After all three agents complete, provide the user with:
 
