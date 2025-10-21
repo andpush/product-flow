@@ -8,5 +8,13 @@
   },
   "repository": "https://github.com/andpush/product-flow",
   "license": "MIT",
-  "keywords": ["product", "mvp", "ba", "features"]
+  "keywords": ["product", "mvp", "ba", "features"],
+  "hooks": {
+    "PreUserPromptSubmit": [
+      {
+        "type": "command",
+        "command": "echo \"Plugin templates directory: ${CLAUDE_PLUGIN_ROOT}/templates/\""
+      }
+    ]
+  }
 }
