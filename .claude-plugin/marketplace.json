@@ -1,0 +1,15 @@
+{
+  "name": "product-flow",
+  "owner": {
+    "name": "AndPush",
+    "email": "andpush@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "product-flow",
+      "source": "./product-flow",
+      "description": "AI-first product development workflow for Claude Code. From idea to production.",
+      "version": "1.0.0"
+    }
+  ]
+}
