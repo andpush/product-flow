@@ -15,7 +15,7 @@ First, verify that `product/product.md` exists. If not, user should run `/define
 
 - Read `product/product.md` - Product definition, requirements and constraints
 - Read documents referenced in the Bibliography section to get even more context
-- Read `../templates/architecture-template.md` template file to learn about the architecture documentation to generate
+- Read `${CLAUDE_PLUGIN_ROOT}/templates/architecture-template.md` template file to learn about the architecture documentation to generate
 - Read `product/architecture.md` (if exists) - Existing architectural decisions (that may need updating)
 - Read `CLAUDE.md`, `AGENTS.md`(if exists) - Development preferences and standards
 
@@ -62,4 +62,4 @@ First, verify that `product/product.md` exists. If not, user should run `/define
    - testing approaches
    - development workflow: Git strategy, CI/CD, review process, testing approach
 
-7. **Create/Update**: Generate or enhance `product/architecture.md` based on the `../templates/architecture-template.md`
+7. **Create/Update**: Generate or enhance `product/architecture.md` based on the `${CLAUDE_PLUGIN_ROOT}/templates/architecture-template.md`
