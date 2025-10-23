@@ -11,7 +11,7 @@
     {
       "name": "product-flow",
       "description": "Commands for Product development workflow",
-      "source": ".",
+      "source": "./",
       "category": "development"
     }
   ]
