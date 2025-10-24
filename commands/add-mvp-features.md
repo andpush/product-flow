@@ -79,7 +79,7 @@ If the product.md contains only high-level feature descriptions without specific
 1. Extract all MVP features from product.md
 2. Generate proper feature IDs (F001, F002, etc.)
 3. For each feature, analyze initial docs for relevant information
-4. Create feature definitions following `${CLAUDE_PLUGIN_ROOT}/templates/feature-template.md`
+4. Create feature definitions using the `product-discovery` skill which provides the feature template structure
 5. Ask user for clarifications when needed
 
 ## Output Requirements

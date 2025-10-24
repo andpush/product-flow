@@ -1,11 +1,12 @@
+---
+Product:  [PRODUCT_NAME]
+Created:  [YYYY-MM-DD]
+Updated:  [YYYY-MM-DD]
+Status:   [Draft/Defined]
+---
 <!-- Use this template when creating `product/product.md` with /define-product command -->
 
 # Product Definition
-
-| **Product Name:**  | [PRODUCT_NAME]  |
-|--------------------|-----------------|
-| **Creation Date:** | [YYYY-MM-DD]    |
-| **Status:**        | [Draft/Defined] |
 
 ## Product Purpose
 
@@ -116,8 +117,10 @@ Critical decisions that need resolution before implementation.
 
 ## Template Usage Instructions
 
-- Be concise but complete in descriptions.
-- Be specific: use concrete numbers and dates. Do not guess, if data not found in initial documents, ask user.
+- Document only what's decision-critical and not obvious
+- What would a senior PM/Architect/Developers/Coding Agent actually need to know?
+- Be concise, avoid duplication
+- Be specific: use concrete numbers and dates. Do not guess, ask user when in doubt
 - List all open questions that could block implementation.
 
 ## Product Defined Status Checklist

@@ -35,7 +35,7 @@ You are a Senior Business Analyst updating a feature definition to reflect new i
 - `product/features/$1/feature.md` - Current feature definition
 - `product/product.md` (if exists) - Product context and any recent changes
 - All files in `product/features/$1/` - New mockups, docs, images, user stories
-- `${CLAUDE_PLUGIN_ROOT}/templates/feature-template.md` - Template structure to maintain
+- Use the `product-discovery` skill which provides the feature template structure
 
 ## Task
 

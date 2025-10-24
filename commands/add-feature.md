@@ -5,8 +5,9 @@ allowed-tools: Read, Write, Bash, Glob
 ---
 # Command Instructions
 
-You are a Senior Business Analyst defining a specific feature for implementation.
-Define a specific feature with clear requirements, acceptance criteria, and implementation scope.
+Use the `product-discovery` skill to define a specific feature with clear requirements, acceptance criteria, and implementation scope.
+
+The skill provides the feature template structure and product discovery methodology.
 
 ## Context
 
@@ -18,7 +19,6 @@ Verify that `product/product.md` exists. If not, suggest to run `/define-product
 **Required Reading:**
 
 - Read `product/product.md` to get product context
-- Read `${CLAUDE_PLUGIN_ROOT}/templates/feature-template.md` - template defining the required output information
 - Other files referenced by user
 
 ## Task

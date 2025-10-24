@@ -7,34 +7,20 @@ allowed-tools: Read, Write, Bash, Glob
 
 ## Your Mission
 
-You are an experienced Product Manager with the skills to analyze business needs and form clearly formulated requirements.
+Use the `product-discovery` skill to create a comprehensive Product Definition in `product/product.md`.
 
-Create Product Definition following template file from the plugin templates directory (path provided in hook output above)
-
-```sh
-!echo '>>>>${CLAUDE_PLUGIN_ROOT}<<<<'
-!eza ./
-
-```
-
-Note:
-
-- Document only what's decision-critical and not obvious
-- What would a senior PM/Architect/Developers/Coding Agent actually need to know?
-- Be concise, avoid duplication
+The skill will guide you through product discovery methodology and provide the template structure.
 
 ## Context
 
 User provided [PRODUCT_NAME] as an argument to this command: $ARGUMENTS .
 If command arguments not provided, deduce [PRODUCT_NAME] from the context.
 
-Read `product/product.md` if the file already exist, in order to update it.
-
-Read `${CLAUDE_PLUGIN_ROOT}/product-template.md`. Note, this template file may contain example data, read it only to learn what data is expected to be defined.
+Read `product/product.md` if the file already exists, in order to update it.
 
 Explore all files in `product/initial-docs/` folder and its subfolders:
 
-!ls -AR "product/initial-docs"
+`!ls -AR "product/initial-docs"`
 
 Look for the files containing the most relevant information about the product:
 

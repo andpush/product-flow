@@ -1,6 +1,6 @@
 ---
 name: product-discovery
-description: Product Discovery expertise. Use for business domain modelling, requirements analysis and validation, user research, MVP features definition.
+description: Product Discovery expertise. Use for business domain modelling, user research, requirements analysis, validation and documentation, MVP features definition.
 version: 1.0.0
 ---
 <!-- TODO: NEEDS REVIEW! -->
@@ -12,7 +12,7 @@ Complete product discovery combining business analysis, lean startup methodology
 
 - Commands: `/define-product`, `/add-feature`, `/add-mvp-features`, `/update-feature`
 - Files: `product.md`, `feature.md`
-- Context: requirements, validation, assumptions, user research, MVP, feedback
+- Context: requirements, validation, assumptions, user research, feedback, MVP
 
 ## Core Principles
 
@@ -139,13 +139,15 @@ We will know we're right when [measurable signal].
 - Which assumptions have most uncertainty?
 - Which, if wrong, would be most costly?
 
-## Workflow Integration
+## Documentation Templates
 
-- `/define-product`     - Product Definition
-- `/mockup-product`     - Generate clickable prototype
-- `/add-mvp-features`   - Initial Product Features Definition
-- `/add-feature`        - Additional Feature Definition
-- `/update-feature`     - Incorporate Learnings
+### Product Definition Template
+
+When creating or updating `product/product.md`, follow the structure in [product-template.md](../../templates/product-template.md).
+
+### Feature Definition Template
+
+When creating feature definitions in `product/features/`, follow the structure in [feature-template.md](../../templates/feature-template.md).
 
 ### On each Feature
 

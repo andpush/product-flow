@@ -15,9 +15,21 @@ First, verify that `product/product.md` exists. If not, user should run `/define
 
 - Read `product/product.md` - Product definition, requirements and constraints
 - Read documents referenced in the Bibliography section to get even more context
-- Read `${CLAUDE_PLUGIN_ROOT}/templates/architecture-template.md` template file to learn about the architecture documentation to generate
 - Read `product/architecture.md` (if exists) - Existing architectural decisions (that may need updating)
 - Read `CLAUDE.md`, `AGENTS.md`(if exists) - Development preferences and standards
+
+**Architecture Template Structure:**
+
+When creating `product/architecture.md`, include these sections:
+
+- Executive Summary (2-3 sentences on technical approach)
+- System Architecture with diagrams (mermaid format): High-Level Design, Sequence, Data Flow, Component Overview
+- Technology Stack Decisions (Frontend, Backend, Data Layer, Caching, Infrastructure)
+- Development Standards (Code Organization, Coding Conventions, Testing Strategy, API Design)
+- Security Requirements (Authentication, Data Protection, Security Checklist)
+- Performance Requirements (Response Time Targets, Scalability, Optimization)
+- Deployment & Operations (Environments, Process, Monitoring)
+- Open Technical Questions
 
 ## Task
 
@@ -62,4 +74,4 @@ First, verify that `product/product.md` exists. If not, user should run `/define
    - testing approaches
    - development workflow: Git strategy, CI/CD, review process, testing approach
 
-7. **Create/Update**: Generate or enhance `product/architecture.md` based on the `${CLAUDE_PLUGIN_ROOT}/templates/architecture-template.md`
+7. **Create/Update**: Generate or enhance `product/architecture.md` following the Architecture Template Structure defined above
