@@ -1,6 +1,6 @@
 ---
 name: product-discovery
-description: Product Discovery expertise. Use for business domain modelling, user research, requirements analysis, validation and documentation, MVP features definition.
+description: Product discovery. Use for requirements analysis, validation and documentation, MVP features definition.
 version: 1.0.0
 ---
 <!-- TODO: NEEDS REVIEW! -->

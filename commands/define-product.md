@@ -9,34 +9,37 @@ allowed-tools: Read, Write, Bash, Glob
 
 Use the `product-discovery` skill to create a comprehensive Product Definition in `product/product.md`.
 
-The skill will guide you through product discovery methodology and provide the template structure.
-
 ## Context
 
 User provided [PRODUCT_NAME] as an argument to this command: $ARGUMENTS .
 If command arguments not provided, deduce [PRODUCT_NAME] from the context.
 
-Read `product/product.md` if the file already exists, in order to update it.
+Explore the following files:
 
-Explore all files in `product/initial-docs/` folder and its subfolders:
+```bash
+product/
+├── initial-docs/**    # Initial documents to research
+├── product.md         # (if exists) previous definition to update
+```
 
 `!ls -AR "product/initial-docs"`
 
-Look for the files containing the most relevant information about the product:
+Look for the files containing the most relevant and up-to-date information about the product:
 
 - Product vision
-- Problem domain descriptions
-- Market research documents
+- Business domain
+- Problem statement
+- Market research
 - Solution ideation notes
 - Meeting notes with stakeholders
 - Business needs and requirements
 - Use cases and user journeys
 
-Load the UI materials if present in `product/ui-reference/`:
+Load the UI materials if present:
 
 - Design system, UI/UX guides
 - Wireframes, reference UI
-- Screenshots of competitors
+- Screenshots of competitors, similar or related solutions
 
 ## Task
 
@@ -48,25 +51,27 @@ Load the UI materials if present in `product/ui-reference/`:
    - Consider technical feasibility and resource constraints.
 4. **Identify Gaps and Inconsistencies**: Figure out gaps in requirements. Check for inconsistencies and ambiguous language. Think what clarifications are absolutely necessary in order to start solutioning.
 5. **Ask User**:
-   - Ask clarifying questions one at a time.
-   - Provide 2-4 numbered options when possible.
-   - Include brief rationale for recommended option.
-   - Unanswered questions should be appended to the Open Questions section
+   - Ask clarifying questions one at a time
+   - Wait user definite answer before asking another question
+   - Provide 2-4 numbered options when possible
+   - Include brief rationale for recommended option
+
+   ```markdown
+   ---
+   **Question**: [Specific question about unclear requirement]
+
+   **Why it matters**: [A very brief explanation of what it affects]
+
+   **Options**:
+
+   1. Most likely or recommended option with brief rationale
+   2. Alternative, with trade-offs
+   A. Another - Please Specify [let the user to write]
+   P. Postpone this decision AND write the question to the Open Questions section
+   ---
+   ```
+
 6. **Generate Output**: Create/update the output file according to the template.
-
-## Clarifications format
-
-**Question**: [Specific question about unclear requirement]
-
-**Why it matters**: [A very brief explanation of what it affects]
-
-**Options**:
-
-1. Most likely or recommended option with brief rationale
-2. Alternative, with trade-offs
-A. Another - Please Specify [let the user to write]
-E. Explain more context about this decision and ask again
-P. Postpone this decision AND write the question to the Open Questions section
 
 ## Next Steps
 
