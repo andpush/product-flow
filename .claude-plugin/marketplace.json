@@ -8,9 +8,15 @@
   },
   "plugins": [
     {
-      "name": "product-flow",
-      "description": "Commands for Product development workflow",
-      "source": "./",
+      "name": "prod-flow",
+      "description": "AI-first product development workflow. From idea to production.",
+      "source": "./prod-flow",
+      "category": "development"
+    },
+    {
+      "name": "code-tools",
+      "description": "Essential code quality tools: security review, codebase exploration, and test generation",
+      "source": "./code-tools",
       "category": "development"
     }
   ]

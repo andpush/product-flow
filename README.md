@@ -1,45 +1,35 @@
-# Product Flow
+# Product Flow Plugins
 
-AI-first product development workflow for Claude Code. From idea to production.
+Complete development toolkit with two plugins for modern software development:
 
-## What You Get
-
-`product-flow` plugin includes everything you need - commands, agents, templates, and product discovery expertise:
-
-- **Commands** - `/define-product`, `/plan-feature`, `/implement-feature`, etc.
-- **Agents** - UI mockup designer, test generator, code reviewer
-- **Skills** - Business analysis, UI/UX design, lean startup, workflow coordination
-- **Templates** - Product, feature, plan, architecture, review docs
+- **prod-flow** - AI-first product development workflow. From idea to production.
+- **code-tools** - Essential code quality tools: security review, codebase exploration, and test generation.
 
 ## Installation
 
 ```claude
 /plugin marketplace add andpush/product-flow
-/plugin install product-flow
+/plugin install prod-flow
+/plugin install code-tools
 ```
 
-**Optional** - Add tech stack expertise:
+## What You Get
 
-```claude
-/plugin install tech-stacks
-```
+### prod-flow plugin
 
-### What's Included
-
-**product-flow** - Complete workflow in one plugin:
-
-- **Commands**: `/define-product`, `/define-architecture`, `/add-feature`, `/plan-feature`, `/implement-feature`, `/feature-review`, `/mockup-product`, `/mockup-feature`, `/figma-mockup`
+- **Commands**: `/define-product`, `/define-architecture`, `/add-feature`, `/plan-feature`, `/implement-feature`, `/review-feature`, `/mockup-product`, `/mockup-feature`, `/figma-mockup`
 - **Agents**: UI mockup designer, test generator, code reviewer
-- **Skills**: Product discovery (requirements, validation, user research), workflow coordination, UI/UX design
-- **Templates**: Product, architecture, feature, plan, review, ADR, mockup
+- **Skills**: Product discovery (requirements, validation, user research), business analysis, UI/UX design
+- **Templates**: Product, architecture, feature, plan, review, ADR
+- **Tech Stacks**: Java/Quarkus, Svelte, Flutter
 
-**tech-stacks** (optional):
+### code-tools plugin
 
-- Java/Quarkus backend patterns
-- Svelte frontend patterns
-- Flutter mobile patterns
+- **security-reviewer**: Comprehensive security audits using SAST tools (Semgrep, Bandit, npm audit, Trivy)
+- **codebase-explorer**: Systematic codebase exploration at three levels (Quick Scan, Deep Analysis, Comprehensive Audit)
+- **test-generator**: Auto-generate unit tests with framework awareness (Jest, pytest, RSpec, PHPUnit, Go, JUnit, Flutter)
 
-## Quick Start
+## Quick Start: prod-flow
 
 ```bash
 mkdir -p product/initial-docs
@@ -51,10 +41,30 @@ mkdir -p product/initial-docs
 /add-mvp-features
 /plan-feature F001-UserAuth
 /implement-feature F001-UserAuth
-/feature-review F001-UserAuth
+/review-feature F001-UserAuth
 ```
 
-## Workflow
+## Quick Start: code-tools
+
+**Security Review:**
+
+```claude
+Use the security-reviewer skill to audit my codebase
+```
+
+**Explore Codebase:**
+
+```claude
+Use the codebase-explorer skill to do a quick scan of this project
+```
+
+**Generate Tests:**
+
+```claude
+Use the test-generator skill to create tests for src/auth/
+```
+
+## prod-flow Workflow
 
 ```sequence
 product/initial-docs/          Your vision, research, requirements
@@ -66,11 +76,13 @@ product/features/F001-*/       Feature specs
 product/features/F001-*/plan.md  Implementation plan
   ↓ /implement-feature
 feature/F001-* branch          Code + tests
-  ↓ /feature-review
+  ↓ /review-feature
 product/features/F001-*/review.md  Quality review
 ```
 
 ## Directory Structure
+
+### prod-flow output
 
 ```sh
 product/
@@ -85,6 +97,36 @@ product/
 │       └── mockups/     # UI designs
 ├── mockups/             # Product-level mockups
 └── adr/                 # Architecture decision records
+```
+
+### code-tools output
+
+```sh
+security-issues-YYYY-MM-DD/    # Security audit reports
+├── CR-001.md                  # Critical vulnerabilities
+├── HI-001.md                  # High severity issues
+├── ME-001.md                  # Medium severity issues
+└── summary.md                 # Executive summary
+
+test/                          # Generated tests
+└── [framework-specific structure]
+```
+
+## Repository Structure
+
+```sh
+/
+├── prod-flow/              # AI-first product development workflow
+│   ├── commands/           # Slash commands
+│   ├── agents/             # Specialized agents
+│   ├── skills/             # Product discovery, UI/UX, BA
+│   ├── templates/          # Document templates
+│   └── tech-stacks/        # Technology-specific patterns
+└── code-tools/             # Code quality tools
+    └── skills/
+        ├── security-reviewer/
+        ├── codebase-explorer/
+        └── test-generator/
 ```
 
 ## License

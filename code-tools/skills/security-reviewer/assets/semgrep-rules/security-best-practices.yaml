@@ -1,0 +1,210 @@
+rules:
+  - id: hardcoded-secret
+    pattern-either:
+      - pattern: $VAR = "sk_live_..."
+      - pattern: $VAR = "pk_live_..."
+      - pattern: API_KEY = "..."
+      - pattern: API_SECRET = "..."
+      - pattern: AWS_SECRET_ACCESS_KEY = "..."
+      - pattern: PASSWORD = "..."
+      - pattern: DB_PASSWORD = "..."
+    message: Potential hardcoded secret detected. Use environment variables instead.
+    severity: ERROR
+    languages: [python, javascript, typescript, java, go, ruby]
+    metadata:
+      category: security
+      cwe: CWE-798
+      owasp: A02:2021
+
+  - id: unsafe-yaml-load
+    pattern: yaml.load($DATA)
+    fix: yaml.safe_load($DATA)
+    message: Use yaml.safe_load() instead of yaml.load() to prevent arbitrary code execution
+    severity: ERROR
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-502
+      owasp: A08:2021
+
+  - id: sql-string-concat
+    pattern-either:
+      - pattern: |
+          $QUERY = $STR + $VAR
+          ...
+          execute($QUERY)
+      - pattern: |
+          $QUERY = f"... {$VAR} ..."
+          ...
+          execute($QUERY)
+    message: Potential SQL injection via string concatenation. Use parameterized queries.
+    severity: ERROR
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-89
+      owasp: A03:2021
+
+  - id: command-injection-risk
+    pattern-either:
+      - pattern: os.system($VAR)
+      - pattern: subprocess.call($VAR, shell=True)
+      - pattern: exec($CMD)
+    message: Command injection risk. Avoid shell=True and use argument arrays.
+    severity: ERROR
+    languages: [python, javascript]
+    metadata:
+      category: security
+      cwe: CWE-78
+      owasp: A03:2021
+
+  - id: missing-rate-limit
+    pattern: |
+      @app.route("/login", ...)
+      def $FUNC(...):
+        ...
+    pattern-not: |
+      @app.route("/login", ...)
+      @limiter.limit(...)
+      def $FUNC(...):
+        ...
+    message: Login endpoint should have rate limiting to prevent brute force attacks
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-307
+
+  - id: debug-mode-enabled
+    pattern-either:
+      - pattern: DEBUG = True
+      - pattern: app.config["DEBUG"] = True
+      - pattern: app.debug = True
+    message: Debug mode should be disabled in production
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-11
+      owasp: A05:2021
+
+  - id: weak-crypto-algorithm
+    pattern-either:
+      - pattern: hashlib.md5(...)
+      - pattern: hashlib.sha1(...)
+      - pattern: Crypto.Hash.MD5.new(...)
+      - pattern: Crypto.Hash.SHA1.new(...)
+    message: Weak cryptographic algorithm detected. Use SHA-256 or stronger.
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-327
+      owasp: A02:2021
+
+  - id: missing-csrf-protection
+    pattern: |
+      @csrf_exempt
+      @app.route($PATH, methods=["POST"])
+      def $FUNC(...):
+        ...
+    message: CSRF protection disabled on state-changing endpoint
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-352
+
+  - id: path-traversal-risk
+    pattern-either:
+      - pattern: open(os.path.join($BASE, $USER_INPUT))
+      - pattern: open($BASE + $USER_INPUT)
+    message: Potential path traversal vulnerability. Validate that resolved path is within expected directory.
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-22
+      owasp: A01:2021
+
+  - id: insecure-random
+    pattern-either:
+      - pattern: random.random()
+      - pattern: random.randint(...)
+    message: Use secrets module for cryptographically secure random numbers
+    severity: INFO
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-330
+
+  - id: eval-user-input
+    pattern-either:
+      - pattern: eval($INPUT)
+      - pattern: exec($INPUT)
+    message: Never use eval() or exec() with user input - severe code injection risk
+    severity: ERROR
+    languages: [python, javascript]
+    metadata:
+      category: security
+      cwe: CWE-94
+      owasp: A03:2021
+
+  - id: weak-tls-version
+    pattern-either:
+      - pattern: ssl.PROTOCOL_SSLv2
+      - pattern: ssl.PROTOCOL_SSLv3
+      - pattern: ssl.PROTOCOL_TLSv1
+      - pattern: ssl.PROTOCOL_TLSv1_1
+    message: Weak TLS/SSL protocol version. Use TLS 1.2 or higher.
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-327
+      owasp: A02:2021
+
+  - id: exposed-exception-details
+    pattern-either:
+      - pattern: |
+          except ... as $E:
+            ...
+            return str($E)
+      - pattern: |
+          except ... as $E:
+            ...
+            print($E)
+    message: Exposing exception details can leak sensitive information
+    severity: INFO
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-209
+
+  - id: insecure-deserialization
+    pattern: pickle.loads($DATA)
+    message: Insecure deserialization with pickle can lead to arbitrary code execution. Use JSON for untrusted data.
+    severity: ERROR
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-502
+      owasp: A08:2021
+
+  - id: missing-authentication
+    pattern: |
+      @app.route("/admin/...", ...)
+      def $FUNC(...):
+        ...
+    pattern-not: |
+      @app.route("/admin/...", ...)
+      @login_required
+      def $FUNC(...):
+        ...
+    message: Admin endpoint should require authentication
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: security
+      cwe: CWE-306
+      owasp: A07:2021

@@ -52,6 +52,7 @@ Load the UI materials if present:
    - constraints
 2. **High Level Decomposition**:
    - Identify bigger tracks of functionality - Epics
+   - Limit to a small number of epics (2-7)
    - Confirm the list of Epics with the User
 3. **Functional Decomposition**: THINK about features to deliver:
    - Focus on MVP scope.
@@ -84,10 +85,28 @@ Load the UI materials if present:
    ---
    ```
 
-6. **Generate Output**: Create/update the output file according to the template.
+6. **Generate Output**: Create/update the output file according to the template below.
 
-7. **Suggest user next steps:**
+   - Document only what's decision-critical and not obvious
+   - What would a senior PM/Architect/Developers/Coding Agent actually need to know?
+   - Be concise, avoid duplication
+   - Be specific: use concrete numbers and dates. Do not guess, ask user when in doubt
+   - List all open questions that could block implementation.
+
+7. **Product Defined Status Checklist**
+
+   The initial product status is Draft unless the product definition complete. The Defined status criteria:
+
+   - [ ] Product purpose is clear and compelling
+   - [ ] Target audience is specific and well-defined
+   - [ ] All MVP features have clear user stories
+   - [ ] No critical open questions remain - has answers other than TBD
+   - [ ] Technical constraints are realistic
+
+8. **Suggest user next steps:**
    - Run `/define-architecture` to define technical approach
+
+---
 
 ## Product Definition Template
 
@@ -196,24 +215,4 @@ Critical decisions blocking implementation.
 **Possible Options**: [Numbered list of options]
 
 **Answer**: **TBD**
-
-<!-- AI instructions -->
-
-## Template Usage Instructions
-
-- Document only what's decision-critical and not obvious
-- What would a senior PM/Architect/Developers/Coding Agent actually need to know?
-- Be concise, avoid duplication
-- Be specific: use concrete numbers and dates. Do not guess, ask user when in doubt
-- List all open questions that could block implementation.
-
-## Product Defined Status Checklist
-
-The initial product status is Draft unless the product definition complete. The Defined status criteria:
-
-- [ ] Product purpose is clear and compelling
-- [ ] Target audience is specific and well-defined
-- [ ] All MVP features have clear user stories
-- [ ] No critical open questions remain - has answers other than TBD
-- [ ] Technical constraints are realistic
 ```

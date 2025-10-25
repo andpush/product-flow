@@ -1,0 +1,9 @@
+{
+  "name": "prod-flow",
+  "description": "AI-first product development workflow. From idea to production.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Andrei Pushkin",
+    "email": "[RESTRICTED]"
+  }
+}
