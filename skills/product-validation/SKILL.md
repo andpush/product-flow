@@ -1,78 +1,25 @@
 ---
-name: product-discovery
-description: Product discovery. Use for requirements analysis, validation and documentation, MVP features definition.
+name: product-validation
+description: Applies lean startup methodology and user research to validate product assumptions, define MVP scope, and prioritize features based on evidence rather than opinions. Use when defining product requirements, validating features, or analyzing user feedback.
 version: 1.0.0
 ---
 <!-- TODO: NEEDS REVIEW! -->
 # Product Discovery
 
-Complete product discovery combining business analysis, lean startup methodology, and user research.
+Complete product discovery combining lean startup methodology and user research.
 
-## When to Activate
-
-- Commands: `/define-product`, `/add-feature`, `/add-mvp-features`, `/update-feature`
-- Files: `product.md`, `feature.md`
-- Context: requirements, validation, assumptions, user research, feedback, MVP
-
-## Core Principles
-
-### Business Value First
-
-- Focus on "what" and "why", not "how"
-- Business-oriented features, not technical tasks
-- Each feature delivers clear value
-- Right-sized: not too granular, not too broad
-
-### Validated Learning
+## Validated Learning
 
 - Test hypotheses with data, not opinions
 - Fail fast and cheaply
 - Trust behavior over statements
 - When 3+ users mention it → it's a pattern
 
-### MVP Thinking
+## MVP Thinking
 
 - Minimum experiment to validate assumptions
 - Not a crappy version - strategically minimal
 - Build to learn, not just to ship
-
-## Requirements Definition
-
-### User Stories
-
-```tempate
-As a [user type], I want to [action] so that [business value]
-```
-
-### Acceptance Criteria
-
-- Specific and testable
-- Happy path + key edge cases
-- Clear definition of "done"
-- Given-When-Then format when helpful
-
-### Gap Analysis Checklist
-
-- [ ] User personas / target audience defined
-- [ ] Success metrics / business goals clear
-- [ ] Error handling / edge cases specified
-- [ ] Security / compliance requirements documented
-- [ ] Performance expectations defined
-- [ ] User roles / permissions clarified
-- [ ] Integration requirements listed
-- [ ] Data model / entities understood
-
-### Asking Clarifying Questions
-
-```markdown
-**Question**: [Specific question]
-**Why it matters**: [1-sentence impact]
-**Options**:
-1. [Recommended option] - [Rationale]
-2. [Alternative] - [Trade-offs]
-A. Another approach - Please specify
-P. Postpone (add to Open Questions)
-```
 
 ## Assumptions & Validation
 
@@ -138,16 +85,6 @@ We will know we're right when [measurable signal].
 - What could cause complete failure?
 - Which assumptions have most uncertainty?
 - Which, if wrong, would be most costly?
-
-## Documentation Templates
-
-### Product Definition Template
-
-When creating or updating `product/product.md`, follow the structure in [product-template.md](../../templates/product-template.md).
-
-### Feature Definition Template
-
-When creating feature definitions in `product/features/`, follow the structure in [feature-template.md](../../templates/feature-template.md).
 
 ### On each Feature
 
