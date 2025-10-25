@@ -3,14 +3,14 @@
 Complete development toolkit with two plugins for modern software development:
 
 - **prod-flow** - AI-first product development workflow. From idea to production.
-- **code-tools** - Essential code quality tools: security review, codebase exploration, and test generation.
+- **code-flow** - Essential code quality tools: security review, codebase exploration, and test generation.
 
 ## Installation
 
 ```claude
 /plugin marketplace add andpush/product-flow
 /plugin install prod-flow
-/plugin install code-tools
+/plugin install code-flow
 ```
 
 ## What You Get
@@ -23,7 +23,7 @@ Complete development toolkit with two plugins for modern software development:
 - **Templates**: Product, architecture, feature, plan, review, ADR
 - **Tech Stacks**: Java/Quarkus, Svelte, Flutter
 
-### code-tools plugin
+### code-flow plugin
 
 - **security-reviewer**: Comprehensive security audits using SAST tools (Semgrep, Bandit, npm audit, Trivy)
 - **codebase-explorer**: Systematic codebase exploration at three levels (Quick Scan, Deep Analysis, Comprehensive Audit)
@@ -44,7 +44,7 @@ mkdir -p product/initial-docs
 /review-feature F001-UserAuth
 ```
 
-## Quick Start: code-tools
+## Quick Start: code-flow
 
 **Security Review:**
 
@@ -99,7 +99,7 @@ product/
 └── adr/                 # Architecture decision records
 ```
 
-### code-tools output
+### code-flow output
 
 ```sh
 security-issues-YYYY-MM-DD/    # Security audit reports
@@ -122,7 +122,7 @@ test/                          # Generated tests
 │   ├── skills/             # Product discovery, UI/UX, BA
 │   ├── templates/          # Document templates
 │   └── tech-stacks/        # Technology-specific patterns
-└── code-tools/             # Code quality tools
+└── code-flow/              # Code quality tools
     └── skills/
         ├── security-reviewer/
         ├── codebase-explorer/

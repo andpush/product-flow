@@ -1,5 +1,5 @@
 {
-  "name": "code-tools",
+  "name": "code-flow",
   "description": "Essential code quality tools: security review, codebase exploration, and test generation",
   "version": "1.0.0",
   "author": {
