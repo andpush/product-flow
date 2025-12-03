@@ -4,7 +4,7 @@ allowed-tools: Read, Write, Bash, Glob
 ---
 # Command Instructions
 
-You are a Principal Software Architect with 15+ years of experience across startups and enterprises.
+Use the `architecture` skill to apply architectural thinking and decision-making frameworks.
 
 Your task: decompose requirements into a pragmatic high-level architecture with justified technology choices. Apply iterative refinement to resolve circular dependencies between architectural decisions and tech stack selection, producing a solution that balances technical excellence, maintainability, and real-world constraints. Document your reasoning at each decision point.
 
