@@ -14,21 +14,21 @@ Decompose requirements into pragmatic high-level architecture with justified tec
 
 ## Architectural Thinking Framework
 
-### 1. Understand the System
+### Understand the System
 
 - **Purpose**: What problem does this solve? What value does it deliver?
 - **Environment**: Where will it run? (Cloud, on-premise, hybrid, edge)
 - **Interaction Patterns**: Request-response, event-driven, batch processing, real-time streaming?
 - **Scale**: Users, data volume, geographic distribution, growth projections
 
-### 2. Identify Architectural Drivers
+### Identify Architectural Drivers
 
 - **Functional**: Core capabilities that must be delivered
 - **Quality Attributes**: Performance, scalability, reliability, security, maintainability
 - **Constraints**: Budget, timeline, team skills, existing systems, regulations
 - **Assumptions**: What we believe to be true but haven't validated
 
-### 3. Iterative Refinement Process
+### Iterative Refinement Process
 
 **Problem**: Architecture and tech stack have *circular dependencies*
 
@@ -40,9 +40,8 @@ Decompose requirements into pragmatic high-level architecture with justified tec
 1. Propose high-level components with preliminary tech assumptions
 2. Validate tech choices against components
 3. Refine both until coherent
-4. Document reasoning at each decision point
 
-### 4. Possible Architectural Elements to Consider
+### Possible Architectural Elements to Consider
 
 - **Architectural Styles**: Monolith, microservices, serverless, event-driven, layered, hexagonal
 - **Programming Languages and Frameworks**: Based on team skills, ecosystem maturity, performance needs
@@ -63,7 +62,7 @@ Decompose requirements into pragmatic high-level architecture with justified tec
 - **Service Discovery**: Consul, Eureka, Kubernetes DNS, or cloud-based
 - **API Gateway**: Single entry point—routing, auth, rate limiting, SSL termination (Kong, AWS API Gateway, NGINX)
 
-### 5. Decomposition Principles to Consider
+### Decomposition Principles to Consider
 
 When defining component boundaries or considering splitting a component, especially in microservice architecture, consider the following:
 
@@ -75,7 +74,7 @@ When defining component boundaries or considering splitting a component, especia
 - **Scalability**: Does the system benefit from scaling parts independently?
 - **Processing Model**: Transactional vs. Analytical vs. Asynchronous?
 
-### 6. Data Layer — Critical Focus Area
+### Data Layer — Critical Focus Area
 
 - **Entities**: Core business objects and their attributes
 - **Relations**: How entities connect and interact
@@ -99,7 +98,7 @@ When defining component boundaries or considering splitting a component, especia
   - Scalability / Sharding / Replication
   - Operational complexity (managed vs. self-hosted)
 
-### 7. Evaluate Alternatives
+### Evaluate Alternatives
 
 **Off-the-shelf vs Custom Development**:
 
@@ -107,7 +106,7 @@ When defining component boundaries or considering splitting a component, especia
 - **Buy**: Faster delivery, proven solution, licensing costs, limited customization
 - **Integrate**: Best-of-breed, complexity in integration, vendor lock-in risks
 
-### 8. Prioritization Principles
+### Prioritization Principles
 
 - **Simplicity as a Core Value**: Avoid unnecessary complexity—extra entities, DTOs, ORMs, indirection layers, dependencies.
 - **Clarity over complexity**: Build solutions that everyone understands.
@@ -115,20 +114,21 @@ When defining component boundaries or considering splitting a component, especia
 - **Defensible choices over trendy ones**: Proven technology unless there's compelling reason.
 - **Early Error Detection**: Strong typing, null safety, immutable structures, assertions, concurrent modification detection, automated testing.
 
-### 9. Validation Checklist
+### Validation Checklist
 
 Before finalizing architecture:
 
-- [ ] Does it support product goals and constraints?
-- [ ] Are all components defined with specific tech stack and versions?
-- [ ] Is the data model clear and normalized appropriately?
-- [ ] Are integration points and APIs well-defined?
-- [ ] Is security comprehensive (auth, data protection, input validation)?
-- [ ] Are performance targets realistic and measurable?
-- [ ] Is the deployment process defined with rollback capability?
-- [ ] Does testing strategy cover all layers?
-- [ ] Are development standards clear (coding conventions, git workflow)?
-- [ ] Is monitoring and observability addressed?
-- [ ] Are technology choices justified with clear rationale?
-- [ ] Have trade-offs been explicitly documented?
-- [ ] Is backup and recovery tackled?
+- [ ] Architecture supports product goals and constraints
+- [ ] Meaningful diagrams generated
+- [ ] Modules doesn't have mutual dependnecy
+- [ ] Modules tech stack defined with specific versions
+- [ ] Technology choices justified with rationale
+- [ ] Trade-offs have been explicitly documented
+- [ ] Data Model is clear and normalized appropriately
+- [ ] Integration points and APIs are defined
+- [ ] Security is comprehensive (auth, data protection, input validation)
+- [ ] Performance targets are realistic and addressed by the architecture
+- [ ] Deployment process is defined with rollback capability
+- [ ] Testing strategy covers all layers
+- [ ] Development standards are clear
+- [ ] Observability addressed
