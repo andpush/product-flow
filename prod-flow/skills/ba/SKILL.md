@@ -21,7 +21,7 @@ Perform Business Analysis as a senior BA based on the business needs and require
 **Strategic initiative or large functionality unit**:
 
 - Substantial business value with measurable KPIs
-- Multiple sprints/releases
+- Spans multiple sprints/releases
 - Independent from other epics (parallel development)
 - Groups related features
 - Example: `Self-service portal`, `GDPR compliance`
@@ -30,7 +30,7 @@ Perform Business Analysis as a senior BA based on the business needs and require
 
 **Deliverable capability**:
 
-- Independently releasable
+- Belongs to one Epic
 - Contains Functional Requirements
 - May contain User Stories
 - Has Acceptance Criteria
