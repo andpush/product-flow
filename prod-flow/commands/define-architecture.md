@@ -74,43 +74,19 @@ Verify `product/product.md` exists. If not, user must run `/define-product` firs
 
 ## Core Principles
 
-1. **KISS (Keep It Simple)** - Choose proven, well-documented solutions over cutting-edge
-2. **YAGNI (You Aren't Gonna Need It)** - Build only what's needed for MVP, evolve incrementally
-3. **DRY (Don't Repeat Yourself)** - Establish reusable patterns and shared components
-4. **Fail Fast** - Quick feedback loops, automated testing, early error detection
-5. **Security by Design** - Security considerations integrated from the start
-
 ## System Architecture
 
-[Visualize architecture with the help of (1) High Level Design - component diagram, (2) Data Flow Diagram, (3) Sequence or Activity Diagram or BPMN - choose which is more appropriate to the domain, (4) Entity Relationship Diagram (from business perspective), (5) State diagram (if state machine is at the heart of functionality and state flow is important)]
+[Visualize architecture with the help of diagrams:
+ (1) High Level System Design,
+ (2) Data Flow Diagram,
+ (3) Sequence or Activity Diagram or BPMN - choose which is more appropriate to the domain,
+ (4) Entity Relationship Diagram (from business perspective),
+ (5) State diagram (if state machine is at the heart of functionality and state flow is important)]
 
-### High-Level Design
 
-[An example of components diagram:]
+### Modules
 
-```mermaid
-graph TB
-    Client[Client Application] --> LB[Load Balancer]
-    LB --> API[API Server]
-    API --> Auth[Authentication Service]
-    API --> BL[Business Logic Layer]
-    BL --> Data[Data Access Layer]
-    Data --> DB[(Primary Database)]
-    Data --> Cache[(Cache Layer)]
-    API --> External[External APIs]
-```
-
-### Sequence diagram
-
-[Sequence diagram ]
-
-### Data flow diagram
-
-[Data Flow diagram]
-
-### Component Overview
-
-[List main components that are stored in separate root directories or repositories. An example of decomposition:]
+[List main modules that are stored in separate root directories or repositories. Ex.:]
 
 | Component | Location | Primary Tech | Has UI |
 |-----------|----------|---------------|-------|
@@ -121,91 +97,39 @@ graph TB
 
 ## Technology Stack Decisions
 
-[Justify major technical decisions with clear rationale]
+[Justify major technical decisions with clear rationale for each module / large part of the system]
 
 ### Frontend
 
 #### Primary Framework
 
-- **Choice**: [React/Vue/Angular/Vanilla JS/Other]
-- **Rationale**: [Reason for choice]
-- **Alternatives Considered**: [Other options and why rejected]
+- **Choice**:
+- **Rationale**:
+- **Alternatives Considered**:
 
 #### Supporting Technologies
 
-- **Styling**: [Tailwind CSS/Styled Components/CSS Modules/SCSS]
-- **State Management**: [Redux/Zustand/Context API/Vuex/Built-in]
-- **Build Tool**: [Vite/Webpack/Parcel/Next.js/Nuxt.js]
-- **Testing**: [Jest/Vitest/Cypress/Testing Library]
+- **Styling**:
+- **State Management**:
+- **Build Tool**:
+- **Testing**:
 
 ### Backend
 
-#### Primary Tech Stack
-
-- **Choice**: [Node.js/Python/FastAPI/Java/Spring/Kotlin/Quarkus/Go/Gin/C#/.NET]
-- **Rationale**: [Reason for choice]
-- **Alternatives Considered**: [Other options and why rejected]
-
-#### Supporting dependencies
-
-- **ORM/Database Access**: [Prisma/TypeORM/SQLAlchemy/GORM/Entity Framework]
-- **Validation**: [Joi/Zod/Pydantic/Bean Validation]
-- **Testing**: [Jest/Pytest/JUnit/Go test]
-- **Documentation**: [Swagger/OpenAPI/GraphQL Schema]
-
 #### Data Layer
-
-- **Primary Database**: [PostgreSQL/MySQL/MongoDB/SQLite]
-- **Rationale**: [Reason for choice]
-- **Schema Strategy**: [Code-first/Database-first/Migration-based]
-
-### Caching Strategy
-
-- **Technology**: [Redis/Memcached/In-memory/None]
-- **Use Cases**: [Session storage/API responses/computed data]
-
-### Infrastructure & DevOps
-
-**Deployment**: [Vercel/Netlify/AWS/GCP/Azure/Docker/Traditional hosting]
-**CI/CD**: [GitHub Actions/GitLab CI/Jenkins/CircleCI]
-**Monitoring**: [Basic logging/Sentry/DataDog/New Relic/Custom]
-**Environment Management**: [Docker/Virtual environments/Native]
 
 ## Development Standards
 
 ### Code Organization
 
-[Tree-like structure, example:]
-
-```sh
-project-root/
-├── frontend/              # Client-side application
-│   ├── src/
-│   │   ├── components/    # Reusable UI components
-│   │   ├── pages/         # Page-level components
-│   │   ├── hooks/         # Custom hooks (React)
-│   │   ├── utils/         # Utility functions
-│   │   └── styles/        # Global styles
-│   └── tests/             # Frontend tests
-├── backend/               # Server-side application
-│   ├── src/
-│   │   ├── routes/        # API endpoints
-│   │   ├── models/        # Data models
-│   │   ├── services/      # Business logic
-│   │   ├── middleware/    # Request middleware
-│   │   └── utils/         # Utility functions
-│   └── tests/             # Backend tests
-├── shared/                # Shared types/utilities
-├── product/                  # Project documentation
-└── scripts/               # Build and deployment scripts
-```
+[Tree-like structure with comments]
 
 ### Coding Conventions
 
 **Code Style**:
 
-- **Formatter**: [Prettier/Black/gofmt/Standard]
-- **Linter**: [ESLint/Pylint/golint/TSLint]
+- **Formatter**:
+- **Linter**:
 
 **Git Workflow**:
 
@@ -244,11 +168,10 @@ project-root/
 **Base URL**: [https://api.domain.com/v1]
 **Authentication**: [JWT/OAuth 2.0/API Keys/Session-based]
 
-#### REST Conventions (if applicable)
+#### REST Conventions [if applicable]
 
 **Error Handling**:
 
-```json
 {
   "error": {
     "code": "VALIDATION_ERROR",
@@ -257,7 +180,7 @@ project-root/
     "timestamp": "2024-01-01T00:00:00Z"
   }
 }
-```
+
 
 ## Security Requirements
 
