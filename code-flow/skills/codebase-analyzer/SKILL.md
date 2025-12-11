@@ -1,9 +1,9 @@
 ---
-name: codebase-explorer
+name: codebase-analyzer
 description: This skill should be used when exploring unfamiliar codebases, analyzing large repositories, understanding legacy systems, or performing comprehensive code audits. Use this for tech stack detection, architecture mapping, quality assessment, or preparing for refactoring, onboarding, and security reviews.
 ---
 
-# Codebase Explorer
+# Codebase Analyzer
 
 ## Overview
 
