@@ -12,9 +12,9 @@ allowed-tools: Read, Write, Bash
    - Use # Title or ## Title for slide headings. 
    - For nested topics: "Header: Subheader" format
    - Group by meaning, not size
-   - Preserve original wording - it is well thought
-   - Only cosmetic changes allowed for presentation style
-   - Do not remove any content, but hide lengthy explanations into the Speaker Notes defined as `<!-- Notes: ... -->`
+   - Preserve original content and wording - it is well thought
+   - Never remove any content! You can only hide lengthy explanations into the Speaker Notes defined as `<!-- Notes: ... -->` without cuts and abbreviations.
+   - Some slides may contain multiline code that may not fit into one slide, it is ok, do not cut or split, user will handle it manually, so leave it as is.
 3. Structure:
    - Add title slide (title, subheader, author and date)
    - Add agenda slide listing all significant topics

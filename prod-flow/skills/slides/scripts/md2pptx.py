@@ -188,13 +188,9 @@ def set_native_bullet(paragraph, level=0, char='•'):
     from lxml.etree import SubElement
 
     pPr = paragraph._p.get_or_add_pPr()
-    pPr.set(qn('a:lvl'), str(level))
 
-    # Set indentation based on level (in EMUs: 914400 EMU = 1 inch)
-    indent = level * 457200  # 0.5 inch per level
-    margin = 457200 + indent  # Base margin + level indent
-    pPr.set(qn('a:marL'), str(margin))
-    pPr.set(qn('a:indent'), str(-228600))  # Hanging indent for bullet
+    # Set the list level - this controls indentation via slide master
+    pPr.set(qn('a:lvl'), str(level))
 
     # Remove any existing bullet settings
     for tag in ['a:buNone', 'a:buChar', 'a:buAutoNum']:
@@ -369,11 +365,6 @@ def create_slide(prs, layout_idx, title, content, notes):
     # Add content for content slides (layout 1)
     if layout_idx == 1 and content:
         try:
-            # Hide default placeholder to avoid "Click to add text"
-            if len(slide.placeholders) > 1:
-                slide.placeholders[1].width = 0
-                slide.placeholders[1].height = 0
-
             # Check if table
             is_table = '|' in content and content.count('|') > 2
             if is_table:
@@ -382,11 +373,22 @@ def create_slide(prs, layout_idx, title, content, notes):
                     add_table(slide, content)
                     return slide
 
-            # Create textbox for bullets/paragraphs
-            content_box = slide.shapes.add_textbox(
-                Inches(0.3), Inches(0.85),
-                Inches(9.4), Inches(4.65)
-            )
+            # Use native placeholder if available, otherwise create textbox
+            if len(slide.placeholders) > 1:
+                # Use the content placeholder for better Google Slides compatibility
+                content_box = slide.placeholders[1]
+                # Adjust placeholder position and size
+                content_box.left = Inches(0.3)
+                content_box.top = Inches(0.85)
+                content_box.width = Inches(9.4)
+                content_box.height = Inches(4.65)
+            else:
+                # Fallback to textbox if no placeholder available
+                content_box = slide.shapes.add_textbox(
+                    Inches(0.3), Inches(0.85),
+                    Inches(9.4), Inches(4.65)
+                )
+
             add_content_to_textframe(content_box.text_frame, content)
         except Exception as e:
             print(f"⚠ Warning: Could not add content to slide: {e}")
