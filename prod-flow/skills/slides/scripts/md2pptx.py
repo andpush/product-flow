@@ -3,26 +3,36 @@
 Universal Markdown to PowerPoint Converter
 
 Converts markdown files with --- slide separators into PPTX presentations.
-Supports speaker notes, tables, bullets, and inline formatting.
+Supports speaker notes, tables, bullets, links, and inline formatting.
 """
 
 import re
 import argparse
-from pptx import Presentation
-from pptx.util import Inches, Pt
-from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
-from pptx.dml.color import RGBColor
+
+# Auto-install python-pptx if not present
+try:
+    from pptx import Presentation
+    from pptx.util import Inches, Pt
+    from pptx.enum.text import MSO_ANCHOR
+    from pptx.dml.color import RGBColor
+except ImportError:
+    import subprocess
+    import sys
+    print("Installing python-pptx...")
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'python-pptx'])
+    from pptx import Presentation
+    from pptx.util import Inches, Pt
+    from pptx.enum.text import MSO_ANCHOR
+    from pptx.dml.color import RGBColor
 
 
 # ============================================================================
 # CONFIGURATION
 # ============================================================================
 
-# Smoky dark blue color for titles and bullet markers
-SMOKY_BLUE = RGBColor(0x36, 0x4F, 0x6B)  # #364F6B
-
-# Default font
 DEFAULT_FONT = "Heebo"
+ACCENT_COLOR = RGBColor(0x36, 0x4F, 0x6B)  # Smoky blue for titles, bold, italic, links
+TEXT_COLOR = RGBColor(0, 0, 0)              # Black for regular text
 
 
 # ============================================================================
@@ -125,37 +135,39 @@ def parse_table(content):
     return headers, rows
 
 
-def apply_formatting(paragraph, text, color=None):
+def apply_formatting(paragraph, text):
     """
-    Apply markdown inline formatting: **bold**, *italic*, `code`
-    Creates separate runs for each format type
+    Apply markdown inline formatting: **bold**, *italic*, `code`, [link](url)
+    Bold, italic, links use ACCENT_COLOR; plain text and code use TEXT_COLOR
     """
-    pattern = r'(\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`|([^*`]+))'
+    # Pattern: **bold**, *italic*, `code`, [text](url), plain text
+    pattern = r'\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`|\[([^\]]+)\]\(([^)]+)\)|([^*`\[]+)'
 
     for match in re.finditer(pattern, text):
         run = paragraph.add_run()
+        run.font.name = DEFAULT_FONT
 
-        if match.group(2):  # **bold**
-            run.text = match.group(2)
+        if match.group(1):  # **bold**
+            run.text = match.group(1)
             run.font.bold = True
-            run.font.name = DEFAULT_FONT
-        elif match.group(3):  # *italic*
-            run.text = match.group(3)
+            run.font.color.rgb = ACCENT_COLOR
+        elif match.group(2):  # *italic*
+            run.text = match.group(2)
             run.font.italic = True
-            run.font.name = DEFAULT_FONT
-        elif match.group(4):  # `code`
-            run.text = match.group(4)
+            run.font.color.rgb = ACCENT_COLOR
+        elif match.group(3):  # `code`
+            run.text = match.group(3)
             run.font.name = 'Courier New'
             run.font.size = Pt(14)
-        elif match.group(5):  # plain text
-            if not match.group(5):
-                continue
-            run.text = match.group(5)
-            run.font.name = DEFAULT_FONT
-
-        # Apply color if specified
-        if color:
-            run.font.color.rgb = color
+            run.font.color.rgb = TEXT_COLOR
+        elif match.group(4) and match.group(5):  # [text](url)
+            run.text = match.group(4)
+            run.font.color.rgb = ACCENT_COLOR
+            run.font.underline = True
+            run.hyperlink.address = match.group(5)
+        elif match.group(6):  # plain text
+            run.text = match.group(6)
+            run.font.color.rgb = TEXT_COLOR
 
 
 # ============================================================================
@@ -170,8 +182,37 @@ def set_margins(text_frame):
     text_frame.margin_bottom = Inches(0.025)
 
 
+def set_native_bullet(paragraph, level=0, char='•'):
+    """Set native PowerPoint bullet formatting on a paragraph"""
+    from pptx.oxml.ns import qn
+    from lxml.etree import SubElement
+
+    pPr = paragraph._p.get_or_add_pPr()
+    pPr.set(qn('a:lvl'), str(level))
+
+    # Set indentation based on level (in EMUs: 914400 EMU = 1 inch)
+    indent = level * 457200  # 0.5 inch per level
+    margin = 457200 + indent  # Base margin + level indent
+    pPr.set(qn('a:marL'), str(margin))
+    pPr.set(qn('a:indent'), str(-228600))  # Hanging indent for bullet
+
+    # Remove any existing bullet settings
+    for tag in ['a:buNone', 'a:buChar', 'a:buAutoNum']:
+        for elem in pPr.findall(qn(tag)):
+            pPr.remove(elem)
+
+    # Add bullet character
+    buChar = SubElement(pPr, qn('a:buChar'))
+    buChar.set('char', char)
+
+    # Add bullet color
+    buClr = SubElement(pPr, qn('a:buClr'))
+    srgbClr = SubElement(buClr, qn('a:srgbClr'))
+    srgbClr.set('val', '364F6B')  # ACCENT_COLOR
+
+
 def add_bullets(text_frame, content):
-    """Add bullet list to text frame with manual bullet characters"""
+    """Add bullet list to text frame with native PowerPoint bullets"""
     bullets = parse_bullets(content)
     if not bullets:
         return
@@ -180,27 +221,15 @@ def add_bullets(text_frame, content):
     set_margins(text_frame)
 
     BULLET_CHARS = ["•", "◦"]
-    BLACK = RGBColor(0, 0, 0)
 
     for idx, (level, text) in enumerate(bullets):
-        # Use first paragraph for first bullet, create new for rest
         p = text_frame.paragraphs[0] if idx == 0 else text_frame.add_paragraph()
 
-        # Add indent if nested
-        if level > 0:
-            run = p.add_run()
-            run.text = "    " * level
-            run.font.name = DEFAULT_FONT
-            run.font.color.rgb = BLACK
+        # Set native bullet formatting
+        set_native_bullet(p, level=level, char=BULLET_CHARS[min(level, 1)])
 
-        # Add bullet character (blue)
-        run = p.add_run()
-        run.text = BULLET_CHARS[min(level, 1)] + " "
-        run.font.name = DEFAULT_FONT
-        run.font.color.rgb = SMOKY_BLUE
-
-        # Add text content (black)
-        apply_formatting(p, text, BLACK)
+        # Add text content
+        apply_formatting(p, text)
 
 
 def add_table(slide, content):
@@ -263,11 +292,9 @@ def add_paragraphs(text_frame, content):
     if not paragraphs:
         return
 
-    BLACK = RGBColor(0, 0, 0)
-
     for idx, para_text in enumerate(paragraphs):
         p = text_frame.paragraphs[0] if idx == 0 else text_frame.add_paragraph()
-        apply_formatting(p, para_text, BLACK)
+        apply_formatting(p, para_text)
 
 
 def add_content_to_textframe(text_frame, content):
@@ -312,9 +339,9 @@ def create_slide(prs, layout_idx, title, content, notes):
             paragraph.space_after = Pt(0)
             paragraph.line_spacing = 1.0
             for run in paragraph.runs:
-                run.font.color.rgb = SMOKY_BLUE
+                run.font.color.rgb = ACCENT_COLOR
                 run.font.name = DEFAULT_FONT
-                run.font.bold = True  # Bold for all titles
+                run.font.bold = True
                 run.font.size = title_size
 
         # Configure text frame properties
@@ -482,6 +509,7 @@ Author name
 - Bullet point one
 - Bullet point two with **bold** and *italic*
 - Code example: `print("hello")`
+- Check out [Python docs](https://python.org) for more
 
 <!-- Notes: These are speaker notes -->
 
