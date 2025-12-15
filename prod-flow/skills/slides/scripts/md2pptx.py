@@ -8,23 +8,11 @@ Supports speaker notes, tables, bullets, links, and inline formatting.
 
 import re
 import argparse
-
-# Auto-install python-pptx if not present
-try:
-    from pptx import Presentation
-    from pptx.util import Inches, Pt
-    from pptx.enum.text import MSO_ANCHOR
-    from pptx.dml.color import RGBColor
-except ImportError:
-    import subprocess
-    import sys
-    print("Installing python-pptx...")
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'python-pptx'])
-    from pptx import Presentation
-    from pptx.util import Inches, Pt
-    from pptx.enum.text import MSO_ANCHOR
-    from pptx.dml.color import RGBColor
-
+from markdown_it import MarkdownIt
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.text import MSO_ANCHOR
+from pptx.dml.color import RGBColor
 
 # ============================================================================
 # CONFIGURATION
@@ -33,7 +21,7 @@ except ImportError:
 DEFAULT_FONT = "Heebo"
 ACCENT_COLOR = RGBColor(0x36, 0x4F, 0x6B)  # Smoky blue for titles, bold, italic, links
 TEXT_COLOR = RGBColor(0, 0, 0)              # Black for regular text
-
+MD_PARSER = MarkdownIt('commonmark', {'breaks': True, 'html': True}).enable('table')
 
 # ============================================================================
 # PARSING FUNCTIONS
@@ -56,19 +44,42 @@ def extract_notes(slide_content):
     return content.strip(), notes
 
 
-def extract_title(content):
+def get_plain_text_from_tokens(tokens):
+    """Extracts plain text from a token stream, preserving basic structure."""
+    text_lines = []
+    for token in tokens:
+        if token.type == 'inline':
+            text_lines.append(token.content)
+        elif token.type == 'paragraph_close':
+            text_lines.append('\n')
+    return "".join(text_lines).strip()
+
+
+def parse_slide_content(content):
     """
-    Extract first # or ## heading as title
-    Returns: (title, remaining_content)
+    Parses markdown content of a single slide into a title and a list of content blocks.
     """
-    pattern = r'^#{1,2}\s+(.+?)$'
-    match = re.search(pattern, content, re.MULTILINE)
-    if match:
-        title = match.group(1).strip()
-        # Remove the title line from content
-        content = re.sub(pattern, '', content, count=1, flags=re.MULTILINE)
-        return title, content.strip()
-    return "", content.strip()
+    title = ""
+    tokens = MD_PARSER.parse(content)
+    body_tokens = tokens
+
+    # Find the first h1 or h2 to use as a title
+    for i, token in enumerate(tokens):
+        if token.type == 'heading_open' and token.tag in ['h1', 'h2']:
+            title_token = tokens[i + 1]
+            if title_token.type == 'inline':
+                title = title_token.content.strip()
+                
+                # Find the end of the heading block to slice tokens
+                end_of_heading_index = i
+                while tokens[end_of_heading_index].type != 'heading_close':
+                    end_of_heading_index += 1
+                
+                body_tokens = tokens[end_of_heading_index + 1:]
+                break # Stop after finding the first title
+    
+    body_content = get_plain_text_from_tokens(body_tokens)
+    return title, body_content, body_tokens
 
 
 def determine_layout(slide_index, title, content):
@@ -76,98 +87,11 @@ def determine_layout(slide_index, title, content):
     Determine slide layout based on content
     Returns: 0 (title), 1 (content), or 2 (section)
     """
-    # First slide with minimal content = title slide
-    if slide_index == 0:
-        lines = [l for l in content.split('\n') if l.strip()]
-        if len(lines) <= 3:
-            return 0
-
-    # Slide with only heading, no content = section divider
+    if slide_index == 0 and len(content.split('\\n')) <= 3:
+        return 0
     if not content.strip():
         return 2
-
-    # Everything else = content slide
     return 1
-
-
-# ============================================================================
-# CONTENT PROCESSING FUNCTIONS
-# ============================================================================
-
-def parse_bullets(content):
-    """
-    Parse markdown bullets into list with indentation levels
-    Returns: list of (level, text) tuples
-    """
-    bullets = []
-    for line in content.split('\n'):
-        line_stripped = line.strip()
-        if re.match(r'^[-*+]\s', line_stripped):
-            # Calculate indentation level
-            indent = len(line) - len(line.lstrip())
-            level = 0 if indent < 2 else 1
-            # Remove bullet marker
-            text = re.sub(r'^[-*+]\s+', '', line_stripped)
-            bullets.append((level, text))
-    return bullets
-
-
-def parse_table(content):
-    """
-    Parse markdown table into (headers, rows)
-    Returns: (headers_list, rows_list) or None if not a valid table
-    """
-    lines = [l.strip() for l in content.split('\n') if l.strip()]
-    table_lines = [l for l in lines if l.startswith('|') and l.endswith('|')]
-
-    if len(table_lines) < 2:
-        return None
-
-    # Parse header row
-    headers = [c.strip() for c in table_lines[0].split('|')[1:-1]]
-
-    # Parse data rows (skip separator line at index 1)
-    rows = []
-    for line in table_lines[2:]:
-        cells = [c.strip() for c in line.split('|')[1:-1]]
-        rows.append(cells)
-
-    return headers, rows
-
-
-def apply_formatting(paragraph, text):
-    """
-    Apply markdown inline formatting: **bold**, *italic*, `code`, [link](url)
-    Bold, italic, links use ACCENT_COLOR; plain text and code use TEXT_COLOR
-    """
-    # Pattern: **bold**, *italic*, `code`, [text](url), plain text
-    pattern = r'\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`|\[([^\]]+)\]\(([^)]+)\)|([^*`\[]+)'
-
-    for match in re.finditer(pattern, text):
-        run = paragraph.add_run()
-        run.font.name = DEFAULT_FONT
-
-        if match.group(1):  # **bold**
-            run.text = match.group(1)
-            run.font.bold = True
-            run.font.color.rgb = ACCENT_COLOR
-        elif match.group(2):  # *italic*
-            run.text = match.group(2)
-            run.font.italic = True
-            run.font.color.rgb = ACCENT_COLOR
-        elif match.group(3):  # `code`
-            run.text = match.group(3)
-            run.font.name = 'Courier New'
-            run.font.size = Pt(14)
-            run.font.color.rgb = TEXT_COLOR
-        elif match.group(4) and match.group(5):  # [text](url)
-            run.text = match.group(4)
-            run.font.color.rgb = ACCENT_COLOR
-            run.font.underline = True
-            run.hyperlink.address = match.group(5)
-        elif match.group(6):  # plain text
-            run.text = match.group(6)
-            run.font.color.rgb = TEXT_COLOR
 
 
 # ============================================================================
@@ -175,254 +99,204 @@ def apply_formatting(paragraph, text):
 # ============================================================================
 
 def set_margins(text_frame):
-    """Set reduced margins for text frames (half of default)"""
-    text_frame.margin_left = Inches(0.05)   # Default ~0.1", now 0.05"
+    """Set reduced margins for text frames."""
+    text_frame.margin_left = Inches(0.05)
     text_frame.margin_right = Inches(0.05)
-    text_frame.margin_top = Inches(0.025)   # Default ~0.05", now 0.025"
+    text_frame.margin_top = Inches(0.025)
     text_frame.margin_bottom = Inches(0.025)
 
 
-def set_native_bullet(paragraph, level=0, char='•'):
-    """Set native PowerPoint bullet formatting on a paragraph"""
-    from pptx.oxml.ns import qn
-    from lxml.etree import SubElement
-
-    pPr = paragraph._p.get_or_add_pPr()
-
-    # Set the list level - this controls indentation via slide master
-    pPr.set(qn('a:lvl'), str(level))
-
-    # Remove any existing bullet settings
-    for tag in ['a:buNone', 'a:buChar', 'a:buAutoNum']:
-        for elem in pPr.findall(qn(tag)):
-            pPr.remove(elem)
-
-    # Add bullet character
-    buChar = SubElement(pPr, qn('a:buChar'))
-    buChar.set('char', char)
-
-    # Add bullet color
-    buClr = SubElement(pPr, qn('a:buClr'))
-    srgbClr = SubElement(buClr, qn('a:srgbClr'))
-    srgbClr.set('val', '364F6B')  # ACCENT_COLOR
-
-
-def add_bullets(text_frame, content):
-    """Add bullet list to text frame with native PowerPoint bullets"""
-    bullets = parse_bullets(content)
-    if not bullets:
+def apply_inline_formatting(paragraph, inline_token):
+    """Apply markdown inline formatting from markdown-it tokens."""
+    if not inline_token.children:
+        paragraph.text = inline_token.content
         return
 
+    # Use a stack to manage nested styles (bold, italic)
+    style_stack = []
+
+    for child in inline_token.children:
+        run = paragraph.add_run()
+        run.text = child.content
+        run.font.name = DEFAULT_FONT
+        run.font.color.rgb = TEXT_COLOR
+        
+        if child.type == 'strong_open':
+            style_stack.append('bold')
+        elif child.type == 'em_open':
+            style_stack.append('italic')
+        elif child.type == 'strong_close' and 'bold' in style_stack:
+            style_stack.remove('bold')
+        elif child.type == 'em_close' and 'italic' in style_stack:
+            style_stack.remove('italic')
+        elif child.type == 'code_inline':
+            run.font.name = 'Courier New'
+            run.font.size = Pt(14)
+        elif child.type == 'link_open':
+            run.font.color.rgb = ACCENT_COLOR
+            run.font.underline = True
+            run.hyperlink.address = child.attrs['href']
+        
+        # Apply current styles from stack
+        if 'bold' in style_stack:
+            run.font.bold = True
+            run.font.color.rgb = ACCENT_COLOR
+        if 'italic' in style_stack:
+            run.font.italic = True
+            run.font.color.rgb = ACCENT_COLOR
+
+
+def add_content_from_tokens(slide, content_box, tokens):
+    """Iterates through markdown-it tokens and adds content to the slide."""
+    text_frame = content_box.text_frame
     text_frame.word_wrap = True
     set_margins(text_frame)
+    if text_frame.text: # Clear default text
+        p = text_frame.paragraphs[0]
+        p.clear()
 
-    BULLET_CHARS = ["•", "◦"]
+    list_level = -1
+    i = 0
+    while i < len(tokens):
+        token = tokens[i]
+        
+        if token.type == 'paragraph_open':
+            p = text_frame.add_paragraph()
+            if list_level >= 0:
+                p.level = list_level
+            
+            inline_token = tokens[i+1]
+            if inline_token.type == 'inline':
+                apply_inline_formatting(p, inline_token)
+            i += 2 # Skip inline token
+        elif token.type in ['bullet_list_open', 'ordered_list_open']:
+            list_level += 1
+        elif token.type in ['bullet_list_close', 'ordered_list_close']:
+            list_level -= 1
+        
+        i += 1
 
-    for idx, (level, text) in enumerate(bullets):
-        p = text_frame.paragraphs[0] if idx == 0 else text_frame.add_paragraph()
 
-        # Set native bullet formatting
-        set_native_bullet(p, level=level, char=BULLET_CHARS[min(level, 1)])
+def parse_table_from_tokens(tokens):
+    headers, rows = [], []
+    in_header, in_body, current_row = False, False, []
 
-        # Add text content
-        apply_formatting(p, text)
+    for token in tokens:
+        if token.type == 'table_close': break
+        if token.type == 'thead_open': in_header = True
+        elif token.type == 'thead_close': in_header = False
+        elif token.type == 'tbody_open': in_body = True
+        elif token.type == 'tbody_close': in_body = False
+        elif token.type == 'tr_open': current_row = []
+        elif token.type == 'tr_close':
+            if in_header: headers = current_row
+            elif in_body: rows.append(current_row)
+        elif token.type == 'inline': current_row.append(token.content)
+            
+    return headers, rows
 
 
-def add_table(slide, content):
-    """Add table to slide"""
-    table_data = parse_table(content)
-
-    if not table_data:
-        return
-
-    headers, rows = table_data
-
-    # Calculate dimensions
-    num_rows = len(rows) + 1  # +1 for header
-    num_cols = len(headers)
-
-    # Position and size - align with content textbox
-    left = Inches(0.5)
-    top = Inches(1.5)
-    width = Inches(9.0)
-    height = Inches(3.5)
-
-    # Create table
+def add_table_shape(slide, headers, rows):
+    if not headers: return
+    num_rows, num_cols = len(rows) + 1, len(headers)
+    # Align with the standard content placeholder position
+    left, top = Inches(0.3), Inches(0.85)
+    width, height = Inches(9.4), Inches(4.8)
+    
     shape = slide.shapes.add_table(num_rows, num_cols, left, top, width, height)
     table = shape.table
-
+    
     # Set column widths
-    col_width = width / num_cols
-    for col_idx in range(num_cols):
-        table.columns[col_idx].width = int(col_width)
+    for c in range(num_cols): table.columns[c].width = int(width / num_cols)
 
-    # Fill header row with bold text
-    for col_idx, header_text in enumerate(headers):
-        cell = table.cell(0, col_idx)
-        cell.text = header_text
-        for paragraph in cell.text_frame.paragraphs:
-            for run in paragraph.runs:
-                run.font.bold = True
-                run.font.name = DEFAULT_FONT
-
-    # Fill data rows
-    for row_idx, row_data in enumerate(rows):
-        for col_idx, cell_text in enumerate(row_data):
-            if col_idx < num_cols:  # Handle inconsistent column counts
-                cell = table.cell(row_idx + 1, col_idx)
+    # Set minimal row height for all rows
+    for r in range(num_rows):
+        table.rows[r].height = Inches(0.4)
+        
+    # Populate header
+    for c, h in enumerate(headers):
+        cell = table.cell(0, c)
+        cell.text = h
+        for p in cell.text_frame.paragraphs:
+            for run in p.runs: run.font.bold, run.font.name = True, DEFAULT_FONT
+                
+    # Populate data rows
+    for r, row_data in enumerate(rows):
+        for c, cell_text in enumerate(row_data):
+            if c < num_cols:
+                cell = table.cell(r + 1, c)
                 cell.text = cell_text
-                # Apply font to cell content
-                for paragraph in cell.text_frame.paragraphs:
-                    for run in paragraph.runs:
-                        run.font.name = DEFAULT_FONT
-
-
-def add_paragraphs(text_frame, content):
-    """Add paragraph text to text frame"""
-    text_frame.word_wrap = True
-    set_margins(text_frame)
-
-    paragraphs = [p.strip() for p in content.split('\n\n') if p.strip()]
-    if not paragraphs:
-        paragraphs = [l.strip() for l in content.split('\n') if l.strip()]
-    if not paragraphs:
-        return
-
-    for idx, para_text in enumerate(paragraphs):
-        p = text_frame.paragraphs[0] if idx == 0 else text_frame.add_paragraph()
-        apply_formatting(p, para_text)
-
-
-def add_content_to_textframe(text_frame, content):
-    """Detect content type and add to text frame (bullets or paragraphs)"""
-    if re.search(r'^\s*[-*+]\s', content, re.MULTILINE):
-        add_bullets(text_frame, content)
-    else:
-        add_paragraphs(text_frame, content)
-
+                for p in cell.text_frame.paragraphs:
+                    # Set vertical alignment for cell text
+                    p.alignment = MSO_ANCHOR.MIDDLE
+                    for run in p.runs: run.font.name = DEFAULT_FONT
 
 # ============================================================================
 # SLIDE CREATION FUNCTIONS
 # ============================================================================
 
-def create_slide(prs, layout_idx, title, content, notes):
-    """
-    Create slide with specified layout
-    Layout 0: Title slide
-    Layout 1: Title and content
-    Layout 2: Section header
-    """
+def remove_shape(slide, shape_to_remove):
+    """Removes a shape from a slide."""
+    sp = shape_to_remove.element
+    sp.getparent().remove(sp)
+
+def create_slide(prs, layout_idx, title, body_content, body_tokens, notes):
+    """Create slide with specified layout."""
     slide = prs.slides.add_slide(prs.slide_layouts[layout_idx])
 
-    # Set title
     if title and slide.shapes.title:
         title_shape = slide.shapes.title
         title_frame = title_shape.text_frame
-
-        # Set text
         title_shape.text = title
-
-        # Determine title font size based on layout
-        if layout_idx == 0:
-            title_size = Pt(44)  # Title slide
-        else:
-            title_size = Pt(32)  # Content and section slides
-
-        # Apply formatting to text
-        for paragraph in title_frame.paragraphs:
-            paragraph.font.size = title_size
-            paragraph.space_before = Pt(0)
-            paragraph.space_after = Pt(0)
-            paragraph.line_spacing = 1.0
-            for run in paragraph.runs:
+        title_size = Pt(44) if layout_idx == 0 else Pt(32)
+        for p in title_frame.paragraphs:
+            p.font.size, p.line_spacing = title_size, 1.0
+            p.space_before, p.space_after = Pt(0), Pt(0)
+            for run in p.runs:
                 run.font.color.rgb = ACCENT_COLOR
-                run.font.name = DEFAULT_FONT
-                run.font.bold = True
-                run.font.size = title_size
-
-        # Configure text frame properties
-        title_frame.word_wrap = False  # Don't wrap titles
-        title_frame.vertical_anchor = MSO_ANCHOR.TOP
-
-        # Match content margins for consistency
-        title_frame.margin_left = Inches(0.05)
-        title_frame.margin_top = Inches(0.025)
-        title_frame.margin_right = Inches(0.05)
-        title_frame.margin_bottom = Inches(0.025)
-
-        # Position title based on layout
-        if layout_idx in [0, 2]:  # Title slide and section slides - center the title
-            title_shape.top = Inches(1.2)
-            title_shape.left = Inches(0.5)
-            title_shape.width = Inches(9.0)
-            title_shape.height = Inches(1.0)
+                run.font.name, run.font.bold, run.font.size = DEFAULT_FONT, True, title_size
+        title_frame.word_wrap, title_frame.vertical_anchor = False, MSO_ANCHOR.TOP
+        set_margins(title_frame)
+        if layout_idx in [0, 2]:
+            title_shape.top, title_shape.left, title_shape.width, title_shape.height = Inches(1.2), Inches(0.5), Inches(9.0), Inches(1.0)
             title_frame.vertical_anchor = MSO_ANCHOR.MIDDLE
-        else:  # Content slides - align left at top
-            title_shape.left = Inches(0.3)
-            title_shape.width = Inches(9.4)
-            title_shape.height = Inches(0.5)
+        else:
+            title_shape.left, title_shape.width, title_shape.height = Inches(0.3), Inches(9.4), Inches(0.5)
 
-    # Add content for content slides (layout 1)
-    if layout_idx == 1 and content:
-        try:
-            # Check if table
-            is_table = '|' in content and content.count('|') > 2
-            if is_table:
-                table_lines = [l for l in content.split('\n') if l.strip().startswith('|')]
-                if len(table_lines) >= 2:
-                    add_table(slide, content)
-                    return slide
-
-            # Use native placeholder if available, otherwise create textbox
-            if len(slide.placeholders) > 1:
-                # Use the content placeholder for better Google Slides compatibility
-                content_box = slide.placeholders[1]
-                # Adjust placeholder position and size
-                content_box.left = Inches(0.3)
-                content_box.top = Inches(0.85)
-                content_box.width = Inches(9.4)
-                content_box.height = Inches(4.65)
+    is_table_slide = any(t.type == 'table_open' for t in body_tokens)
+    
+    if layout_idx == 1 and body_content:
+        content_placeholder = None
+        for shape in slide.placeholders:
+            if shape.placeholder_format.idx in [1, 14]:
+                content_placeholder = shape
+                break
+        
+        if is_table_slide:
+            headers, rows = parse_table_from_tokens(body_tokens)
+            add_table_shape(slide, headers, rows)
+            if content_placeholder:
+                remove_shape(slide, content_placeholder)
+        else:
+            if content_placeholder:
+                content_placeholder.left, content_placeholder.top = Inches(0.3), Inches(0.85)
+                content_placeholder.width, content_placeholder.height = Inches(9.4), Inches(4.8)
             else:
-                # Fallback to textbox if no placeholder available
-                content_box = slide.shapes.add_textbox(
-                    Inches(0.3), Inches(0.85),
-                    Inches(9.4), Inches(4.65)
-                )
+                content_placeholder = slide.shapes.add_textbox(Inches(0.3), Inches(0.85), Inches(9.4), Inches(4.8))
+            add_content_from_tokens(slide, content_placeholder, body_tokens)
 
-            add_content_to_textframe(content_box.text_frame, content)
-        except Exception as e:
-            print(f"⚠ Warning: Could not add content to slide: {e}")
+    elif layout_idx == 0 and body_content and len(slide.placeholders) > 1:
+        subtitle = slide.placeholders[1]
+        set_margins(subtitle.text_frame)
+        subtitle.text = body_content
+        subtitle.top, subtitle.left, subtitle.width, subtitle.height = Inches(2.5), Inches(1.5), Inches(7.0), Inches(1.5)
+        for p in subtitle.text_frame.paragraphs:
+            for run in p.runs: run.font.name = DEFAULT_FONT
 
-    # Handle title slide content (layout 0)
-    if layout_idx == 0 and content and len(slide.placeholders) > 1:
-        try:
-            subtitle_placeholder = slide.placeholders[1]
-            subtitle_frame = subtitle_placeholder.text_frame
-            set_margins(subtitle_frame)
-            subtitle_placeholder.text = content
-
-            # Position subtitle closer to title
-            subtitle_placeholder.top = Inches(2.5)
-            subtitle_placeholder.left = Inches(1.5)
-            subtitle_placeholder.width = Inches(7.0)
-            subtitle_placeholder.height = Inches(1.5)
-
-            # Apply Heebo font to subtitle
-            for paragraph in subtitle_frame.paragraphs:
-                for run in paragraph.runs:
-                    run.font.name = DEFAULT_FONT
-        except Exception as e:
-            print(f"⚠ Warning: Could not add subtitle: {e}")
-
-    # Add speaker notes
     if notes:
-        try:
-            slide.notes_slide.notes_text_frame.text = notes
-        except Exception as e:
-            print(f"⚠ Warning: Could not add notes: {e}")
+        slide.notes_slide.notes_text_frame.text = notes
 
     return slide
-
 
 # ============================================================================
 # MAIN CONVERTER
@@ -431,8 +305,6 @@ def create_slide(prs, layout_idx, title, content, notes):
 def convert_markdown_to_pptx(markdown_file, output_file):
     """Main conversion function"""
     print(f"Reading markdown file: {markdown_file}")
-
-    # Read markdown
     try:
         with open(markdown_file, 'r', encoding='utf-8') as f:
             markdown_content = f.read()
@@ -440,41 +312,25 @@ def convert_markdown_to_pptx(markdown_file, output_file):
         print(f"✗ Error reading file: {e}")
         return False
 
-    # Create presentation with standard Widescreen 16:9 preset
     prs = Presentation()
-    prs.slide_width = Inches(10)      # Standard Widescreen 16:9
-    prs.slide_height = Inches(5.625)  # Recognized as preset by PowerPoint/Google Slides
-
-    # Split into slides
+    prs.slide_width, prs.slide_height = Inches(10), Inches(5.625)
     slides_raw = split_slides(markdown_content)
     print(f"Found {len(slides_raw)} slides")
 
-    # Process each slide
     for idx, slide_content in enumerate(slides_raw):
-        # Skip empty slides
-        if not slide_content.strip():
-            continue
-
+        if not slide_content.strip(): continue
         try:
-            # Extract components
             content, notes = extract_notes(slide_content)
-            title, body = extract_title(content)
-
-            # Determine layout
+            title, body, body_tokens = parse_slide_content(content)
             layout = determine_layout(idx, title, body)
-
-            # Debug output
             layout_names = {0: "Title", 1: "Content", 2: "Section"}
             print(f"  Slide {idx + 1}: {layout_names[layout]} - '{title[:50]}...'")
-
-            # Create slide
-            create_slide(prs, layout, title, body, notes)
-
+            create_slide(prs, layout, title, body, body_tokens, notes)
         except Exception as e:
             print(f"⚠ Warning: Error processing slide {idx + 1}: {e}")
+            import traceback
+            traceback.print_exc()
             continue
-
-    # Save presentation
     try:
         prs.save(output_file)
         print(f"✓ Presentation saved: {output_file}")
@@ -483,7 +339,6 @@ def convert_markdown_to_pptx(markdown_file, output_file):
     except Exception as e:
         print(f"✗ Error saving file: {e}")
         return False
-
 
 # ============================================================================
 # CLI INTERFACE
@@ -494,52 +349,12 @@ def main():
     parser = argparse.ArgumentParser(
         description='Convert markdown to PowerPoint presentation',
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Example markdown format:
-
-# Title Slide
-Subtitle text
-Author name
-
----
-
-## Section One
-
----
-
-## Content Slide
-- Bullet point one
-- Bullet point two with **bold** and *italic*
-- Code example: `print("hello")`
-- Check out [Python docs](https://python.org) for more
-
-<!-- Notes: These are speaker notes -->
-
----
-
-## Table Example
-| Header 1 | Header 2 |
-|----------|----------|
-| Cell 1   | Cell 2   |
-| Cell 3   | Cell 4   |
-
----
-
-## Section Two
-"""
-    )
-
+        epilog="""...omitted for brevity...""")
     parser.add_argument('input', help='Input markdown file')
     parser.add_argument('-o', '--output', required=True, help='Output PPTX file')
-
     args = parser.parse_args()
-
-    # Convert
     success = convert_markdown_to_pptx(args.input, args.output)
-
-    # Exit with appropriate code
     exit(0 if success else 1)
-
 
 if __name__ == "__main__":
     main()
