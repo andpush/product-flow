@@ -12,7 +12,7 @@ allowed-tools: Read, Write, Bash
    - Use # Title or ## Title for slide headings. 
    - For nested topics: "Header: Subheader" format
    - Group by meaning, not size
-   - Preserve original content and wording - it is well thought
+   - Preserve original wording - it is well thought
    - Never remove any content! You can only hide lengthy explanations into the Speaker Notes defined as `<!-- Notes: ... -->` without cuts and abbreviations.
    - Some slides may contain multiline code that may not fit into one slide, it is ok, do not cut or split, user will handle it manually, so leave it as is.
 3. Structure:
@@ -23,5 +23,5 @@ allowed-tools: Read, Write, Bash
 4. Formatting supported:
    - Bullets: - item (nested with indentation)
    - Tables: standard markdown tables
-  - Inline: **bold**, *italic*, `code`, [link text](url)
+   - Inline: **bold**, *italic*, `code`, [link text](url)
 5. Generate PPTX: `python3 scripts/md2pptx.py slides.md -o "Title_ddHHMM.pptx"`
