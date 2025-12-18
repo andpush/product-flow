@@ -3,7 +3,8 @@
 Universal Markdown to PowerPoint Converter
 
 Converts markdown files with --- slide separators into PPTX presentations.
-Supports speaker notes, tables, bullets, links, and inline formatting.
+Supports speaker notes, tables, bullets, links, inline formatting, and
+multi-column layouts (2-3 columns using || delimiter).
 """
 
 import re
@@ -82,6 +83,39 @@ def parse_slide_content(content):
     return title, body_content, body_tokens
 
 
+def parse_columns(raw_content):
+    """
+    Detect and parse column layout using || delimiter from raw markdown.
+    Returns: list of column contents (raw markdown), or None if no columns detected.
+    """
+    if '||' not in raw_content:
+        return None
+
+    # Remove the title line (first # or ## heading) before splitting columns
+    lines = raw_content.split('\n')
+    body_lines = []
+    found_title = False
+    for line in lines:
+        if not found_title and line.strip().startswith('#'):
+            found_title = True
+            continue
+        body_lines.append(line)
+
+    body_content = '\n'.join(body_lines)
+
+    if '||' not in body_content:
+        return None
+
+    columns = [col.strip() for col in body_content.split('||')]
+    # Filter out empty columns
+    columns = [col for col in columns if col]
+
+    if len(columns) < 2 or len(columns) > 3:
+        return None  # Only support 2-3 columns
+
+    return columns
+
+
 def determine_layout(slide_index, title, content):
     """
     Determine slide layout based on content
@@ -116,11 +150,17 @@ def apply_inline_formatting(paragraph, inline_token):
     style_stack = []
 
     for child in inline_token.children:
+        # Handle soft/hard line breaks
+        if child.type in ['softbreak', 'hardbreak']:
+            run = paragraph.add_run()
+            run.text = '\n'
+            continue
+
         run = paragraph.add_run()
         run.text = child.content
         run.font.name = DEFAULT_FONT
         run.font.color.rgb = TEXT_COLOR
-        
+
         if child.type == 'strong_open':
             style_stack.append('bold')
         elif child.type == 'em_open':
@@ -231,6 +271,34 @@ def add_table_shape(slide, headers, rows):
                     p.alignment = MSO_ANCHOR.MIDDLE
                     for run in p.runs: run.font.name = DEFAULT_FONT
 
+def add_column_layout(slide, columns):
+    """
+    Add 2 or 3 column layout to a slide using borderless textboxes.
+    """
+    num_cols = len(columns)
+    content_left = Inches(0.3)
+    content_top = Inches(0.85)
+    content_width = Inches(9.4)
+    content_height = Inches(4.8)
+    gap = Inches(0.2)
+
+    # Calculate column width based on number of columns
+    total_gap = gap * (num_cols - 1)
+    col_width = (content_width - total_gap) / num_cols
+
+    for i, col_content in enumerate(columns):
+        col_left = content_left + i * (col_width + gap)
+        textbox = slide.shapes.add_textbox(col_left, content_top, col_width, content_height)
+
+        text_frame = textbox.text_frame
+        text_frame.word_wrap = True
+        set_margins(text_frame)
+
+        # Parse the column content as markdown
+        col_tokens = MD_PARSER.parse(col_content)
+        add_content_from_tokens(slide, textbox, col_tokens)
+
+
 # ============================================================================
 # SLIDE CREATION FUNCTIONS
 # ============================================================================
@@ -240,7 +308,7 @@ def remove_shape(slide, shape_to_remove):
     sp = shape_to_remove.element
     sp.getparent().remove(sp)
 
-def create_slide(prs, layout_idx, title, body_content, body_tokens, notes):
+def create_slide(prs, layout_idx, title, body_content, body_tokens, notes, raw_content=""):
     """Create slide with specified layout."""
     slide = prs.slides.add_slide(prs.slide_layouts[layout_idx])
 
@@ -264,15 +332,21 @@ def create_slide(prs, layout_idx, title, body_content, body_tokens, notes):
             title_shape.left, title_shape.width, title_shape.height = Inches(0.3), Inches(9.4), Inches(0.5)
 
     is_table_slide = any(t.type == 'table_open' for t in body_tokens)
-    
+    columns = parse_columns(raw_content) if raw_content else None
+
     if layout_idx == 1 and body_content:
         content_placeholder = None
         for shape in slide.placeholders:
             if shape.placeholder_format.idx in [1, 14]:
                 content_placeholder = shape
                 break
-        
-        if is_table_slide:
+
+        if columns:
+            # Column layout: remove placeholder and add column textboxes
+            if content_placeholder:
+                remove_shape(slide, content_placeholder)
+            add_column_layout(slide, columns)
+        elif is_table_slide:
             headers, rows = parse_table_from_tokens(body_tokens)
             add_table_shape(slide, headers, rows)
             if content_placeholder:
@@ -325,7 +399,7 @@ def convert_markdown_to_pptx(markdown_file, output_file):
             layout = determine_layout(idx, title, body)
             layout_names = {0: "Title", 1: "Content", 2: "Section"}
             print(f"  Slide {idx + 1}: {layout_names[layout]} - '{title[:50]}...'")
-            create_slide(prs, layout, title, body, body_tokens, notes)
+            create_slide(prs, layout, title, body, body_tokens, notes, raw_content=content)
         except Exception as e:
             print(f"⚠ Warning: Error processing slide {idx + 1}: {e}")
             import traceback
