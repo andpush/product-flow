@@ -10,7 +10,7 @@ Convert the text into a presentation deck in PPTX format.
 
 2. Prepare slides.md.
 Format:
-   - YAML frontmatter: title, subtitle (optional), author, date
+   - YAML frontmatter (instead of title slide): title, subtitle (optional), author, date
    - `---` to separate slides
    - `#` Section dividers (heading only)
    - `##` Slide titles
@@ -27,10 +27,10 @@ Instructions:
       - Move explanatory passages (>2 sentences) to Speaker Notes.
       - Move duplications into the Speaker Notes. 
    - **Leave multiline code blocks intact**, even if they overflow!
-   - Add Agenda slide right after the title slide listing all sections
+   - Add Agenda slide as the first slide (list all sections/major topics)
 3. Generate PPTX using the `md2pptx.py`: 
    - Supported formatting: 
-      - Bullets: * (nested items with indentation)
+      - Bullets: */- (nested items with indentation)
       - Tables: standard markdown tables
       - Inline: **bold**, *italic*, `code`, [link text](url)
    - Run the script: `python3 scripts/md2pptx.py slides.md -o "<title>-<ddHHMM>.pptx"`
