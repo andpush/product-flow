@@ -450,24 +450,36 @@ def create_content_slide(prs, title, body_tokens, notes="", raw_content=""):
         title_shape.width = Inches(9.4)
         title_shape.height = Inches(0.5)
 
-    # Remove default content placeholder - we'll use textbox instead
-    for shape in list(slide.placeholders):
+    # Find content placeholder (idx 1 or 14)
+    content_placeholder = None
+    for shape in slide.placeholders:
         if shape.placeholder_format.idx in [1, 14]:
-            remove_shape(slide, shape)
+            content_placeholder = shape
+            break
 
     # Check for special content types
     columns = parse_columns(raw_content) if raw_content else None
     is_table = any(t.type == 'table_open' for t in body_tokens)
 
     if columns:
+        # Remove placeholder for column layout (needs custom positioning)
+        if content_placeholder:
+            remove_shape(slide, content_placeholder)
         add_column_layout(slide, columns)
     elif is_table:
+        # Remove placeholder for table (needs custom positioning)
+        if content_placeholder:
+            remove_shape(slide, content_placeholder)
         headers, rows = parse_table_from_tokens(body_tokens)
         add_table_shape(slide, headers, rows)
     elif body_tokens:
-        # Use textbox for content (no default bullets)
-        textbox = slide.shapes.add_textbox(Inches(0.3), Inches(0.85), Inches(9.4), Inches(4.8))
-        add_content_from_tokens(textbox.text_frame, body_tokens)
+        # Use native content placeholder for proper bullet indentation
+        if content_placeholder:
+            add_content_from_tokens(content_placeholder.text_frame, body_tokens)
+        else:
+            # Fallback to textbox if no placeholder found
+            textbox = slide.shapes.add_textbox(Inches(0.3), Inches(0.85), Inches(9.4), Inches(4.8))
+            add_content_from_tokens(textbox.text_frame, body_tokens)
 
     if notes:
         slide.notes_slide.notes_text_frame.text = notes

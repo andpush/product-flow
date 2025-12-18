@@ -17,16 +17,15 @@ Format:
    - Slide content: 
       - paragraphs/bullets
       - markdown tables when >3 data rows
-      - when appropriate use 2 or 3 borderless column layout, delimiting columns with `||`
+      - use 2 or 3 column layout where appropriate, delimiting columns with `||`
       - Speaker Notes: `<!-- Notes: ... -->`
 Instructions: 
    - Group slides by meaning, not size
-   - Preserve original wording verbatim (well thought out)
-   - Do NOT remove or abbreviate any content
-   - Allowed edits to match concise presentation style:
+   - Preserve original content, it is well thought out
+   - Occasional abbreviations allowed to match concise presentation style:
       - Move explanatory passages (>2 sentences) to Speaker Notes.
       - Move duplications into the Speaker Notes. 
-   - **Leave multiline code blocks intact**, even if they overflow!
+   - **Leave multiline code blocks intact**, even if they overflow one slide!
    - Add Agenda slide as the first slide (list all sections/major topics)
 3. Generate PPTX using the `md2pptx.py`: 
    - Supported formatting: 

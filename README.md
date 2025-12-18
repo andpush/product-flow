@@ -19,7 +19,7 @@ Complete development toolkit with two plugins for modern software development:
 
 - **Commands**: `/define-product`, `/define-architecture`, `/add-feature`, `/plan-feature`, `/implement-feature`, `/review-feature`, `/mockup-product`, `/mockup-feature`, `/figma-mockup`
 - **Agents**: UI mockup designer, test generator, code reviewer
-- **Skills**: Product discovery (requirements, validation, user research), business analysis, software architecture, UI/UX design
+- **Skills**: Product discovery (requirements, validation, user research), business analysis, software architecture, UI/UX design, presentation creation (markdown to PowerPoint with multi-column layouts)
 - **Templates**: Product, architecture, feature, plan, review, ADR
 - **Tech Stacks**: Java/Quarkus, Svelte, Flutter
 
