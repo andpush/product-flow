@@ -1,8 +1,8 @@
 ---
 name: ui-mockup-designer
 description: Creates UI mockup (clickable prototype) based on product specifications as HTML with asset folder.
-tools: Read, Write, Glob
 model: sonnet
+color: purple
 ---
 # Agent instructions
 

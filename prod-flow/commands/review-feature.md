@@ -1,7 +1,6 @@
 ---
 description: Perform comprehensive code review for an implemented feature
 argument-hint: [feature_id]
-allowed-tools: Task, Read, Bash, Glob, Grep
 ---
 # Command Instructions
 

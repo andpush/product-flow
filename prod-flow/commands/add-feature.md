@@ -1,7 +1,6 @@
 ---
 description: Define a specific feature with clear requirements, acceptance criteria, and implementation scope
 argument-hint: [Feature ID]
-allowed-tools: Read, Write, Bash, Glob
 ---
 # Command Instructions
 

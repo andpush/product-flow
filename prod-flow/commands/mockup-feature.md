@@ -1,7 +1,6 @@
 ---
 description: Generate interactive UI mockups for a defined feature
 argument-hint: [feature_id]
-allowed-tools: Task, Read, Write, Bash
 ---
 # Command Instructions
 

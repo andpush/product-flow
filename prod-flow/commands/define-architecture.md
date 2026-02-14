@@ -4,7 +4,7 @@ allowed-tools: Read, Write, Bash, Glob
 ---
 # Command Instructions
 
-Apply the `architecture` skill throughout this task.
+Apply the `sa` skill to accomplish this task.
 
 ## Prerequisites
 

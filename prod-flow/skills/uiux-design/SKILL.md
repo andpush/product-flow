@@ -1,10 +1,7 @@
 ---
 name: uiux-design
-description: Professional UI/UX design expertise for mockups and accessible interfaces
-version: 1.0.0
+description: This skill should be used when the user asks to "design UI", "create mockup", or runs /mockup-product, /mockup-feature, or /figma-mockup commands.
 ---
-<!-- TODO: NEEDS REVIEW! -->
-# UI/UX Design Expertise
 
 Professional UI/UX design knowledge for creating beautiful, intuitive, and accessible interfaces.
 

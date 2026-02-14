@@ -5,15 +5,6 @@
 - Focus on description from business stakholders perspective, avoid specifying implementation detailes unless they are constraints.
 - Think about right-size decomposition of required features
 
-## Architecture
-
-- Use Simplified Layered Architecture: Serivce -> Store -> Database.
-- Group by feature in package/directory structure, not by layer.
-- Services (e.g. UserService) are exposed by REST by default .
-- Only create DTOs (as Java records or Kotlin data classes) if data shapes differ from entities.
-- Stores (repositories, e.g. UserStore) are JDBI SQL annotated interfaces to minimize boilerplate.
-- Prepare code for containerization and GCP Cloud Run deployment.
-
 ## Coding Rules
 
 - Act as an expert software developer and generate clean, idiomatic, and robust code following KISS, DRY, SOLID principles.

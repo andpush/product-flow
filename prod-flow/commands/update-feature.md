@@ -1,7 +1,6 @@
 ---
 description: Sync feature definition with new files in feature folder or changes in product.md
 argument-hint: [Feature ID]
-allowed-tools: Read, Write, Bash, Glob
 ---
 # Command Instructions
 

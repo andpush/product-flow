@@ -1,8 +1,6 @@
 ---
 name: slides
-description: Create PPTX presentation slides deck from any text
-version: 1.0.0
-allowed-tools: Read, Write, Bash
+description: This skill should be used when the user asks to "create slides" or "make a presentation" from text or markdown.
 ---
 Convert the text into a presentation deck in PPTX format.
 
@@ -14,21 +12,21 @@ Format:
    - `---` to separate slides
    - `#` Section dividers (heading only)
    - `##` Slide titles
-   - Slide content: 
+   - Slide content:
       - paragraphs/bullets
       - markdown tables when >3 data rows
       - use 2 or 3 column layout where appropriate, delimiting columns with `||`
       - Speaker Notes: `<!-- Notes: ... -->`
-Instructions: 
+Instructions:
    - Group slides by meaning, not size
    - Preserve original content, it is well thought out
    - Occasional abbreviations allowed to match concise presentation style:
       - Move explanatory passages (>2 sentences) to Speaker Notes.
-      - Move duplications into the Speaker Notes. 
+      - Move duplications into the Speaker Notes.
    - **Leave multiline code blocks intact**, even if they overflow one slide!
    - Add Agenda slide as the first slide (list all sections/major topics)
-3. Generate PPTX using the `md2pptx.py`: 
-   - Supported formatting: 
+3. Generate PPTX using the `md2pptx.py`:
+   - Supported formatting:
       - Bullets: */- (nested items with indentation)
       - Tables: standard markdown tables
       - Inline: **bold**, *italic*, `code`, [link text](url)

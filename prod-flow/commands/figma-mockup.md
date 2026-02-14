@@ -1,7 +1,6 @@
 ---
 description: Based on Figma design, generate UI mockup (clickable prototype) as HTML file,  with extracted styles and assets.
 argument-hint: <figma_url> [additional_instructions]
-allowed-tools: Task, Bash
 ---
 # Command instructions
 

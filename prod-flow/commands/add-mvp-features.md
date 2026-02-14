@@ -1,6 +1,5 @@
 ---
 description: Create detailed feature definitions based on all MVP features from product.md and using documentation analysis.
-allowed-tools: Read, Write, Bash, Glob, SlashCommand
 ---
 # Command Instructions
 

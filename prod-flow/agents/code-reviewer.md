@@ -1,7 +1,6 @@
 ---
 name: code-reviewer
 description: Performs comprehensive code reviews analyzing security, quality, performance, and architectural compliance
-tools: Read, Write, Bash, Glob, Grep
 model: sonnet
 color: cyan
 ---

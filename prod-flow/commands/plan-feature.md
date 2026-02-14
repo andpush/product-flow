@@ -1,7 +1,6 @@
 ---
 description: Create detailed implementation plan for a defined feature
 argument-hint: [feature_id]
-allowed-tools: Read, Write, Bash, Glob
 ---
 # Command Instructions
 

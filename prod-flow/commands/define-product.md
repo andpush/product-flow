@@ -1,7 +1,6 @@
 ---
 description: Create a comprehensive product definition from initial documents and stakeholder input
 argument-hint: product name
-allowed-tools: Read, Write, Bash, Glob
 ---
 # Command Instructions
 

@@ -17,17 +17,28 @@ Complete development toolkit with two plugins for modern software development:
 
 ### prod-flow plugin
 
-- **Commands**: `/define-product`, `/define-architecture`, `/add-feature`, `/plan-feature`, `/implement-feature`, `/review-feature`, `/mockup-product`, `/mockup-feature`, `/figma-mockup`
-- **Agents**: UI mockup designer, test generator, code reviewer
-- **Skills**: Product discovery (requirements, validation, user research), business analysis, software architecture, UI/UX design, presentation creation (markdown to PowerPoint with multi-column layouts)
-- **Templates**: Product, architecture, feature, plan, review, ADR
-- **Tech Stacks**: Java/Quarkus, Svelte, Flutter
+Provides workflow for AI-first product development:
+
+```markdown
+product/initial-docs/     → /define-product    → product/product.md
+                          → /define-architecture → product/architecture.md
+                          → /add-feature        → product/features/F001-*/feature.md
+                          → /plan-feature       → product/features/F001-*/plan.md
+                          → /implement-feature  → feature branch with code
+                          → /review-feature     → product/features/F001-*/review.md
+```
 
 ### code-flow plugin
 
-- **security-reviewer**: Comprehensive security audits using SAST tools (Semgrep, Bandit, npm audit, Trivy)
-- **codebase-explorer**: Systematic codebase exploration at three levels (Quick Scan, Deep Analysis, Comprehensive Audit)
-- **test-generator**: Auto-generate unit tests with framework awareness (Jest, pytest, RSpec, PHPUnit, Go, JUnit, Flutter)
+Provides code quality and security skills:
+
+- **security-reviewer**: Runs SAST tools (Semgrep, Bandit, npm audit, Trivy), generates `security-issues-YYYY-MM-DD/` reports
+- **codebase-analyzer**: Three-level exploration (Quick Scan, Deep Analysis, Comprehensive Audit)
+- **test-generator**: Framework-aware test generation (Jest, pytest, RSpec, PHPUnit, Go, JUnit, Flutter)
+
+### Reusable rules in `rules/` folder
+
+Optionally select and copy rules for your tech stack from `rules/` folder. These rules can be customized and extended as needed.
 
 ## Quick Start: prod-flow
 
@@ -80,9 +91,7 @@ feature/F001-* branch          Code + tests
 product/features/F001-*/review.md  Quality review
 ```
 
-## Directory Structure
-
-### prod-flow output
+## Directory Structure assumed by prod-flow
 
 ```sh
 product/
@@ -97,36 +106,6 @@ product/
 │       └── mockups/     # UI designs
 ├── mockups/             # Product-level mockups
 └── adr/                 # Architecture decision records
-```
-
-### code-flow output
-
-```sh
-security-issues-YYYY-MM-DD/    # Security audit reports
-├── CR-001.md                  # Critical vulnerabilities
-├── HI-001.md                  # High severity issues
-├── ME-001.md                  # Medium severity issues
-└── summary.md                 # Executive summary
-
-test/                          # Generated tests
-└── [framework-specific structure]
-```
-
-## Repository Structure
-
-```sh
-/
-├── prod-flow/              # AI-first product development workflow
-│   ├── commands/           # Slash commands
-│   ├── agents/             # Specialized agents
-│   ├── skills/             # Product discovery, UI/UX, BA
-│   ├── templates/          # Document templates
-│   └── tech-stacks/        # Technology-specific patterns
-└── code-flow/              # Code quality tools
-    └── skills/
-        ├── security-reviewer/
-        ├── codebase-explorer/
-        └── test-generator/
 ```
 
 ## License

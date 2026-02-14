@@ -1,7 +1,6 @@
 ---
 description: Implement a planned feature following the detailed plan
 argument-hint: [feature_id]
-allowed-tools: Read, Write, Edit, MultiEdit, Bash, Glob, Grep, Task
 ---
 # Command Instructions
 

@@ -1,9 +1,8 @@
 ---
 name: test-generator
 description: Generates comprehensive test suites that verify feature functionality, edge cases, and quality standards
-tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
-color: purple
+color: orange
 ---
 # Agent instructions
 

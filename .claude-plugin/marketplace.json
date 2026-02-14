@@ -12,12 +12,6 @@
       "description": "AI-first product development workflow. From idea to production.",
       "source": "./prod-flow",
       "category": "development"
-    },
-    {
-      "name": "code-flow",
-      "description": "Essential code quality tools: security review, codebase exploration, and test generation",
-      "source": "./code-flow",
-      "category": "development"
     }
   ]
 }

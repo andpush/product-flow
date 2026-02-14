@@ -1,7 +1,6 @@
 ---
 description: Generate 3 versions of UI design mockups for the product
 argument-hint: [add_context]
-allowed-tools: Task, Bash
 ---
 # Command instructions
 
