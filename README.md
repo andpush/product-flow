@@ -1,112 +1,156 @@
-# Product Flow Plugins
+# Product Flow
 
-Complete development toolkit with two plugins for modern software development:
-
-- **prod-flow** - AI-first product development workflow. From idea to production.
-- **code-flow** - Essential code quality tools: security review, codebase exploration, and test generation.
+AI-first product development workflow plugin for Claude Code. From idea to production.
 
 ## Installation
 
 ```claude
 /plugin marketplace add andpush/product-flow
 /plugin install prod-flow
-/plugin install code-flow
 ```
 
-## What You Get
+## Workflow Overview
 
-### prod-flow plugin
+Product Flow guides you through structured product development in 4 phases:
 
-Provides workflow for AI-first product development:
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 1: DEFINE PRODUCT                                            │
+│ ┌──────────────────┐                                               │
+│ │ Your vision docs │  →  /define-product  →  product/product.md    │
+│ └──────────────────┘                         (structured specs)    │
+│                                                                     │
+│                         /mockup-product   →  product/mockups/      │
+│                                              (UI designs)           │
+└─────────────────────────────────────────────────────────────────────┘
 
-```markdown
-product/initial-docs/     → /define-product    → product/product.md
-                          → /define-architecture → product/architecture.md
-                          → /add-feature        → product/features/F001-*/feature.md
-                          → /plan-feature       → product/features/F001-*/plan.md
-                          → /implement-feature  → feature branch with code
-                          → /review-feature     → product/features/F001-*/review.md
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 2: DEFINE ARCHITECTURE                                       │
+│ /define-architecture  →  product/architecture.md                   │
+│                          (tech stack, components, data model)       │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 3: PLAN FEATURES                                             │
+│ /add-mvp-features     →  product/features/F001-*/feature.md        │
+│                          (feature breakdown)                        │
+│                                                                     │
+│ /mockup-feature       →  product/features/F001-*/mockups/          │
+│                          (feature UI mockups)                       │
+│                                                                     │
+│ /plan-feature         →  product/features/F001-*/plan.md           │
+│                          (implementation plan)                      │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 4: BUILD & REVIEW                                            │
+│ /implement-feature    →  feature/F001-* branch                     │
+│                          (code + tests)                             │
+│                                                                     │
+│ /review-feature       →  product/features/F001-*/review.md         │
+│                          (code quality review)                      │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
-### code-flow plugin
+## Quick Start Example
 
-Provides code quality and security skills:
-
-- **security-reviewer**: Runs SAST tools (Semgrep, Bandit, npm audit, Trivy), generates `security-issues-YYYY-MM-DD/` reports
-- **codebase-analyzer**: Three-level exploration (Quick Scan, Deep Analysis, Comprehensive Audit)
-- **test-generator**: Framework-aware test generation (Jest, pytest, RSpec, PHPUnit, Go, JUnit, Flutter)
-
-### Reusable rules in `rules/` folder
-
-Optionally select and copy rules for your tech stack from `rules/` folder. These rules can be customized and extended as needed.
-
-## Quick Start: prod-flow
-
+**1. Create your vision documents:**
 ```bash
 mkdir -p product/initial-docs
-# Add your vision docs, requirements, research...
+# Add your product vision, requirements, user research...
+```
 
+**2. Define your product:**
+```claude
 /define-product my-startup
+```
+Creates `product/product.md` with structured specs: problem, solution, features, success metrics.
+
+**3. Design UI mockups:**
+```claude
 /mockup-product
+```
+Generates interactive HTML mockups in `product/mockups/`.
+
+**4. Define architecture:**
+```claude
 /define-architecture
+```
+Creates `product/architecture.md` with tech stack, components, data model, deployment plan.
+
+**5. Break down into features:**
+```claude
 /add-mvp-features
+```
+Generates feature specs in `product/features/F001-*/feature.md`.
+
+**6. Plan a feature:**
+```claude
 /plan-feature F001-UserAuth
+```
+Creates implementation plan in `product/features/F001-UserAuth/plan.md`.
+
+**7. Build the feature:**
+```claude
 /implement-feature F001-UserAuth
+```
+Creates feature branch, implements code and tests.
+
+**8. Review the code:**
+```claude
 /review-feature F001-UserAuth
 ```
+Generates comprehensive review in `product/features/F001-UserAuth/review.md`.
 
-## Quick Start: code-flow
+## What Gets Created
 
-**Security Review:**
+Product Flow organizes everything in a `product/` directory:
 
-```claude
-Use the security-reviewer skill to audit my codebase
 ```
-
-**Explore Codebase:**
-
-```claude
-Use the codebase-explorer skill to do a quick scan of this project
-```
-
-**Generate Tests:**
-
-```claude
-Use the test-generator skill to create tests for src/auth/
-```
-
-## prod-flow Workflow
-
-```sequence
-product/initial-docs/          Your vision, research, requirements
-  ↓ /define-product
-product/product.md             Structured product definition
-  ↓ /add-mvp-features
-product/features/F001-*/       Feature specs
-  ↓ /plan-feature
-product/features/F001-*/plan.md  Implementation plan
-  ↓ /implement-feature
-feature/F001-* branch          Code + tests
-  ↓ /review-feature
-product/features/F001-*/review.md  Quality review
-```
-
-## Directory Structure assumed by prod-flow
-
-```sh
 product/
-├── initial-docs/        # Input: your vision, research, requirements
-├── product.md           # Output: structured product definition
-├── architecture.md      # Output: technical architecture
+├── initial-docs/        # Your input: vision, requirements, research
+├── product.md           # Generated: structured product definition
+├── architecture.md      # Generated: tech stack, components, data model
+├── mockups/             # Generated: product-level UI mockups (HTML)
 ├── features/
-│   └── F001-Name/
-│       ├── feature.md   # Feature specification
-│       ├── plan.md      # Implementation plan
-│       ├── review.md    # Code review
-│       └── mockups/     # UI designs
-├── mockups/             # Product-level mockups
-└── adr/                 # Architecture decision records
+│   └── F001-*/
+│       ├── feature.md   # Generated: feature specification
+│       ├── plan.md      # Generated: implementation plan
+│       ├── review.md    # Generated: code quality review
+│       └── mockups/     # Generated: feature-level UI mockups
+└── adr/                 # Architecture decision records (optional)
 ```
+
+## Available Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/define-product` | Create structured product definition from vision docs |
+| `/mockup-product` | Generate interactive UI mockups for the product |
+| `/define-architecture` | Design technical architecture and tech stack |
+| `/add-mvp-features` | Break product into feature specs |
+| `/add-feature` | Add a new feature to existing product |
+| `/mockup-feature` | Generate UI mockups for a specific feature |
+| `/plan-feature` | Create implementation plan for a feature |
+| `/implement-feature` | Build the feature (code + tests) |
+| `/review-feature` | Comprehensive code quality review |
+| `/update-feature` | Update existing feature specification |
+| `/figma-mockup` | Convert Figma designs to implementation specs |
+
+## Skills & Agents
+
+**Skills** (invoke with "use the X skill"):
+- `ba` - Business analysis and requirements decomposition
+- `sa` - Software architecture design
+- `code-explorer` - Codebase exploration and understanding
+- `code-reviewer` - Code quality review and improvements
+- `slides` - Create presentation decks from markdown
+- `uiux-design` - UI/UX design expertise
+
+**Agents** (autonomous specialists):
+- `code-reviewer` - Automated code review agent
+- `test-generator` - Test generation agent
+- `ui-mockup-designer` - UI mockup design agent
 
 ## License
 
