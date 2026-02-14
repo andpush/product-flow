@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: This skill should be used when the user asks to "review code quality", "find issues in the code", "audit the codebase", "check for bugs", "suggest code improvements", or mentions code review, technical debt analysis.
+description: This skill should be used when the user asks to "review code quality", "find issues in the code", "audit the codebase", "suggest code improvements", or mentions code review, technical debt analysis.
 ---
 
 Perform a focused code quality review. Report only actionable, code-specific findings — no generic advice.

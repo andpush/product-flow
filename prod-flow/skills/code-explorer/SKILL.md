@@ -1,6 +1,6 @@
 ---
 name: code-explorer
-description: This skill should be used when the user asks to "explore this codebase", "familiarize with the code", "understand the project structure", or wants to build understanding of an unfamiliar repository.
+description: This skill should be used when the user asks to "explore the codebase", or wants to build understanding of an unfamiliar repository.
 ---
 
 Analyze this repository as a senior engineer preparing to contribute to an unfamiliar codebase.
