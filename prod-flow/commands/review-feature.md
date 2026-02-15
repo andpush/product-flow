@@ -1,10 +1,10 @@
 ---
-description: Perform comprehensive code review for an implemented feature
+description: Review feature implementation code
 argument-hint: [feature_id]
 ---
 # Command Instructions
 
-Perform a comprehensive code review for feature "$1" using the code-reviewer subagent.
+Perform a comprehensive code review for feature `$1` using the `code-reviewer` subagent.
 
 ## Prerequisites Validation
 
@@ -62,9 +62,9 @@ echo "📈 Implementation: $completion_percentage% complete"
 ```
 
 ## Task
-Use the code-reviewer subagent to perform a thorough review of the implemented feature.
+Use the `code-reviewer` subagent to perform a thorough review of the implemented feature.
 
-The subagent will:
+The subagent will:bghn
 1. Analyze all code changes related to this feature
 2. Review security, performance, and maintainability
 3. Check test coverage and quality

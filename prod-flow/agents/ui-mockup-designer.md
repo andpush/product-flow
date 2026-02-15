@@ -1,7 +1,7 @@
 ---
 name: ui-mockup-designer
 description: Creates UI mockup (clickable prototype) based on product specifications as HTML with asset folder.
-model: sonnet
+model: inherit
 color: purple
 ---
 # Agent instructions

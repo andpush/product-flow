@@ -11,45 +11,46 @@ AI-first product development workflow plugin for Claude Code. From idea to produ
 
 ## Workflow Overview
 
-Product Flow guides you through structured product development in 4 phases:
+Product Flow guides you through structured product development:
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 1: DEFINE PRODUCT                                            │
-│ ┌──────────────────┐                                               │
-│ │ Your vision docs │  →  /define-product  →  product/product.md    │
-│ └──────────────────┘                         (structured specs)    │
-│                                                                     │
-│                         /mockup-product   →  product/mockups/      │
-│                                              (UI designs)           │
-└─────────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 2: DEFINE ARCHITECTURE                                       │
-│ /define-architecture  →  product/architecture.md                   │
-│                          (tech stack, components, data model)       │
-└─────────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 3: PLAN FEATURES                                             │
-│ /add-mvp-features     →  product/features/F001-*/feature.md        │
-│                          (feature breakdown)                        │
-│                                                                     │
-│ /mockup-feature       →  product/features/F001-*/mockups/          │
-│                          (feature UI mockups)                       │
-│                                                                     │
-│ /plan-feature         →  product/features/F001-*/plan.md           │
-│                          (implementation plan)                      │
-└─────────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 4: BUILD & REVIEW                                            │
-│ /implement-feature    →  feature/F001-* branch                     │
-│                          (code + tests)                             │
-│                                                                     │
-│ /review-feature       →  product/features/F001-*/review.md         │
-│                          (code quality review)                      │
-└─────────────────────────────────────────────────────────────────────┘
+┌──────────────────┐     ┌──────────────────┐     ┌────────────────-----──┐
+│ Your vision docs │     │ /define-product  │     │ /mockup-product       │
+│ initial-docs/    │────▶│ product.md       │────▶│ mockups/ (optional)   │
+└──────────────────┘     └───┬──────────────┘     └───────────────-----───┘
+                             │
+                     ┌───────┴───────┐
+                     ▼               ▼
+         ┌─────────────────────┐  ┌──────────────────┐
+         │ /define-architecture │  │ /add-mvp-features │
+         │ architecture.md     │  │ features/F001-*/  │
+         └─────────────────────┘  │ feature.md        │
+                                  └────────┬─────────┘
+                                           │
+                                           ▼
+                                  ┌─────────────────-----------─┐
+                                  │ /mockup-feature             │
+                                  │ F001-*/mockups/ (optional)  │
+                                  └────────┬───────-----------──┘
+                                           │
+                                           ▼
+                                  ┌──────────────────┐
+                                  │ /plan-feature     │
+                                  │ F001-*/plan.md    │
+                                  └────────┬─────────┘
+                                           │
+                                           ▼
+                                  ┌──────────────────┐
+                                  │ /implement-feature │
+                                  │ feature branch    │
+                                  │ code + tests      │
+                                  └────────┬─────────┘
+                                           │
+                                           ▼
+                                  ┌──────────────────┐
+                                  │ /review-feature   │
+                                  │ F001-*/review.md  │
+                                  └──────────────────┘
 ```
 
 ## Quick Start Example
