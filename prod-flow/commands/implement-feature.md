@@ -113,9 +113,21 @@ S. Skip for now (add to technical debt)
 - Document new tasks discovered during implementation
 - Update time estimates based on actual implementation
 
+## Test Generation
+
+After implementation is complete, use the `test-generator` subagent to generate a comprehensive test suite:
+
+1. Launch the `test-generator` subagent via the Task tool with the feature_id "$1"
+2. The subagent will analyze the implemented code and generate tests covering:
+   - Unit tests for individual functions and components
+   - Integration tests for component interactions
+   - Edge cases and error handling
+3. Review generated tests and adjust as needed
+4. Run the full test suite to verify all tests pass
+
 ## Output Requirements
 - Complete implementation of all planned tasks
-- Comprehensive test suite with good coverage
+- Comprehensive test suite with good coverage (generated via test-generator subagent)
 - Updated documentation reflecting implementation
 - All acceptance criteria from feature definition met
 - Code follows architecture standards and passes quality checks

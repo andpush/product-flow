@@ -4,9 +4,9 @@ argument-hint: [Feature ID]
 ---
 # Command Instructions
 
-Use the `product-discovery` skill to define a specific feature with clear requirements, acceptance criteria, and implementation scope.
+Use the `ba` skill to define a specific feature with clear requirements, acceptance criteria, and implementation scope.
 
-The skill provides the feature template structure and product discovery methodology.
+The skill provides business analysis methodology for feature discovery and requirements definition.
 
 ## Context
 
