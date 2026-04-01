@@ -39,3 +39,7 @@ Definition of Done:
     - [ ] Code review: No duplication, no dead code, no security issues, consistent with DECISIONS.md
     - [ ] Memory updated
     - [ ] Code committed
+
+Close alternatives:
+    - Superpowers plugin [https://github.com/obra/superpowers]
+    - Garry Tan's GStack [https://github.com/garrytan/gstack]
