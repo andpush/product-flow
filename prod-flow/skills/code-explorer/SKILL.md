@@ -3,7 +3,7 @@ name: code-explorer
 description: This skill should be used when the user asks to "explore the codebase", or wants to build understanding of an unfamiliar repository.
 ---
 
-Analyze this repository as a senior engineer preparing to contribute to an unfamiliar codebase.
+Map repository structure, architecture, and dependencies as a senior engineer onboarding to an unfamiliar codebase.
 
 ## Tasks
 
@@ -41,9 +41,11 @@ Diagram: structure and data flow (Mermaid)
 How the codebase is organized, conventions followed
 
 ## Risks & Gaps
-| Severity | Area | Location | Finding |
-|----------|------|----------|---------|
-| High/Med/Low | category | file:line | specific issue |
+| Severity | Category | Location | Finding |
+|----------|----------|----------|---------|
+| High | maintenance | file:line | specific actionable issue |
+
+(High = blocks contribution, Med = impacts maintenance/perf, Low = minor)
 
 ## Onboarding Notes
 - How to build/run/test
