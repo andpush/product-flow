@@ -8,15 +8,15 @@ Apply the `sa` skill to accomplish this task.
 
 ## Prerequisites
 
-Verify `product/product.md` exists. If missing, instruct user to run `/define-product` first.
+Verify `docs/product.md` exists. If missing, instruct user to run `/define-product` first.
 
 ## Inputs
 
 Read:
 
-- `product/product.md` - Product requirements and constraints
+- `docs/product.md` - Product requirements and constraints
 - Documents from Bibliography section for additional context
-- `product/architecture.md` (if exists) - Existing decisions to update
+- `docs/architecture.md` (if exists) - Existing decisions to update
 - `./**/CLAUDE.md`, `./**/AGENTS.md` (if exists) - Development preferences
 
 ## Process
@@ -25,7 +25,7 @@ Read:
 2. Follow `architecture` skill
 3. Iterate: propose components → validate tech choices → refine (min 2 passes before output)
 4. Ask user When uncertain, document open questions
-5. Write/update `product/architecture.md` using template below
+5. Write/update `docs/architecture.md` using template below
 
 ## Architecture Template
 

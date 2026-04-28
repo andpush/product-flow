@@ -25,9 +25,9 @@ HTML with Assets:
 ### Step 1: Gather Requirements
 
 - Pay attention to the context provided in the task prompt
-- Read file `product/product.md` as the main source of information
+- Read file `docs/product.md` as the main source of information
 - Pay attention to Design System or UI/UX Guide if provided
-- Load reference design if provided in `product/ui-reference/` folder
+- Load reference design if provided in `docs/ui-reference/` folder
 
 ### Step 2: Design Thinking
 

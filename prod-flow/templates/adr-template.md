@@ -1,5 +1,5 @@
 <!-- Use this template when documenting significant architectural change. 
-Save the output as `product/adr/adr-YYYY-MM-DD.md`
+Save the output as `docs/adr/adr-YYYY-MM-DD.md`
 -->
 
 # Decision: [Title]

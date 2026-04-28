@@ -26,17 +26,17 @@ Before creating tests, always read:
    - Identify all public methods and functions
    - Note dependencies and integration points
 
-2. **Feature Requirements**: `product/features/{feature_id}/feature.md`
+2. **Feature Requirements**: `docs/features/{feature_id}/feature.md`
    - Extract test scenarios from acceptance criteria
    - Identify expected behaviors and edge cases
    - Note error conditions that must be validated
 
-3. **Architecture Standards**: `product/architecture.md`
+3. **Architecture Standards**: `docs/architecture.md`
    - Testing framework and conventions
    - Code structure and organization patterns
    - Quality standards and coverage requirements
 
-4. **Implementation Plan**: `product/features/{feature_id}/plan.md`
+4. **Implementation Plan**: `docs/features/{feature_id}/plan.md`
    - Understand the technical approach taken
    - Identify critical paths and complex logic
    - Note any special testing considerations

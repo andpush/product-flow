@@ -1,4 +1,4 @@
-<!-- Use this template when creating `product/features/{feature_id}/feature.md`  -->
+<!-- Use this template when creating `docs/features/{feature_id}/feature.md`  -->
 
 # Feature Definition and Requirements
 

@@ -6,7 +6,7 @@ argument-hint: [Feature ID]
 
 Update the feature definition for "$1" by syncing with:
 - New files added to the feature directory (mockups, documents, user stories, images)
-- Changes in `product/product.md` that affect this feature
+- Changes in `docs/product.md` that affect this feature
 - User-specified updates based on conversation context
 
 ## Prerequisites Validation
@@ -15,13 +15,13 @@ First, verify that the feature exists before attempting to update:
 
 ```bash
 # Check feature definition exists
-if [ ! -f "product/features/$1/feature.md" ]; then
-    echo "❌ Feature definition missing: product/features/$1/feature.md"
+if [ ! -f "docs/features/$1/feature.md" ]; then
+    echo "❌ Feature definition missing: docs/features/$1/feature.md"
     echo "Run /add-feature $1 first to create the feature"
     exit 1
 fi
 
-echo "✅ Feature found: product/features/$1/feature.md"
+echo "✅ Feature found: docs/features/$1/feature.md"
 echo "🔄 Analyzing changes to sync..."
 ```
 
@@ -31,9 +31,9 @@ You are a Senior Business Analyst updating a feature definition to reflect new i
 
 **Required Reading:**
 
-- `product/features/$1/feature.md` - Current feature definition
-- `product/product.md` (if exists) - Product context and any recent changes
-- All files in `product/features/$1/` - New mockups, docs, images, user stories
+- `docs/features/$1/feature.md` - Current feature definition
+- `docs/product.md` (if exists) - Product context and any recent changes
+- All files in `docs/features/$1/` - New mockups, docs, images, user stories
 - Use the `ba` skill which provides the feature template structure
 
 ## Task
@@ -44,7 +44,7 @@ You are a Senior Business Analyst updating a feature definition to reflect new i
    - Review conversation context for user-specified changes
 
 2. **Analyze New Content**:
-   - List all files in `product/features/$1/` directory
+   - List all files in `docs/features/$1/` directory
    - Identify new mockups (*.html, *.png, *.jpg, *.pdf)
    - Find new documentation (*.md files other than feature.md)
    - Look for user stories, requirements docs, or design references
@@ -115,7 +115,7 @@ Current changes detected:
 
 ## Output Requirements
 
-- Update `product/features/$1/feature.md` with synced content
+- Update `docs/features/$1/feature.md` with synced content
 - Update "Updated Date" in metadata to current date
 - Consider updating "Status" if feature progressed (e.g., Discovery → Defined)
 - Preserve template structure and formatting

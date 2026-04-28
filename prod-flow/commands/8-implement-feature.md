@@ -12,37 +12,37 @@ First, verify all prerequisites are met before starting implementation:
 
 ```bash
 # Check feature definition exists
-!if [ ! -f "product/features/$1/feature.md" ]; then
-    echo "❌ Feature definition missing: product/features/$1/feature.md"
+!if [ ! -f "docs/features/$1/feature.md" ]; then
+    echo "❌ Feature definition missing: docs/features/$1/feature.md"
     echo "Run /define-feature $1 first"
     exit 1
 fi
 
 # Check implementation plan exists
-if [ ! -f "product/features/$1/plan.md" ]; then
-    echo "❌ Implementation plan missing: product/features/$1/plan.md"
+if [ ! -f "docs/features/$1/plan.md" ]; then
+    echo "❌ Implementation plan missing: docs/features/$1/plan.md"
     echo "Run /plan-feature $1 first"
     exit 1
 fi
 
 # Check for acceptance criteria in feature definition
-if ! grep -q "## Acceptance Criteria" "product/features/$1/feature.md"; then
+if ! grep -q "## Acceptance Criteria" "docs/features/$1/feature.md"; then
     echo "❌ Feature definition lacks acceptance criteria"
-    echo "Update product/features/$1/feature.md with acceptance criteria"
+    echo "Update docs/features/$1/feature.md with acceptance criteria"
     exit 1
 fi
 
 # Check for task breakdown in plan
-task_count=$(grep -c "^- \[ \]" "product/features/$1/plan.md" 2>/dev/null || echo "0")
+task_count=$(grep -c "^- \[ \]" "docs/features/$1/plan.md" 2>/dev/null || echo "0")
 if [ "$task_count" -eq 0 ]; then
     echo "❌ Implementation plan lacks task breakdown"
-    echo "Update product/features/$1/plan.md with specific tasks"
+    echo "Update docs/features/$1/plan.md with specific tasks"
     exit 1
 fi
 
 # Check architecture definition (optional but recommended)
-if [ ! -f "product/architecture.md" ]; then
-    echo "⚠️ Architecture definition missing: product/architecture.md"
+if [ ! -f "docs/architecture.md" ]; then
+    echo "⚠️ Architecture definition missing: docs/architecture.md"
     echo "Consider running /define-architecture to define technical standards"
     read -p "Continue without architecture definition? (y/N): " confirm
     if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
@@ -59,9 +59,9 @@ echo "📝 Tasks to complete: $task_count"
 You are a Senior Developer implementing this feature according to the plan.
 
 **Required Reading:**
-- `product/features/$1/plan.md` - Implementation plan and task breakdown
-- `product/features/$1/feature.md` - Feature requirements and acceptance criteria
-- `product/architecture.md` - Technical architecture and coding standards
+- `docs/features/$1/plan.md` - Implementation plan and task breakdown
+- `docs/features/$1/feature.md` - Feature requirements and acceptance criteria
+- `docs/architecture.md` - Technical architecture and coding standards
 - Any mockups in the feature directory for UI reference
 
 ## Task
@@ -131,4 +131,4 @@ After implementation is complete, use the `test-generator` subagent to generate 
 - Updated documentation reflecting implementation
 - All acceptance criteria from feature definition met
 - Code follows architecture standards and passes quality checks
-- Document significant architectural decisions in `product/adr.md` using ADR template
+- Document significant architectural decisions in `docs/adr.md` using ADR template

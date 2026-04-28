@@ -12,22 +12,22 @@ First, verify that the feature is ready for review:
 
 ```bash
 # Check feature definition exists
-if [ ! -f "product/features/$1/feature.md" ]; then
-    echo "❌ Feature definition missing: product/features/$1/feature.md"
+if [ ! -f "docs/features/$1/feature.md" ]; then
+    echo "❌ Feature definition missing: docs/features/$1/feature.md"
     echo "Cannot review without feature requirements"
     exit 1
 fi
 
 # Check implementation plan exists
-if [ ! -f "product/features/$1/plan.md" ]; then
-    echo "❌ Implementation plan missing: product/features/$1/plan.md"
+if [ ! -f "docs/features/$1/plan.md" ]; then
+    echo "❌ Implementation plan missing: docs/features/$1/plan.md"
     echo "Cannot review without knowing the planned approach"
     exit 1
 fi
 
 # Check if implementation appears complete
-completed_tasks=$(grep -c "^- \[x\]" "product/features/$1/plan.md" 2>/dev/null || echo "0")
-total_tasks=$(grep -c "^- \[\]" "product/features/$1/plan.md" 2>/dev/null || echo "0")
+completed_tasks=$(grep -c "^- \[x\]" "docs/features/$1/plan.md" 2>/dev/null || echo "0")
+total_tasks=$(grep -c "^- \[\]" "docs/features/$1/plan.md" 2>/dev/null || echo "0")
 total_tasks=$((total_tasks + completed_tasks))
 
 if [ "$completed_tasks" -eq 0 ]; then
@@ -80,7 +80,7 @@ The subagent will:bghn
 - **Acceptance Criteria**: Verify all requirements from feature definition are met
 
 ## Output
-- Comprehensive review report saved to `product/features/$1/review.md`
+- Comprehensive review report saved to `docs/features/$1/review.md`
 - Issues categorized by severity (🔴 Critical, 🟡 Important, 🟢 Suggestion)
 - Specific recommendations for improvements
 - Approval status and any blocking issues

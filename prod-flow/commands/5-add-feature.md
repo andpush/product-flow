@@ -1,6 +1,6 @@
 ---
 description: Define a specific feature with clear requirements, acceptance criteria, and implementation scope
-argument-hint: [Feature ID]
+argument-hint: [feature-name]
 ---
 # Command Instructions
 
@@ -13,11 +13,11 @@ The skill provides business analysis methodology for feature discovery and requi
 User provides the new feature name and context as an argument to this command: $ARGUMENTS.
 If not, ask user to enter feature name and description in the current session. This is basis for the feature definition.
 
-Verify that `product/product.md` exists. If not, suggest to run `/define-product` first.
+Verify that `docs/product.md` exists. If not, suggest to run `/1-define-product` first.
 
 **Required Reading:**
 
-- Read `product/product.md` to get product context
+- Read `docs/product.md` to get product context
 - Other files referenced by user
 
 ## Task
@@ -29,7 +29,7 @@ Verify that `product/product.md` exists. If not, suggest to run `/define-product
 5. **Dependencies**: Determine dependencies to other features and external systems
 6. **Identify Gaps and Inconsistencies**: Figure out gaps in feature requirements. Check for inconsistencies and ambiguous language. Think what clarifications are absolutely necessary in order to start feature implementation
 7. **Write output file**:
-    - Create (or update if exist) `product/features/F000-FeatureName/feature.md` following the feature template.
+    - Create (or update if exist) `docs/features/F000-FeatureName/feature.md` following the feature template.
     - Feature ID format: Use `F000-FeatureName` with sequentionally increasing number, starting at F001, example: `F001-UserLogin`
     - Use crystal clear and concise wording
     - List all open questions that need stakeholder input

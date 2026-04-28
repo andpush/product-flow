@@ -1,6 +1,6 @@
 ---
 name: uiux-design
-description: This skill should be used when the user asks to "design UI", "create mockup", or runs /mockup-product, /mockup-feature, or /figma-mockup commands.
+description: This skill should be used to design UI, create mockup.
 ---
 
 Professional UI/UX design knowledge for creating beautiful, intuitive, and accessible interfaces.

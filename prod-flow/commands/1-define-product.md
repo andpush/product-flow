@@ -1,14 +1,16 @@
 ---
-description: Create a comprehensive product definition from initial documents and stakeholder input
+description: Define `docs/product.md` based on initial documents in `docs/initial/`
 argument-hint: product name
 ---
 # Command Instructions
 
 ## Your Mission
 
-Generate or update product definition in `product/product.md` based on the provided initial documentation.
+Create a comprehensive product definition from initial documents and stakeholder input.
 
 Use the `ba` skill and the template below to guide the analysis.
+
+The result is generated or updated `docs/product.md`.
 
 ## Context
 
@@ -18,19 +20,19 @@ If command arguments not provided, deduce it from the context.
 Explore the following files:
 
 ```bash
-product/
-├── initial-docs/**    # Initial documents to research
+docs/
+├── initial/**    # Initial documents to research
 ├── product.md         # (if exists) previous definition to update
 ```
 
-`!ls -AR "product/initial-docs"`
+`!ls -AR "docs/initial"`
 
-Look for the files containing the most relevant and up-to-date information about the product:
+Look for the files containing the most relevant and up-to-date information about the product, try to figure out following pieces of information:
 
-- Product vision
 - Business domain
 - Problem statement
-- Market research
+- Product vision
+- Product market fit
 - Solution ideation notes
 - Meeting notes with stakeholders
 - Business needs and requirements
@@ -62,12 +64,10 @@ Load the UI materials if present:
    - Check for inconsistencies and ambiguous language.
    - Think what clarifications are absolutely necessary in order to start solutioning.
 5. **Ask User for clarifications**:
-   - Only ask user when the information is absolutely necessary to proceed
+   - Only ask user when the information is absolutely necessary to proceed with design and implementation
    - Be concise and crystall clear
-   - Ask questions one at a time
-   - Wait user definite answer before asking another question
-   - Provide 2-3 numbered options when possible
-   - Include brief rationale for recommended option
+   - Ask questions one by one
+   - Provide 2-3 numbered options when possible with brief rationale for the recommended one
 
    ```markdown
    ===
@@ -88,7 +88,7 @@ Load the UI materials if present:
 
    - Document only what's decision-critical and not obvious
    - What would a senior PM/Architect/Developers/Coding Agent actually need to know?
-   - Be concise, avoid duplication
+   - Be concise, AVOID DUPLICATIONS!
    - Be specific: use concrete numbers and dates. Do not guess, ask user when in doubt
    - List all open questions that could block implementation.
 
@@ -114,7 +114,7 @@ Load the UI materials if present:
 Product:  [PRODUCT_NAME]
 Created:  [YYYY-MM-DD]
 Updated:  [YYYY-MM-DD]
-Status:   [Draft/Defined]
+Status:   [Draft/Ready]
 ---
 
 # Product Definition

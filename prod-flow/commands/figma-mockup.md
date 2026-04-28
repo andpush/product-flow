@@ -10,8 +10,8 @@ Generate a UI mockup based on the provided Figma design, extracting visual style
 
 ```bash
 # Check product definition exists
-if [ ! -f "product/product.md" ]; then
-    echo "❌ Product definition missing: product/product.md"
+if [ ! -f "docs/product.md" ]; then
+    echo "❌ Product definition missing: docs/product.md"
     echo "Run /define-product [name] first"
     exit 1
 fi
@@ -33,7 +33,7 @@ echo "📐 Figma URL: $FIGMA_URL"
 ## Execution
 
 1. Parse command arguments
-2. Read product requirements: `product/product.md` and other files referenced there
+2. Read product requirements: `docs/product.md` and other files referenced there
 3. Invoke tools in Figma MCP to get all the information about the design, neccessary to build pixel perfect copy in the form of html file with assets folder.
 4. Build HTML Mockup:
    - Apply extracted design system (colors, fonts, spacing)

@@ -8,22 +8,22 @@ argument-hint: [add_context]
 
 ```bash
 # Check product definition exists
-if [ ! -f "product/product.md" ]; then
-    echo "❌ Product definition missing: product/product.md"
+if [ ! -f "docs/product.md" ]; then
+    echo "❌ Product definition missing: docs/product.md"
     echo "Run /define-product [name] first"
     exit 1
 fi
 
 # Check initial documents exist
-if [ ! -d "product/initial-docs" ]; then
-    echo "❌ Initial documents missing: product/initial-docs/"
-    echo "Create product/initial-docs/ with vision, requirements, and reference materials"
+if [ ! -d "docs/initial" ]; then
+    echo "❌ Initial documents missing: docs/initial/"
+    echo "Create docs/initial/ with vision, requirements, and reference materials"
     exit 1
 fi
 
 # Check for content in initial folder
-if [ -z "$(ls -A product/initial-docs/)" ]; then
-    echo "⚠️ product/initial-docs/ folder is empty"
+if [ -z "$(ls -A docs/initial/)" ]; then
+    echo "⚠️ docs/initial/ folder is empty"
     echo "Add vision documents, requirements, screenshots, and reference materials"
     read -p "Continue with empty initial folder? (y/N): " confirm
     if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then

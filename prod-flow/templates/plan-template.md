@@ -1,5 +1,5 @@
 <!--
-Use this template when creating `product/features/[feature_id]/plan.md` with the `/plan-feature` command.
+Use this template when creating `docs/features/[feature_id]/plan.md` with the `/plan-feature` command.
 -->
 # Implementation Plan
 
