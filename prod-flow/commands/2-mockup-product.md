@@ -6,33 +6,9 @@ argument-hint: [add_context]
 
 ## Validation Gate
 
-```bash
-# Check product definition exists
-if [ ! -f "docs/product.md" ]; then
-    echo "❌ Product definition missing: docs/product.md"
-    echo "Run /define-product [name] first"
-    exit 1
-fi
+Verify `docs/product.md` exists; if not, stop and tell the user to run `/1-define-product` first.
 
-# Check initial documents exist
-if [ ! -d "docs/initial" ]; then
-    echo "❌ Initial documents missing: docs/initial/"
-    echo "Create docs/initial/ with vision, requirements, and reference materials"
-    exit 1
-fi
-
-# Check for content in initial folder
-if [ -z "$(ls -A docs/initial/)" ]; then
-    echo "⚠️ docs/initial/ folder is empty"
-    echo "Add vision documents, requirements, screenshots, and reference materials"
-    read -p "Continue with empty initial folder? (y/N): " confirm
-    if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
-        exit 1
-    fi
-fi
-
-echo "✅ Prerequisites validated - ready for mockup generation"
-```
+If `docs/initial/` is missing or empty, warn the user (vision docs, requirements, screenshots, and reference materials belong there) and ask whether to continue before generating mockups.
 
 ## Task Instructions
 

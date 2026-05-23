@@ -13,72 +13,27 @@ Provides design expertise for creating mockups, prototypes, and user interfaces 
 
 Activate when:
 
-- User runs `/mockup-product`, `/mockup-feature`, or `/figma-mockup`
+- User runs `/2-mockup-product`, `/6-mockup-feature`, or `/figma-mockup`
 - Working with HTML mockup files or design assets
-- Context involves user interface design, visual design, or user experience
+- Context involves UI, visual design, or user experience
 - Creating or reviewing UI prototypes
-- User asks about design principles or UX patterns
 
 ## Design Principles
 
-As a professional UI/UX designer, based on the application idea and functional specs, think hard how to provide the most intuitive and engaging user experience.
+Based on the application idea and functional specs, think hard about the most intuitive and engaging experience.
 
-- **Minimalist yet functional**: Prioritize clarity and ease of use
-- **Visual hierarchy**: Use well-thought-out hierarchy with soft gradients and generous white space
-- **Intuitive UX**: Provide the most engaging and intuitive user experience
-- **Micro-interactions**: Include delicate, frictionless micro-interactions
-- **Accessibility**: Stick to WCAG AA principles
+- **Minimalist yet functional**: clarity and ease of use first
+- **Visual hierarchy**: deliberate hierarchy, soft gradients, generous white space
+- **Micro-interactions**: delicate, frictionless
+- **Accessibility**: WCAG AA; mobile touch targets ≥ 44×44px
 
-### Common UI Patterns
+Apply standard UX patterns (navigation, forms, lists/cards, feedback, mobile-first) as appropriate for the content — favor the simplest pattern that fits.
 
-Apply when appropriate.
+## Project-Specific Mockup Conventions
 
-**Common Best Practices**:
+- Modern CSS (flexbox, grid, custom properties, animations)
+- Tailwind CSS via CDN for utilities; Shadcn UI via CDN when appropriate
+- JavaScript for interactions, embedded in `<script>` tags
+- Realistic placeholder content that demonstrates the interface
 
-- Use modern CSS (flexbox, grid, custom properties, animations)
-- Tailwind CSS (via CDN) for utility classes
-- JavaScript for interactions (embedded in `<script>` tags)
-- Shadcn UI components (via CDN) when appropriate
-- Add hover states, transitions, and subtle animations
-- For mockups use realistic placeholder content that demonstrates the interface
-
-**Navigation:**
-
-- Top navigation for few items (3-7 links)
-- Sidebar navigation for many items or hierarchy
-- Bottom tab bar for mobile (3-5 primary actions)
-- Hamburger menu as last resort (hide complexity)
-
-**Forms:**
-
-- One column layout for forms
-- Clear labels above inputs
-- Helpful placeholder text (not as labels)
-- Inline validation with helpful error messages
-- Clear primary action button
-- Auto-focus first field
-
-**Lists and Cards:**
-
-- Card-based design for browsing and scanning
-- List view for dense information
-- Grid for visual content (images, products)
-- Infinite scroll or pagination based on content type
-
-**Feedback:**
-
-- Toast notifications for transient feedback
-- Modal dialogs for critical confirmations
-- Inline messages for contextual feedback
-- Loading skeletons for content loading
-- Empty states with helpful guidance
-
-### Mobile-First Patterns
-
-- Stack vertically on mobile
-- Larger touch targets (min 44x44px)
-- Bottom sheets for actions on mobile
-- Swipe gestures where appropriate
-- Fixed position CTAs at bottom of mobile screens
-
-Focus on visual and interaction design - let other skills handle their domains.
+Focus on visual and interaction design — let other skills handle their domains.

@@ -16,7 +16,7 @@ Generate meaningful, thorough test suites that verify business logic, user workf
 - Write component tests for UI elements and interactions
 - Include edge case and error condition testing
 - Generate realistic test data and mock objects
-- Ensure test coverage meets quality standards (>80%)
+- Ensure tests meaningfully cover behavior, meeting any coverage targets in `docs/architecture.md`
 
 ## Required Reading
 Before creating tests, always read:
@@ -76,7 +76,7 @@ Before creating tests, always read:
 - Group related tests in logical test suites
 
 ### Test Coverage
-- Achieve >80% code coverage for new functionality
+- Cover acceptance criteria and non-trivial logic; meet `docs/architecture.md` targets if defined
 - Test all acceptance criteria from feature definition
 - Include both positive and negative test cases
 - Cover error handling and exception scenarios
@@ -136,7 +136,7 @@ describe('User registration', () => {
 
 ## Quality Checklist
 Before completing, verify your test suite:
-- [ ] Achieves >80% code coverage for new functionality
+- [ ] Covers acceptance criteria and non-trivial logic
 - [ ] Tests all acceptance criteria from feature definition
 - [ ] Includes meaningful assertions that verify behavior
 - [ ] Uses descriptive, self-documenting test names

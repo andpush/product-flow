@@ -8,63 +8,14 @@ Perform a comprehensive code review for feature `$1` using the `code-reviewer` s
 
 ## Prerequisites Validation
 
-First, verify that the feature is ready for review:
+Verify both `docs/features/$1/feature.md` and `docs/features/$1/plan.md` exist; if either is missing, stop and tell the user to run `/5-add-feature` and `/7-plan-feature` first.
 
-```bash
-# Check feature definition exists
-if [ ! -f "docs/features/$1/feature.md" ]; then
-    echo "❌ Feature definition missing: docs/features/$1/feature.md"
-    echo "Cannot review without feature requirements"
-    exit 1
-fi
-
-# Check implementation plan exists
-if [ ! -f "docs/features/$1/plan.md" ]; then
-    echo "❌ Implementation plan missing: docs/features/$1/plan.md"
-    echo "Cannot review without knowing the planned approach"
-    exit 1
-fi
-
-# Check if implementation appears complete
-completed_tasks=$(grep -c "^- \[x\]" "docs/features/$1/plan.md" 2>/dev/null || echo "0")
-total_tasks=$(grep -c "^- \[\]" "docs/features/$1/plan.md" 2>/dev/null || echo "0")
-total_tasks=$((total_tasks + completed_tasks))
-
-if [ "$completed_tasks" -eq 0 ]; then
-    echo "❌ No completed tasks found in plan"
-    echo "Feature appears not to be implemented yet"
-    echo "Run /implement-feature $1 first"
-    exit 1
-fi
-
-if [ "$total_tasks" -gt 0 ]; then
-    completion_percentage=$((completed_tasks * 100 / total_tasks))
-    echo "📊 Implementation progress: $completion_percentage% ($completed_tasks/$total_tasks tasks)"
-
-    if [ "$completion_percentage" -lt 80 ]; then
-        echo "⚠️ Feature appears to be incomplete ($completion_percentage% done)"
-        read -p "Continue with review of partial implementation? (y/N): " confirm
-        if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
-            exit 1
-        fi
-    fi
-fi
-
-# Check for git repository (to analyze changes)
-if [ ! -d ".git" ]; then
-    echo "⚠️ No git repository found"
-    echo "Code review will be limited without version control history"
-fi
-
-echo "✅ Prerequisites validated - ready for code review"
-echo "📋 Feature: $1"
-echo "📈 Implementation: $completion_percentage% complete"
-```
+Before reviewing, confirm the implementation is actually done — the plan's tasks should be checked off (`- [x]`). If it looks unfinished, tell the user and ask whether to review the partial work. A git repository is recommended so changes can be analyzed.
 
 ## Task
 Use the `code-reviewer` subagent to perform a thorough review of the implemented feature.
 
-The subagent will:bghn
+The subagent will:
 1. Analyze all code changes related to this feature
 2. Review security, performance, and maintainability
 3. Check test coverage and quality

@@ -25,7 +25,7 @@ docs/
 ├── product.md         # (if exists) previous definition to update
 ```
 
-`!ls -AR "docs/initial"`
+Explore `docs/initial/` recursively and read the relevant files.
 
 Look for the files containing the most relevant and up-to-date information about the product, try to figure out following pieces of information:
 
@@ -103,7 +103,7 @@ Load the UI materials if present:
    - [ ] Technical constraints are realistic
 
 8. **Suggest user next steps:**
-   - Run `/define-architecture` to define technical approach
+   - Run `/3-define-architecture` to define technical approach
 
 ---
 
@@ -190,7 +190,7 @@ Status:   [Draft/Ready]
 
 ---
 
-| Feature | [001-TopMenu]  |
+| Feature | [F001-TopMenu]  |
 |-|-|
 | Epic | [Landing Page] |
 | Size | [XS/S/M/L/XL]  |

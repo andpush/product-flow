@@ -8,45 +8,13 @@ Create a detailed implementation plan for feature "$1" with task breakdown and t
 
 ## Prerequisites Validation
 
-First, verify that all prerequisites are met before creating the plan:
+Verify `docs/features/$1/feature.md` exists; if not, stop and tell the user to run `/5-add-feature $1` first.
 
-```bash
-# Check feature definition exists
-if [ ! -f "docs/features/$1/feature.md" ]; then
-    echo "❌ Feature definition missing: docs/features/$1/feature.md"
-    echo "Run /define-feature $1 first"
-    exit 1
-fi
+Then confirm before planning:
 
-# Check for acceptance criteria in feature definition
-if ! grep -q "## Acceptance Criteria" "docs/features/$1/feature.md"; then
-    echo "❌ Feature definition lacks acceptance criteria"
-    echo "Cannot create implementation plan without clear acceptance criteria"
-    echo "Update docs/features/$1/feature.md with acceptance criteria first"
-    exit 1
-fi
-
-# Check product definition exists (recommended)
-if [ ! -f "docs/product.md" ]; then
-    echo "⚠️ Product definition missing: docs/product.md"
-    echo "Consider running /define-product for better context"
-    read -p "Continue without product definition? (y/N): " confirm
-    if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
-        exit 1
-    fi
-fi
-
-# Check if plan already exists
-if [ -f "docs/features/$1/plan.md" ]; then
-    echo "📝 Existing plan found: docs/features/$1/plan.md"
-    echo "Will update/enhance the existing plan"
-else
-    echo "🆕 Creating new implementation plan"
-fi
-
-echo "✅ Prerequisites validated - ready for planning"
-echo "📋 Feature: $1"
-```
+- The feature definition has clear, testable acceptance criteria. If not, stop and ask the user to complete `/5-add-feature $1` first.
+- `docs/product.md` exists for context (recommended, not required).
+- If `docs/features/$1/plan.md` already exists, update/enhance it rather than overwriting.
 
 ## Context
 

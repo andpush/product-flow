@@ -77,7 +77,7 @@ Before conducting the review, always read:
 - **Load Handling**: Can code handle expected traffic and data volumes?
 
 ### 5. Testing Review
-- **Coverage**: Adequate test coverage for new functionality (>80%)?
+- **Coverage**: Acceptance criteria and non-trivial logic covered (per `docs/architecture.md` targets)?
 - **Test Quality**: Do tests verify behavior, not just coverage?
 - **Edge Cases**: Are boundary conditions tested?
 - **Integration Tests**: Are workflows and API endpoints tested?

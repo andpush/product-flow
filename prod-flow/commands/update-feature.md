@@ -11,19 +11,7 @@ Update the feature definition for "$1" by syncing with:
 
 ## Prerequisites Validation
 
-First, verify that the feature exists before attempting to update:
-
-```bash
-# Check feature definition exists
-if [ ! -f "docs/features/$1/feature.md" ]; then
-    echo "❌ Feature definition missing: docs/features/$1/feature.md"
-    echo "Run /add-feature $1 first to create the feature"
-    exit 1
-fi
-
-echo "✅ Feature found: docs/features/$1/feature.md"
-echo "🔄 Analyzing changes to sync..."
-```
+Verify `docs/features/$1/feature.md` exists; if not, stop and tell the user to run `/5-add-feature $1` first.
 
 ## Context
 

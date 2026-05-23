@@ -8,52 +8,7 @@ Implement feature "$1" following the detailed implementation plan.
 
 ## Prerequisites Validation
 
-First, verify all prerequisites are met before starting implementation:
-
-```bash
-# Check feature definition exists
-!if [ ! -f "docs/features/$1/feature.md" ]; then
-    echo "❌ Feature definition missing: docs/features/$1/feature.md"
-    echo "Run /define-feature $1 first"
-    exit 1
-fi
-
-# Check implementation plan exists
-if [ ! -f "docs/features/$1/plan.md" ]; then
-    echo "❌ Implementation plan missing: docs/features/$1/plan.md"
-    echo "Run /plan-feature $1 first"
-    exit 1
-fi
-
-# Check for acceptance criteria in feature definition
-if ! grep -q "## Acceptance Criteria" "docs/features/$1/feature.md"; then
-    echo "❌ Feature definition lacks acceptance criteria"
-    echo "Update docs/features/$1/feature.md with acceptance criteria"
-    exit 1
-fi
-
-# Check for task breakdown in plan
-task_count=$(grep -c "^- \[ \]" "docs/features/$1/plan.md" 2>/dev/null || echo "0")
-if [ "$task_count" -eq 0 ]; then
-    echo "❌ Implementation plan lacks task breakdown"
-    echo "Update docs/features/$1/plan.md with specific tasks"
-    exit 1
-fi
-
-# Check architecture definition (optional but recommended)
-if [ ! -f "docs/architecture.md" ]; then
-    echo "⚠️ Architecture definition missing: docs/architecture.md"
-    echo "Consider running /define-architecture to define technical standards"
-    read -p "Continue without architecture definition? (y/N): " confirm
-    if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
-        exit 1
-    fi
-fi
-
-echo "✅ Prerequisites validated - ready for implementation"
-echo "📋 Feature: $1"
-echo "📝 Tasks to complete: $task_count"
-```
+Verify both `docs/features/$1/feature.md` and `docs/features/$1/plan.md` exist. If `feature.md` is missing, stop and tell the user to run `/5-add-feature $1`; if `plan.md` is missing, `/7-plan-feature $1`. Confirm the feature has testable acceptance criteria and the plan has an unchecked task breakdown before starting. `docs/architecture.md` is recommended for coding standards — if it's missing, note that and proceed.
 
 ## Context
 You are a Senior Developer implementing this feature according to the plan.
@@ -82,17 +37,12 @@ You are a Senior Developer implementing this feature according to the plan.
 - **Security**: Follow security best practices for authentication, data handling, etc.
 
 ## Quality Standards
-- **Code Coverage**: Aim for >80% test coverage for new code
-- **Documentation**: Include clear comments for complex logic
-- **Accessibility**: Ensure UI components meet accessibility standards
-- **Responsive Design**: Test UI components across different screen sizes
-- **Browser Compatibility**: Test in target browsers specified in architecture
+- **Coverage**: Meet the coverage targets in `docs/architecture.md` if defined; otherwise cover the acceptance criteria and the non-trivial logic.
+- **Documentation**: Comment the *why* for non-obvious logic.
+- **For UI features**: verify accessibility, responsive behavior, and target browsers as specified in `docs/architecture.md`.
 
 ## Testing Strategy
-- **Unit Tests**: Test individual functions and components in isolation
-- **Integration Tests**: Test interactions between components
-- **End-to-End Tests**: Test complete user workflows
-- **Manual Testing**: Verify acceptance criteria are met
+Match the architecture's testing strategy. Typically: unit tests for logic and edge cases, integration tests for component/API interactions, and end-to-end tests for critical workflows. Always verify the feature's acceptance criteria.
 
 ## Interaction Pattern
 If you encounter blockers or need clarification:
@@ -113,22 +63,13 @@ S. Skip for now (add to technical debt)
 - Document new tasks discovered during implementation
 - Update time estimates based on actual implementation
 
-## Test Generation
+## Filling Test Gaps
 
-After implementation is complete, use the `test-generator` subagent to generate a comprehensive test suite:
-
-1. Launch the `test-generator` subagent via the Task tool with the feature_id "$1"
-2. The subagent will analyze the implemented code and generate tests covering:
-   - Unit tests for individual functions and components
-   - Integration tests for component interactions
-   - Edge cases and error handling
-3. Review generated tests and adjust as needed
-4. Run the full test suite to verify all tests pass
+TDD already produces the primary tests during implementation. After the feature is complete, optionally use the `test-generator` subagent to **fill remaining gaps** — uncovered edge cases, error paths, and integration points the TDD cycle didn't reach. Do not regenerate a parallel suite; extend what exists. Review the additions and run the full suite to confirm everything passes.
 
 ## Output Requirements
 - Complete implementation of all planned tasks
-- Comprehensive test suite with good coverage (generated via test-generator subagent)
+- Tests covering acceptance criteria and edge cases, all passing
 - Updated documentation reflecting implementation
-- All acceptance criteria from feature definition met
 - Code follows architecture standards and passes quality checks
-- Document significant architectural decisions in `docs/adr.md` using ADR template
+- Document significant architectural decisions in `docs/adr/` using the ADR template

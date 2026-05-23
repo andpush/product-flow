@@ -156,8 +156,8 @@
 
 **Next Steps**:
 
-1. Create UI mockups with `/mockup-feature [FEATURE_ID]`
-2. Create implementation plan with `/plan-feature [FEATURE_ID]`
+1. Create UI mockups with `/6-mockup-feature [FEATURE_ID]`
+2. Create implementation plan with `/7-plan-feature [FEATURE_ID]`
 [FEATURE_ID] can be specified as file path to the feature folder.
 
 <!-- AI Instructions -->

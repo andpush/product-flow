@@ -6,7 +6,7 @@ argument-hint: [feature_id]
 
 Generate interactive UI mockups for feature "$1" using the ui-mockup-designer subagent.
 
-First, verify that the feature definition exists at `docs/features/$1/feature.md`. If not, run `/define-feature $1` first.
+First, verify that the feature definition exists at `docs/features/$1/feature.md`. If not, run `/5-add-feature $1` first.
 
 ## Task
 

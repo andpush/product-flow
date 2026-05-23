@@ -8,31 +8,14 @@ Generate a UI mockup based on the provided Figma design, extracting visual style
 
 ## Validation Gate
 
-```bash
-# Check product definition exists
-if [ ! -f "docs/product.md" ]; then
-    echo "❌ Product definition missing: docs/product.md"
-    echo "Run /define-product [name] first"
-    exit 1
-fi
+Verify `docs/product.md` exists; if not, stop and tell the user to run `/1-define-product` first.
 
-# Extract Figma URL from arguments
-FIGMA_URL=$(echo "$ARGUMENTS" | grep -oE 'https://[^ ]+figma[^ ]*' | head -1)
-
-if [ -z "$FIGMA_URL" ]; then
-    echo "❌ Figma URL required"
-    echo "Usage: /figma-mockup <figma_url> [additional_instructions]"
-    echo "Example: /figma-mockup https://figma.com/design/abc123/MyDesign?node-id=1-2 use modern styling"
-    exit 1
-fi
-
-echo "✅ Prerequisites validated"
-echo "📐 Figma URL: $FIGMA_URL"
-```
+A Figma URL is required. If `$ARGUMENTS` contains no `figma.com` URL, stop and show usage:
+`/figma-mockup <figma_url> [additional_instructions]`
 
 ## Execution
 
-1. Parse command arguments
+1. Parse the Figma URL and any extra instructions from `$ARGUMENTS`
 2. Read product requirements: `docs/product.md` and other files referenced there
 3. Invoke tools in Figma MCP to get all the information about the design, neccessary to build pixel perfect copy in the form of html file with assets folder.
 4. Build HTML Mockup:

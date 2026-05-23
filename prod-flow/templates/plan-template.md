@@ -1,5 +1,5 @@
 <!--
-Use this template when creating `docs/features/[feature_id]/plan.md` with the `/plan-feature` command.
+Use this template when creating `docs/features/[feature_id]/plan.md` with the `/7-plan-feature` command.
 -->
 # Implementation Plan
 
@@ -114,13 +114,13 @@ Use this template when creating `docs/features/[feature_id]/plan.md` with the `/
   - Write unit tests for business logic
   - Test data models and repository functions
   - Test API endpoint logic and error handling
-  - **Definition of Done**: >90% code coverage for backend components
+  - **Definition of Done**: backend logic and edge cases covered (per architecture targets)
 
 - [ ] **Task 4.2**: Unit tests for frontend (3h)
   - Test UI components in isolation
   - Test state management and data flow
   - Test user interaction handlers
-  - **Definition of Done**: >80% code coverage for frontend components
+  - **Definition of Done**: frontend components and interactions covered (per architecture targets)
 
 - [ ] **Task 4.3**: Integration tests (3h)
   - Test API endpoints end-to-end
@@ -218,8 +218,8 @@ Use this template when creating `docs/features/[feature_id]/plan.md` with the `/
 
 ## Monitoring
 
-- **Error Rate**: Alert if >1% error rate for feature endpoints
-- **Performance**: Alert if response time >500ms 95th percentile
+- **Error Rate**: Alert threshold per the SLA in `docs/architecture.md`
+- **Performance**: Latency alert threshold per the SLA in `docs/architecture.md`
 - **Usage**: Track feature adoption and usage patterns
 
 ## Business Success Metrics

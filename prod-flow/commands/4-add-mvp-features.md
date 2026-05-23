@@ -5,7 +5,7 @@ description: Create detailed feature definitions based on all MVP features from 
 
 ## Validation Gate
 
-![ -f "docs/product.md" ] || { echo "❌ Missing docs/product.md. Run /define-product first."; exit 1; }
+Verify `docs/product.md` exists; if not, stop and tell the user to run `/1-define-product` first.
 
 ## Your Mission
 
@@ -19,10 +19,7 @@ For each feature in the MVP scope from `docs/product.md`, create a comprehensive
    - Read `docs/product.md` to understand the product and extract all MVP features
 
 2. **Initial Documentation**:
-   - Explore all files in `docs/initial/` folder and its subfolders:
-
-   !ls -AR docs/initial/
-
+   - Explore all files in `docs/initial/` folder and its subfolders.
    - Look for information relevant to each feature:
      - User requirements and use cases
      - Business rules and workflows
@@ -46,13 +43,7 @@ For each identified feature in MVP scope perform the following steps:
    - Effort estimate
    - Main user story
 
-2. Invoke command:
-
-```bash
-/5-add-feature [feature-name]
-```
-
-This will create comprehensive feature definition following the feature template.
+2. Invoke `/5-add-feature [feature-name]` to create a comprehensive feature definition following the feature template.
 
 ## Output Requirements
 
