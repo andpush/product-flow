@@ -1,0 +1,10 @@
+{
+  "name": "forge",
+  "description": "Distilled, lightweight software-development workflow (engineering counterpart to impeccable): ground, frame, build, review, resume.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Andrei Pushkin",
+    "email": "[RESTRICTED]"
+  },
+  "license": "MIT"
+}

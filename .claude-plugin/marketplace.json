@@ -12,6 +12,12 @@
       "description": "AI-first product development workflow. From idea to production.",
       "source": "./prod-flow",
       "category": "development"
+    },
+    {
+      "name": "forge",
+      "description": "Distilled software-development workflow: ground a project, frame features as specs, build via TDD subagents, review, resume.",
+      "source": "./forge",
+      "category": "development"
     }
   ]
 }
