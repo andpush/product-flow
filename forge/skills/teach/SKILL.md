@@ -7,7 +7,7 @@ Establish the durable engineering context a software project needs — architect
 
 Run once; again only when foundations change.
 
-The engineering counterpart to `impeccable teach`; pairs with the `spec` skill, which consumes its output. For visual/UI/UX setup use `impeccable` instead.
+The engineering counterpart to `impeccable teach`; pairs with the `spec` skill, which consumes its output. impeccable defines product and visual design, `teach` the engineering architecture — both apply to a project that has a UI.
 
 ## Well known files
 
@@ -28,7 +28,7 @@ Map existing files before creating any: check casing/variants — `ARCHITECTURE.
 1. Read `PRODUCT.md` for purpose, users, constraints.
 2. Propose architecture and stack — proven over trendy, complexity matched to the problem. Present real forks (monolith vs. services, pre-built vs. created, payed vs. opensource, datastore options, etc.) as pro/contra via `AskUserQuestion`; don't bikeshed settled defaults. Architecture and stack shape each other, so iterate to coherence: propose components with preliminary tech, validate the tech against the components, refine both. When drawing boundaries, keep the component dependency graph acyclic — if two components depend on each other, resolve it (merge, extract a shared piece, or invert a dependency).
 3. Write `ARCHITECTURE.md` using [reference/architecture-template.md](reference/architecture-template.md).
-4. Write the `Rules and Conventions` section of `ARCHITECTURE.md`, using the matching seed in [reference/rules/](reference/rules/) as a basis: read it and adapt with the user via `AskUserQuestion`.
+4. Write the `Rules and Conventions` section of `ARCHITECTURE.md`, seeding from [reference/rules/](reference/rules/): always fold `rules-general.md`; others -- by applicability. Read each, adapt with the user via `AskUserQuestion`, keep only the non-obvious or project-specific.
 
 ## Brownfield: derive from the code, then confirm
 
@@ -51,4 +51,4 @@ Read `./README.md` for the overview, `./ADR.md` for decision history.
 
 ## Done
 
-Report which role mapped to which file (created vs. adopted) and the next step (`spec <first feature>`). A few lines.
+Report which file was created vs. adopted and the next step (`spec <first feature>`). A few lines.

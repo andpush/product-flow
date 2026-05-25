@@ -14,7 +14,7 @@ The spec is the deliverable. Once it's ready, the build is just execution agains
 
 The discipline that governs the build lives in `ARCHITECTURE.md` (planted by `forge teach`), not here.
 
-For visual/UI/UX work use `impeccable` instead, not forge.
+Pairs with `impeccable`: impeccable owns the visual/UX design (layout, look, mockups), `spec` owns the engineering solution — including for frontend features that have UI.
 
 ## Pre-requisites (non-optional)
 
@@ -51,11 +51,11 @@ Raise architecture/feasibility questions from what you found. If the feature for
 
 ## 4. Present the solution
 
-- Present the chosen solution clarly in a way easy to grasp for a human. Use an ASCII sketch if it helps. Don't just dump a spec template with the details buried in it; walk through the highlights.
+- Present the chosen solution clearly in a way easy to grasp for a human. Use an ASCII sketch if it helps. Don't just dump a spec template with the details buried in it; walk through the highlights.
 - Emphasize the planned changes
 - Obtain confirmation that the spec captures the intent and is ready to build. If not, iterate.
 
-## 3. Emit the spec
+## 5. Emit the spec
 
 Write `docs/specs/YYYY-MM-DD-nnn-<slug>.md` using [reference/spec-template.md](reference/spec-template.md) (`nnn` = next sequence for the date; `<slug>` = kebab feature name).
 

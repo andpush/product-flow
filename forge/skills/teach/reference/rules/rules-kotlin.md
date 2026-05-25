@@ -5,7 +5,6 @@
 
 ## Data & types
 
-
 - Prefer immutable `val` and `data class`; model absence with nullables, not sentinels.
 - Use sealed classes/interfaces for closed sets of states; exhaustive `when` (no `else` catch-all).
 

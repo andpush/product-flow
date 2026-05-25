@@ -43,8 +43,8 @@ The commands and entrypoints to build, run, test, and deploy.
 
 ## Rules and Conventions
 
-The coding conventions that aren't obvious or that this project deviates on — per stack if several, a subsection each. Include rules from [reference/rules/rules-general.md](reference/rules/rules-general.md) and the standing decision rule below:
+The coding conventions that aren't obvious or that this project deviates on — per stack if several, a subsection each. End with the standing decision rule:
 
 ### Standing architectural decision rule
 
-On any architectural choice: surface the trade-off, prefer the simpler option, challenge a weak default with a better concrete one — then move. No paralysis, no question-answering theatre. Ask user one thing at a time; don't ask what you can verify.
+On any architectural choice: surface the trade-off, prefer the simpler option, challenge a weak default with a better concrete one — then move. No paralysis, no question-answering theatre. Ask the user one thing at a time; don't ask what you can verify.
