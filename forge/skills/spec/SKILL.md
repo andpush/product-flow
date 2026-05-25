@@ -46,7 +46,7 @@ Raise architecture/feasibility questions from what you found. If the feature for
 ## 3. Design solution
 
 - **Explore alternatives, don't anchor.** Generate 2-3 genuinely different approaches, and include one simpler than your first instinct. Present the real forks as **pro/contra** via `AskUserQuestion`, recommend one, and say why it beats the others.
-- Apply the project's standing decision rule from `ARCHITECTURE.md`: surface the trade-off, prefer the simpler option, challenge a weak default — then move. No paralysis. Ask one thing at a time; don't ask what you can verify.
+- Apply the standing decision rule from `ARCHITECTURE.md`. No paralysis; ask one thing at a time, don't ask what you can verify.
 - Keep scope honest: name what's out, defer non-essential ideas to `IDEAS.md`.
 
 ## 4. Present the solution
