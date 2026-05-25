@@ -12,7 +12,7 @@ A session between user and agent:
 
 The spec is the deliverable. Once it's ready, the build is just execution against it — via `/goal` ("work until the acceptance criteria pass"), a dispatched subagent, or any agent.
 
-The discipline that governs the build lives in `ARCHITECTURE.md` (planted by `forge arch`), not here.
+The discipline that governs the build lives in `ARCHITECTURE.md` (planted by `arch`), not here.
 
 Pairs with `impeccable`: impeccable owns the visual/UX design (layout, look, mockups), `spec` owns the engineering solution — including for frontend features that have UI.
 
@@ -22,10 +22,10 @@ These are hard prerequisites for producing a valid spec. If one fails, explain t
 
 | Gate | To do if fail |
 |---|---|
-| `PRODUCT.md` exists and not placeholder | Ask the user to run `forge prod` (or `/impeccable teach` for design-led projects). Never synthesize it from the prompt. |
-| `ARCHITECTURE.md` exists and is substantive (components, stack, conventions). | Ask the user to run `forge arch`. |
+| `PRODUCT.md` exists and not placeholder | Ask the user to run `prod` (or `/impeccable teach` for design-led projects). Never synthesize it from the prompt. |
+| `ARCHITECTURE.md` exists and is substantive (components, stack, conventions). | Ask the user to run `arch`. |
 
-Read `PRODUCT.md`, `ARCHITECTURE.md`, the decision log (`ADR.md`/`DECISIONS.md`), and `IDEAS.md` before the session. Don't re-read if already loaded this session.
+Read `PRODUCT.md`, `ARCHITECTURE.md`, the decision log (`ADR.md`/`DECISIONS.md`), and `IDEAS.md` before the session. Also check variants like `docs/product.md`, `docs/architecture.md`, and `docs/adr/*` only to detect duplicates or source material; `spec` relies on the root `PRODUCT.md` and `ARCHITECTURE.md`. Don't re-read if already loaded this session.
 
 ## 1. Codebase exploration: understand the ground you're building on
 

@@ -7,13 +7,13 @@ Establish the durable engineering context a software project needs — architect
 
 Run once; again only when foundations change.
 
-Consumes `PRODUCT.md` (from `forge prod`); produces `ARCHITECTURE.md`, which `spec` consumes. The design counterpart is the impeccable plugin (https://impeccable.style) — it owns the product's visual/UX design (DESIGN.md); `arch` owns the engineering architecture. Both apply to a project that has a UI.
+Consumes `PRODUCT.md` (from `prod`); produces `ARCHITECTURE.md`, which `spec` consumes. The design counterpart is the impeccable plugin (https://impeccable.style) — it owns the product's visual/UX design (DESIGN.md); `arch` owns the engineering architecture. Both apply to a project that has a UI.
 
 ## Well known files
 
 | File | Holds | Created by |
 |---|---|---|
-| `PRODUCT.md` | purpose, users, constraints | `forge prod` (or `/impeccable teach`) |
+| `PRODUCT.md` | purpose, users, constraints | `prod` (or `/impeccable teach`) |
 | `ARCHITECTURE.md` | components, stacks, boundaries, layout, entrypoints, **conventions** |  this `arch` skill or manually |
 | `ADR.md` \| `DECISIONS.md` | why choices were made | appended over time |
 | `README.md` | human onboarding | human; read as a source |
@@ -21,7 +21,11 @@ Consumes `PRODUCT.md` (from `forge prod`); produces `ARCHITECTURE.md`, which `sp
 
 ## Detect first
 
-Map existing files before creating any: check casing/variants — `ARCHITECTURE.md` / `docs/architecture.md`, `ADR.md` / `DECISIONS.md` / `docs/adr/*`, plus `README.md`, `PRODUCT.md`, `CLAUDE.md`, `AGENTS.md`. Adopt the repo's names; if the repo already keeps conventions in their own file (`rules*.md`, `CONVENTIONS.md`), reference them from ARCHITECTURE.md instead of restating.
+Map existing files before creating any: check `PRODUCT.md`, `ARCHITECTURE.md`, `ADR.md` / `DECISIONS.md`, plus variants like `docs/product.md`, `docs/architecture.md`, `docs/adr/*`, `README.md`, `CLAUDE.md`, and `AGENTS.md`. Forge's durable files are `PRODUCT.md` and `ARCHITECTURE.md`: use variants as source material to avoid losing context, but write/adopt the root files and mention any duplicate/rename decision to the user. If the repo already keeps conventions in their own file (`rules*.md`, `CONVENTIONS.md`), reference them from `ARCHITECTURE.md` instead of restating.
+
+## Product gate
+
+`arch` requires a substantive `PRODUCT.md`. If `PRODUCT.md` is missing or placeholder-only, stop and ask the user to run `prod` first, or to provide enough product context to create `PRODUCT.md`. If only a variant like `docs/product.md` exists, read it as source material and ask the user to adopt it into `PRODUCT.md` before continuing. Do not invent product purpose, users, or constraints from architecture preferences alone.
 
 ## Greenfield: define with the user
 
@@ -51,4 +55,4 @@ Read `./README.md` for the overview, `./ADR.md` for decision history.
 
 ## Done
 
-Report which file was created vs. adopted and the next step (`forge spec <first feature>`). A few lines.
+Report whether `ARCHITECTURE.md` was created vs. adopted and the next step (`spec <first feature>`). A few lines.

@@ -28,10 +28,16 @@ and `IDEAS.md` as one-liners. Resume any time by reading these files — no arch
 
 ## Usage
 
-```bash
-forge prod            # define the product
-forge arch            # define the architecture
-forge spec <feature>  # frame a feature into a spec
+Invoke the skills by name in your agent host:
 
-claude --plugin-dir /path/to/forge   # test locally
+```text
+prod            # define the product
+arch            # define the architecture
+spec <feature>  # frame a feature into a spec
+```
+
+For local Claude plugin testing:
+
+```bash
+claude --plugin-dir /path/to/forge
 ```

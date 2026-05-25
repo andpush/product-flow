@@ -11,7 +11,7 @@ Run once at project start; again only when the product direction shifts.
 
 ## Detect first
 
-Check for an existing `PRODUCT.md` (and casing/variants: `docs/product.md`) before creating one. Read `README.md`, any brief/notes/seed docs the user points to, and `IDEAS.md` if present. Don't synthesize a product from nothing — if there's no material and no user to interview, stop and say so.
+Check for `PRODUCT.md` before creating one. Also check casing/variants like `docs/product.md` to avoid missing existing context: if a variant exists but `PRODUCT.md` does not, use the variant as source material, then create `PRODUCT.md` as the durable forge file and mention the duplicate/rename decision to the user. Read `README.md`, any brief/notes/seed docs the user points to, and `IDEAS.md` if present. Don't synthesize a product from nothing — if there's no material and no user to interview, stop and say so.
 
 ## Greenfield: define with the user
 
@@ -28,4 +28,4 @@ Check for an existing `PRODUCT.md` (and casing/variants: `docs/product.md`) befo
 
 ## Done
 
-Report which file was created vs. adopted, any open product questions the user must still resolve, and the next step (`forge arch`). A few lines, no narrative.
+Report whether `PRODUCT.md` was created vs. adopted, any open product questions the user must still resolve, and the next step (`arch`). A few lines, no narrative.

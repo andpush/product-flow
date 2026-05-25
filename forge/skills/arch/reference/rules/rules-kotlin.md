@@ -1,6 +1,6 @@
 # Conventions seed: Kotlin
 
-<!-- Seed for forge arch. Adapt and fold into ARCHITECTURE.md's Conventions section.
+<!-- Seed for the `arch` skill. Adapt and fold into ARCHITECTURE.md's Conventions section.
      Keep only what isn't obvious to a competent Kotlin engineer. -->
 
 ## Data & types
