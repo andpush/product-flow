@@ -40,11 +40,10 @@ decision log — see [decisions.md](decisions.md).
 Write `docs/specs/YYYY-MM-DD-nnn-<slug>.md` using [spec-template.md](spec-template.md)
 (`nnn` = next sequence for the date; `<slug>` = kebab feature name).
 
-The spec is the **handoff artifact**, not a doc the human must re-read. It must be
-sufficient to build from cold: goal, resolved context (real paths/patterns found), key
-decisions, architecture (explicit, ASCII where it helps), scope/non-goals, affected
-components, testing approach, residual open items. Concise but complete — no padding,
-no restating `PRODUCT.md`/`rules*.md` (reference them).
+The spec must be sufficient to build from cold. Record what's expensive or risky to recover, not
+what's cheap to look up: include intent, decisions, the files/patterns to reuse, scope, and test
+approach. Exclude generated code, step-by-step task lists, and restatements of
+`PRODUCT.md`/`rules*.md`/`ARCHITECTURE.md` (link instead).
 
 ## Done
 

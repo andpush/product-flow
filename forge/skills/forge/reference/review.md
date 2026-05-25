@@ -1,8 +1,7 @@
 # forge review [target]
 
-The hard-stop quality gate. Verify the work is actually done and actually good before it
-ships. Fresh eyes help — prefer running this in a clean context (or a subagent) from the
-strong model, not the one that wrote the code.
+The hard-stop quality gate. Prefer a clean context (or subagent) from the strong model, not
+the one that wrote the code.
 
 ## Verify first (evidence before claims)
 

@@ -1,29 +1,27 @@
 ---
 name: forge
-description: Use for non-UI software development — framing/specifying a feature, service, API, data model, schema, or refactor; building it test-first; reviewing it; or resuming work. Covers intent capture, requirements brainstorming, architecture and tech-stack decisions, feasibility analysis, implementation via TDD, code review, verification, and project setup (greenfield scaffolding or brownfield derivation of rules and architecture). Invoke as `forge <command> [target]` (ground, frame, build, review, resume). For visual/UI/UX work — layout, color, typography, components, mockups — use `impeccable` instead, not forge.
+description: Use for software development of a product feature, service, API, data model, schema. Covers intent capture, requirements brainstorming, architecture and tech-stack decisions, feasibility analysis, implementation via TDD, code review, verification, and project setup (greenfield scaffolding or brownfield derivation of conventions and architecture) and progress tracking. Invoke as `forge <command> [target]` (ground, frame, build, review, resume).
 ---
 
-Frames intent into a buildable spec, builds it test-first, and keeps a light decision/idea trail. The human stays the decision-maker; the agent does the coding. Lean by design: no plans you never read, no ceremony, no hardcoded quality numbers.
+Frames intent into a buildable spec, builds it test-first, and keeps a light decision/idea trail. The human stays the decision-maker; the agent does the coding.
 
-`forge` is the engineering counterpart to `impeccable`. impeccable owns UI/UX and produces `PRODUCT.md` / `DESIGN.md`; forge consumes `PRODUCT.md` and owns architecture, implementation, and review.
+`forge` is the engineering counterpart to `impeccable`, it consumes `PRODUCT.md`, created manually or produced by `impeccable`. For visual/UI/UX work — use `impeccable` instead, not forge.
 
 ## Setup (non-optional)
 
 Before any code edits, pass these gates. Skipping them produces generic work that ignores the project.
 
-| Gate | Required check | If fail |
+| Gate | Required for | What to do |
 |---|---|---|
-| Context | `PRODUCT.md` and the durable engineering context (`rules*.md`, `ARCHITECTURE.md`) are loaded, plus `DECISIONS.md`/`ADR.md`, `IDEAS.md`, and the target's latest `docs/specs/*` if present. | Load them before continuing. |
-| Product | `PRODUCT.md` exists and is substantive (not empty/placeholder, >200 chars). | Run `$impeccable teach` or ask the user to write `PRODUCT.md`. Never synthesize it from the prompt alone. |
-| Ground | `rules*.md` and `ARCHITECTURE.md` exist and are substantive. | Run `forge ground` first. (`ground` itself is exempt.) |
-| Spec | A confirmed `frame` spec for this target exists in `docs/specs/` with no blocking open questions. | Run `forge frame <target>` first. (Only `build` needs this; `ground`/`frame`/`review`/`resume` are exempt.) |
-| Mutation | All active gates above pass. | Do not edit project files yet. |
-| Done | After `build`/`review`: memory updated (decisions/ideas) and work committed. | Complete the Definition of Done below. |
+| `PRODUCT.md` exists and is substantive (not empty/placeholder, >200 chars). | all | Run `$impeccable teach` or ask the user to write `PRODUCT.md`. Never synthesize it from the prompt alone. |
+| `ARCHITECTURE.md` exists and substantive. | all | Run `forge ground` first. |
+| A confirmed spec exists in `docs/specs/` with no blocking open questions. | build | Run `forge frame <target>` first. |
+
 
 Headless or subagent runs should state gate status before editing files:
 
 ```text
-FORGE_PREFLIGHT: context=pass product=pass ground=pass spec=pass|n/a mutation=open
+FORGE_PREFLIGHT: product=pass ground=pass spec=pass|n/a
 ```
 
 `spec=pass` is only valid after a `frame` spec exists and the user resolved its open questions — not after merely summarizing intent.
@@ -78,7 +76,7 @@ Supporting references: [reference/decisions.md](reference/decisions.md) (how/whe
 ### Routing rules
 
 1. **No argument** — show the command table as a menu and ask what they'd like to do.
-2. **First word matches a command** — pass the Context/Product gates, then load that command's reference and follow it. Everything after the command name is the target.
+2. **First word matches a command** — pass the setup gates, then load that command's reference and follow it. Everything after the command name is the target.
 3. **First word doesn't match** — treat the whole argument as a `frame` target.
 
-Setup (context, product) loads once; sub-commands don't re-invoke `forge`. If a gate sends you to `ground` or `frame` as a blocker, finish it, refresh context, then resume the original command.
+Setup gates and context load once; sub-commands don't re-invoke `forge`. If a gate sends you to `ground` or `frame` as a blocker, finish it, refresh context, then resume the original command.

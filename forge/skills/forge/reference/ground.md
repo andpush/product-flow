@@ -53,7 +53,7 @@ only fall back to defaults for roles with no home.
 Start with one `rules.md`. Split into `rules-<stack>.md` when a second stack appears, not by reflex.
 A component declares which convention files apply.
 
-Plant this standing rule in the conventions file (it then applies in `build`/`review`/ad-hoc work):
+Plant this standing rule in the conventions file:
 
 > On any architectural choice: surface the trade-off, prefer the simpler option, challenge a weak
 > default, and record the decision in `ADR.md`/`DECISIONS.md`.

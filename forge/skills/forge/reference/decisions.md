@@ -25,9 +25,7 @@ deviation from a default. Skip the obvious. If you'd want to know *why* in six m
 **Why:** one or two sentences — why it beat the alternative.
 ```
 
-Two to four lines. Details live in the code and the spec, not here. (This matches the
-existing `ADR.md` style in repos like travelai — follow the repo's established format if
-it differs.)
+Two to four lines. Follow the repo's established format if it differs.
 
 ## Idea entry format
 
