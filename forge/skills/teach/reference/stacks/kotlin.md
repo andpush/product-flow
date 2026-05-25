@@ -1,6 +1,6 @@
 # rules-kotlin (seed)
 
-<!-- Seed for forge ground. Adapt and trim into the project's rules.md / rules-kotlin.md.
+<!-- Seed for forge teach. Adapt and trim into the project's rules.md / rules-kotlin.md.
      Keep only what isn't obvious to a competent Kotlin engineer. -->
 
 ## Data & types

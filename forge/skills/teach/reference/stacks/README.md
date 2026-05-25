@@ -1,7 +1,7 @@
 # Stack seeds
 
-Starting points for a project's `rules*.md`, **loaded only during `forge ground` (greenfield)**.
-They are examples of defensible defaults, not law — `ground` reads the matching seed, adapts it
+Starting points for a project's `rules*.md`, **loaded only during `forge teach` (greenfield)**.
+They are examples of defensible defaults, not law — `teach` reads the matching seed, adapts it
 with the user, and writes the trimmed result into the project. Edit freely; delete what doesn't
 apply.
 

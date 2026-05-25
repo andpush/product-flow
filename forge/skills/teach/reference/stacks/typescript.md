@@ -1,6 +1,6 @@
 # rules-typescript (seed)
 
-<!-- Seed for forge ground. Adapt and trim into the project's rules.md / rules-ts.md.
+<!-- Seed for forge teach. Adapt and trim into the project's rules.md / rules-ts.md.
      Keep only what isn't obvious to a competent TS engineer. -->
 
 ## Types

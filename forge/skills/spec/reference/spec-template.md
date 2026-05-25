@@ -1,6 +1,6 @@
 <!--
 Skeleton for docs/specs/YYYY-MM-DD-nnn-<slug>.md, the implementation handoff.
-Include intent, decisions, files/patterns to reuse, scope, test approach.
+Include intent, decisions, files/patterns to reuse, scope, test approach, acceptance criteria.
 Exclude generated code, step-by-step task lists, and restatements of
 PRODUCT.md / rules*.md / ARCHITECTURE.md (link instead). Omit any section that doesn't apply.
 -->
@@ -13,7 +13,15 @@ PRODUCT.md / rules*.md / ARCHITECTURE.md (link instead). Omit any section that d
 
 ## Goal
 
-What this delivers and the user value, plus acceptance criteria. State key assumptions.
+What this delivers and the user value. State key assumptions.
+
+## Acceptance criteria
+
+The verifiable conditions that define done — phrased so they work directly as a `/goal`
+stop-condition. Each must be checkable (a test, a command, an observable behavior), not a feeling.
+
+- [ ] <observable condition, e.g. "POST /x with body Y returns 201 and persists Z">
+- [ ] <test/command that must pass, e.g. "`./gradlew :svc:test` green">
 
 ## Decisions
 

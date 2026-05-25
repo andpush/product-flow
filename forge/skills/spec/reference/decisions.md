@@ -35,5 +35,5 @@ Two to four lines. Follow the repo's established format if it differs.
 
 ## When
 
-`frame` records decisions as they're settled in the session. `build`/`review` append any
-decisions that emerged during implementation, as part of the Definition of Done.
+The spec session records decisions as they're settled. Whoever executes the spec appends any
+decisions that emerge during implementation.

@@ -15,7 +15,7 @@
     },
     {
       "name": "forge",
-      "description": "Distilled software-development workflow: ground a project, frame features as specs, build via TDD subagents, review, resume.",
+      "description": "Lightweight engineering skills: teach (establish project architecture, stack, conventions) and spec (turn intent into a buildable spec with verifiable acceptance criteria, executed via /goal or a subagent).",
       "source": "./forge",
       "category": "development"
     }
