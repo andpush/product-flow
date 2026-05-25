@@ -17,8 +17,7 @@ What this delivers and the user value. State key assumptions.
 
 ## Acceptance criteria
 
-The verifiable conditions that define done — phrased so they work directly as a `/goal`
-stop-condition. Each must be checkable (a test, a command, an observable behavior), not a feeling.
+The verifiable conditions that define done.
 
 - [ ] <observable condition, e.g. "POST /x with body Y returns 201 and persists Z">
 - [ ] <test/command that must pass, e.g. "`./gradlew :svc:test` green">

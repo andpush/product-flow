@@ -5,8 +5,7 @@
 
 ## Data & types
 
-- One data class per concept reused across API/service/store. **No separate `*Dto`** unless the
-  wire shape genuinely differs from the domain/store shape.
+
 - Prefer immutable `val` and `data class`; model absence with nullables, not sentinels.
 - Use sealed classes/interfaces for closed sets of states; exhaustive `when` (no `else` catch-all).
 

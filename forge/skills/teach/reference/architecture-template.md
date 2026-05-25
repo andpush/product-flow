@@ -41,7 +41,10 @@ Where things live: top-level dirs/modules and what each holds. Enough to navigat
 
 The commands and entrypoints to build, run, test, and deploy.
 
-## Conventions
+## Rules and Conventions
 
-The coding conventions that aren't obvious or that this project deviates on — per stack if several
-(a subsection each). Include the standing decision rule. Seed from `forge`'s stack examples.
+The coding conventions that aren't obvious or that this project deviates on — per stack if several, a subsection each. Include rules from [reference/rules/rules-general.md](reference/rules/rules-general.md) and the standing decision rule below:
+
+### Standing architectural decision rule
+
+On any architectural choice: surface the trade-off, prefer the simpler option, challenge a weak default with a better concrete one — then move. No paralysis, no question-answering theatre. Ask user one thing at a time; don't ask what you can verify.

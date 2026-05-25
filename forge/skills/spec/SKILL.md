@@ -35,26 +35,38 @@ Understand the system as it is before designing the solution. Pay attention to:
 - Data model and external calls involved.
 - Risks and constraints specific to this codebase.
 
-Raise architecture/feasibility questions from what you found. If the feature forces a system-level change (new component, boundary shift, data model change, or a new dependency), flag it as a `forge teach` update — don't bake it into the spec.
+Raise architecture/feasibility questions from what you found. If the feature forces a system-level change (new component, boundary shift, data model change, or a new dependency), flag it as the architecture update.
 
-## 2. Frame the problem, then decide
+## 2. Frame the problem
 
-- **Problem before solution.** The request is usually a proposed solution. Establish the underlying problem — who has it, why it matters — and sanity-check it's real before designing. State assumptions explicitly and verify the risky ones; don't build against an unvalidated one.
+- **Understand the problem.** The request is usually a proposed solution. Establish the motivation - why it matters. State assumptions and verify the risky ones; don't build against an unvalidated one.
 - **Decompose if too big.** If the request spans several independent subsystems, say so and split it — each piece gets its own spec. Don't refine details of something that needs decomposing first.
 - **Gap analysis** — what's ambiguous, missing, or contradictory; only what blocks building.
-- **Explore alternatives, don't anchor.** Generate 2-3 genuinely different approaches before settling, and include one simpler than your first instinct — the first idea and the familiar pattern aren't automatically right. Present the real forks as **pro/contra** via `AskUserQuestion`, recommend one, and say why it beats the others.
+
+## 3. Design solution
+
+- **Explore alternatives, don't anchor.** Generate 2-3 genuinely different approaches, and include one simpler than your first instinct. Present the real forks as **pro/contra** via `AskUserQuestion`, recommend one, and say why it beats the others.
 - Apply the project's standing decision rule from `ARCHITECTURE.md`: surface the trade-off, prefer the simpler option, challenge a weak default — then move. No paralysis. Ask one thing at a time; don't ask what you can verify.
 - Keep scope honest: name what's out, defer non-essential ideas to `IDEAS.md`.
 
-Record significant decisions tersely in the project's decision log — see [reference/decisions.md](reference/decisions.md).
+## 4. Present the solution
+
+- Present the chosen solution clarly in a way easy to grasp for a human. Use an ASCII sketch if it helps. Don't just dump a spec template with the details buried in it; walk through the highlights.
+- Emphasize the planned changes
+- Obtain confirmation that the spec captures the intent and is ready to build. If not, iterate.
 
 ## 3. Emit the spec
 
 Write `docs/specs/YYYY-MM-DD-nnn-<slug>.md` using [reference/spec-template.md](reference/spec-template.md) (`nnn` = next sequence for the date; `<slug>` = kebab feature name).
 
-Record what's expensive or risky to recover, not what's cheap to look up: intent, decisions, files/patterns to reuse, scope, test approach, and **verifiable acceptance criteria**. Exclude generated code, step-by-step task lists, and restatements of `PRODUCT.md`/`ARCHITECTURE.md` (link instead).
+The spec should be minimal but sufficient to build from cold.
 
-The acceptance criteria are the linchpin: phrase them as checkable conditions so they can serve directly as a `/goal` stop-condition. Vague criteria make execution flail.
+Record what's expensive or risky to recover, not what's cheap to look up: intent, decisions, files/patterns to reuse, scope, test approach, and **verifiable acceptance criteria**. The acceptance criteria are the linchpin: phrase them as checkable conditions so they can serve directly as a `/goal` stop-condition.
+
+Exclude generated code, step-by-step task lists, duplications and restatements of `PRODUCT.md`/`ARCHITECTURE.md` (link instead).
+
+Record significant decisions tersely in the project's decision log — see [reference/decisions.md](reference/decisions.md).
+
 
 ## Done
 
