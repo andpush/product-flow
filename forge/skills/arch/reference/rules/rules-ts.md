@@ -1,6 +1,6 @@
 # Conventions seed: TypeScript
 
-<!-- Seed for forge teach. Adapt and fold into ARCHITECTURE.md's Conventions section.
+<!-- Seed for forge arch. Adapt and fold into ARCHITECTURE.md's Conventions section.
      Keep only what isn't obvious to a competent TS engineer. -->
 
 ## Types
@@ -22,8 +22,7 @@
 - `async/await`, not raw `.then` chains. Never leave a promise unawaited (`no-floating-promises`).
 - Throw `Error` subclasses or return a typed result — one convention per module.
 
-## Tooling
+## Tooling & tests
 
 - One package manager, committed lockfile. Type-check and lint in CI; format on commit.
-- Test behavior via the public surface; mock only true boundaries. Coverage targets live in
-  `ARCHITECTURE.md`, not hardcoded here.
+- Tests: see [rules-tests.md](rules-tests.md).

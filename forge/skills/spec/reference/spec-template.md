@@ -37,12 +37,8 @@ Real file paths, the patterns/utilities to reuse, the data model and external ca
 
 ## Approach
 
-How it fits within `ARCHITECTURE.md`. ASCII sketch when interaction is non-trivial. New
-components/files and their responsibilities.
-
-## Affected components
-
-The files/modules to create or change, one line each.
+How it fits within `ARCHITECTURE.md`. ASCII sketch when interaction is non-trivial. The
+files/modules to create or change and their responsibilities — one line each.
 
 ## Testing approach
 

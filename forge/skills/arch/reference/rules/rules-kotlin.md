@@ -1,6 +1,6 @@
 # Conventions seed: Kotlin
 
-<!-- Seed for forge teach. Adapt and fold into ARCHITECTURE.md's Conventions section.
+<!-- Seed for forge arch. Adapt and fold into ARCHITECTURE.md's Conventions section.
      Keep only what isn't obvious to a competent Kotlin engineer. -->
 
 ## Data & types
@@ -26,5 +26,5 @@
 
 ## Tests
 
-- Test behavior, not implementation. Prefer real collaborators; fake only at the boundary
-  (network, clock, filesystem). Coverage targets live in `ARCHITECTURE.md`, not hardcoded here.
+- See [rules-tests.md](rules-tests.md). Kotlin specifics: prefer JUnit5 + a single assertion
+  style per module; fake at the boundary, don't mock `data class`es.

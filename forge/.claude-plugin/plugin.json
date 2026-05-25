@@ -1,6 +1,6 @@
 {
   "name": "forge",
-  "description": "Distilled, lightweight software-development workflow (engineering counterpart to impeccable): ground, frame, build, review, resume.",
+  "description": "Distilled, lightweight engineering workflow — the structured-thinking front end to a build: prod (define the product), arch (define the architecture), spec (frame a feature into a buildable spec). Engineering counterpart to the impeccable design plugin.",
   "version": "1.0.0",
   "author": {
     "name": "Andrei Pushkin",

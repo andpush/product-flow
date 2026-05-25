@@ -1,5 +1,5 @@
 <!--
-The skeleton `forge teach` produces at ARCHITECTURE.md (the canonical engineering contract).
+The skeleton `forge arch` produces at ARCHITECTURE.md (the canonical engineering contract).
 Both branches — greenfield-define and brownfield-derive — write to this shape so it's consistent
 across projects. Omit a section only if it genuinely doesn't apply. Keep it scannable; link out
 to PRODUCT.md / ADR.md rather than restating them.

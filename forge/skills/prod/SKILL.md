@@ -1,0 +1,31 @@
+---
+name: prod
+description: Use to define the product — purpose, users, value, constraints, and MVP scope — into a durable PRODUCT.md that `arch` and `spec` rely on. (Triggers: "define the product", "what are we building", "write PRODUCT.md".)
+---
+
+Establish the durable product context a project needs — who it's for, what it does, why it matters, what's in and out — either by defining it with the user (greenfield) or deriving it from existing material (brownfield), into a `PRODUCT.md` that the rest of forge builds on.
+
+Run once at project start; again only when the product direction shifts.
+
+`prod` owns the engineering-facing product definition; `arch` consumes it. The design counterpart is the impeccable plugin (https://impeccable.style): `/impeccable teach` establishes the visual/UX design (DESIGN.md) and can also seed `PRODUCT.md` for design-led projects. If a `PRODUCT.md` already exists — from impeccable or by hand — adopt and extend it; never write a second one.
+
+## Detect first
+
+Check for an existing `PRODUCT.md` (and casing/variants: `docs/product.md`) before creating one. Read `README.md`, any brief/notes/seed docs the user points to, and `IDEAS.md` if present. Don't synthesize a product from nothing — if there's no material and no user to interview, stop and say so.
+
+## Greenfield: define with the user
+
+1. Read whatever seed material exists (brief, notes, README). Treat the initial request as a proposed solution, not the problem.
+2. Interview to pin down: the **problem** and **who has it**, the **core value**, the hard **constraints** (tech, budget, timeline, compliance, non-negotiables), and what **success** looks like. Surface assumptions; challenge vague or contradictory answers — one question at a time via `AskUserQuestion`, no question-answering theatre.
+3. Settle **MVP scope**: what ships first vs. what's explicitly deferred. Park non-essential ideas in `IDEAS.md` rather than widening scope.
+4. Write `PRODUCT.md` using [reference/product-template.md](reference/product-template.md).
+
+## Brownfield: derive, then confirm
+
+1. Read `README.md`, existing docs, and enough code to infer what the product does and for whom. Verify docs against the code.
+2. Draft `PRODUCT.md` describing the product as it *is*; surface gaps, contradictions, or unstated assumptions as findings — don't invent intent.
+3. Confirm with the user, then write `PRODUCT.md`. If `README.md` restates the product, slim it to a pointer.
+
+## Done
+
+Report which file was created vs. adopted, any open product questions the user must still resolve, and the next step (`forge arch`). A few lines, no narrative.
