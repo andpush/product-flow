@@ -1,30 +1,41 @@
 ---
 name: spec
-description: Use to turn an intent into a buildable spec for a non-UI software feature, service, API, data model, schema, or refactor — capturing requirements, exploring the codebase, deciding architecture/tech-stack and feasibility, and emitting a self-contained spec with verifiable acceptance criteria. The spec is then executed by `/goal`, a subagent, or any agent — this skill does not run the build. For visual/UI/UX work use `impeccable` instead.
+description: Use to turn an intent into a solution spec for a software feature, service, API, data model, schema, or refactor. Analyse the problem, Capture requirements, Explore the codebase, Decide architecture and Emit a self-contained solution spec with verifiable acceptance criteria.
 ---
 
-A working session between you (agent) and the human that turns an intent into a **self-contained spec** a cleared session, a different model, or a headless agent can build from. The human decides; you transfer intent, find gaps, load the coding context, and surface the real trade-offs.
+A session between user and agent:
+| User (Human) | Agent (You) |
+|---|---|
+| Formulates the task, need or a problem. | Comprehends the request, explores the codebase, asks clarifying questions, raises issues/inconsistencies/gaps, suggests solution options, surfaces trade-offs. |
+| Makes decisions and clarifications. | Writes a self-contained solution specification with clear acceptance criteria. |
 
-The spec is the deliverable. Once it's ready, the build is just execution against it — via `/goal` ("work until the acceptance criteria pass"), a dispatched subagent, or any agent. The discipline that governs the build lives in `ARCHITECTURE.md` (planted by `forge teach`), not here.
 
-## Setup (non-optional)
+The spec is the deliverable. Once it's ready, the build is just execution against it — via `/goal` ("work until the acceptance criteria pass"), a dispatched subagent, or any agent.
 
-| Gate | Check | If fail |
-|---|---|---|
-| Product | `PRODUCT.md` exists and is substantive (not placeholder, >200 chars). | Run `$impeccable teach` or ask the user to write it. Never synthesize it from the prompt. |
-| Context | `ARCHITECTURE.md` exists and is substantive (components, stack, conventions). | Run `forge teach` first. |
+The discipline that governs the build lives in `ARCHITECTURE.md` (planted by `forge teach`), not here.
+
+For visual/UI/UX work use `impeccable` instead, not forge.
+
+## Pre-requisites (non-optional)
+
+These are hard prerequisites for producing a valid spec. If one fails, explain the blocker clearly and stop. Do not synthesize missing project context from the prompt.
+
+| Gate | To do if fail |
+|---|---|
+| `PRODUCT.md` exists and not placeholder | Ask the user to provide it or run `$impeccable teach`. Never synthesize it from the prompt. |
+| `ARCHITECTURE.md` exists and is substantive (components, stack, conventions). | Ask the user to run `forge teach`. |
 
 Read `PRODUCT.md`, `ARCHITECTURE.md`, the decision log (`ADR.md`/`DECISIONS.md`), and `IDEAS.md` before the session. Don't re-read if already loaded this session.
 
-## 1. Load the coding context first
+## 1. Codebase exploration: understand the ground you're building on
 
-Take `ARCHITECTURE.md` as given and design *within* it — the per-feature delta, not the whole system.
+Understand the system as it is before designing the solution. Pay attention to:
 - Entry points and the modules this target touches.
-- Existing functions, utilities, and patterns to **reuse** — name real file paths.
+- Existing functions, utilities, and patterns to reuse.
 - Data model and external calls involved.
-- Feasibility constraints and risks specific to this codebase.
+- Risks and constraints specific to this codebase.
 
-Raise architecture/feasibility questions from what you found. If the feature forces a system-level change (new component, boundary shift, stack addition, or a new dependency edge that would create a cycle between components), flag it as a `forge teach` update — don't bake it into the spec.
+Raise architecture/feasibility questions from what you found. If the feature forces a system-level change (new component, boundary shift, data model change, or a new dependency), flag it as a `forge teach` update — don't bake it into the spec.
 
 ## 2. Frame the problem, then decide
 
