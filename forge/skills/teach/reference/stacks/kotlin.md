@@ -1,6 +1,6 @@
-# rules-kotlin (seed)
+# Conventions seed: Kotlin
 
-<!-- Seed for forge teach. Adapt and trim into the project's rules.md / rules-kotlin.md.
+<!-- Seed for forge teach. Adapt and fold into ARCHITECTURE.md's Conventions section.
      Keep only what isn't obvious to a competent Kotlin engineer. -->
 
 ## Data & types

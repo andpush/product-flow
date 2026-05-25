@@ -1,6 +1,6 @@
-# rules-typescript (seed)
+# Conventions seed: TypeScript
 
-<!-- Seed for forge teach. Adapt and trim into the project's rules.md / rules-ts.md.
+<!-- Seed for forge teach. Adapt and fold into ARCHITECTURE.md's Conventions section.
      Keep only what isn't obvious to a competent TS engineer. -->
 
 ## Types

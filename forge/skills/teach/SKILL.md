@@ -12,23 +12,22 @@ Map these five roles to files. Use the repo's existing filenames if present; oth
 | Role | Holds | Default file | Owner |
 |---|---|---|---|
 | Product | purpose, users, constraints | `PRODUCT.md` | impeccable — don't author here |
-| Architecture | components, stacks, boundaries, layout, entrypoints | `ARCHITECTURE.md` | `teach`'s output |
-| Conventions | how code is written, per stack | `rules.md` (+ `rules-<stack>.md`) | `teach` |
+| Architecture | components, stacks, boundaries, layout, entrypoints, **conventions** | `ARCHITECTURE.md` | `teach`'s output |
 | Decisions | why choices were made | `ADR.md` \| `DECISIONS.md` | appended over time |
 | Front door | human onboarding | `README.md` | human; read as a source |
 
-`ARCHITECTURE.md` is the canonical contract the `spec` skill relies on. Keep each fact in one file; README links to `ARCHITECTURE.md` for structure rather than restating it.
+`ARCHITECTURE.md` is the canonical contract the `spec` skill relies on — it holds the conventions too, in a Conventions section, so there's no separate rules file. Keep each fact in one file; README links to `ARCHITECTURE.md` rather than restating it.
 
 ## Detect first
 
-Map roles to existing files before creating any: check casing/variants — `ARCHITECTURE.md` / `docs/architecture.md`, `rules*.md` / `CONVENTIONS.md` / `STYLE.md`, `ADR.md` / `DECISIONS.md` / `docs/adr/*`, plus `README.md`, `PRODUCT.md`, `CLAUDE.md`, `AGENTS.md`. Adopt the repo's names; only fall back to defaults for roles with no home.
+Map roles to existing files before creating any: check casing/variants — `ARCHITECTURE.md` / `docs/architecture.md`, `ADR.md` / `DECISIONS.md` / `docs/adr/*`, plus `README.md`, `PRODUCT.md`, `CLAUDE.md`, `AGENTS.md`. Adopt the repo's names; only fall back to defaults for roles with no home. If the repo already keeps conventions in their own file (`rules*.md`, `CONVENTIONS.md`), adopt it instead of folding.
 
 ## Greenfield: define with the user
 
 1. Read `PRODUCT.md` for purpose, users, constraints.
-2. Propose architecture and stack — proven over trendy, complexity matched to the problem. Present real forks (monolith vs. services, datastore, etc.) as pro/contra via `AskUserQuestion`; don't bikeshed settled defaults.
+2. Propose architecture and stack — proven over trendy, complexity matched to the problem. Present real forks (monolith vs. services, datastore, etc.) as pro/contra via `AskUserQuestion`; don't bikeshed settled defaults. Architecture and stack shape each other, so iterate to coherence: propose components with preliminary tech, validate the tech against the components, refine both. When drawing boundaries, keep the component dependency graph acyclic — if two components depend on each other, resolve it (merge, extract a shared piece, or invert a dependency).
 3. Write `ARCHITECTURE.md` using [reference/architecture-template.md](reference/architecture-template.md).
-4. Write `rules.md` from the matching seed in [reference/stacks/](reference/stacks/): read it, adapt with the user, keep only conventions that aren't obvious or that this project deviates on. Include the standing decision rule (below).
+4. Write the Conventions section of `ARCHITECTURE.md`, using the matching seed in [reference/stacks/](reference/stacks/) as a basis: read it, adapt with the user, keep only conventions that aren't obvious or that this project deviates on. Include the standing decision rule (below).
 5. Record macro decisions tersely (`ADR.md`/`DECISIONS.md`: `YYYY-MM-DD · [component] · Decision / Why`, two to four lines).
 
 ## Brownfield: derive from the code, then confirm
@@ -36,13 +35,13 @@ Map roles to existing files before creating any: check casing/variants — `ARCH
 1. Explore build files, layout, entry points, data layer, external calls. Read `README.md` as a source but verify it against the code.
 2. Draft `ARCHITECTURE.md` ([reference/architecture-template.md](reference/architecture-template.md)) describing the system as it *is*.
 3. Surface questionable parts (dead seams, inconsistent patterns, risky deps) as findings — don't discard working decisions.
-4. Confirm with the user, then write `ARCHITECTURE.md` and any `rules*.md` matching the conventions the code follows. If README restates structure, slim it to a pointer to `ARCHITECTURE.md`.
+4. Confirm with the user, then write `ARCHITECTURE.md`, including a Conventions section for the patterns the code already follows. If README restates structure, slim it to a pointer to `ARCHITECTURE.md`.
 
-## Conventions: split only when warranted
+## Conventions
 
-Start with one `rules.md`. Split into `rules-<stack>.md` when a second stack appears, not by reflex. A component declares which convention files apply.
+Keep them in a Conventions section of `ARCHITECTURE.md` — only the non-obvious or project-specific ones. For multiple stacks, use a subsection per stack rather than separate files.
 
-Plant this standing rule in the conventions file:
+Plant this standing rule in that section:
 
 > On any architectural choice: surface the trade-off, prefer the simpler option, challenge a weak
 > default, and record the decision in `ADR.md`/`DECISIONS.md`.
@@ -53,8 +52,7 @@ Ensure both exist as thin pointers — never copy bulk in. Keep their existing s
 
 ```markdown
 # Project context
-Read `./ARCHITECTURE.md` for components, stacks, and layout.
-Read `./rules.md` (and any `rules-<stack>.md`) for conventions.
+Read `./ARCHITECTURE.md` for components, stacks, layout, and conventions.
 Read `./README.md` for the overview, `./ADR.md` for decision history.
 ```
 
