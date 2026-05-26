@@ -28,7 +28,7 @@ The core jobs the product does for those users — what they can do that they co
 
 ## Constraints
 
-The hard limits that shape the build: tech mandates, budget, timeline, compliance/regulatory, accessibility, and any explicit non-negotiables.
+The hard limits that shape the build: timeline, compliance/regulatory, accessibility, and any explicit non-negotiables.
 
 ## Scope
 
