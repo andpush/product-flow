@@ -1,20 +1,27 @@
 ---
 name: spec
-description: Use to turn an intent into a solution spec for a software feature, service, API, data model, schema, or refactor. Analyse the problem, Capture requirements, Explore the codebase, Decide architecture and Emit a self-contained solution spec with verifiable acceptance criteria.
+description: Use before building any non-trivial software change — a feature, service, API, data model, schema, behavior change, or refactor — to turn an intent into a self-contained, build-ready solution spec through collaborative dialogue. Analyse the problem, capture requirements, explore the codebase, decide the approach, and emit verifiable acceptance criteria.
 ---
+
+Turn an idea into a build-ready solution spec through natural collaborative dialogue: understand the project context, refine the intent one question at a time, weigh approaches, then confirm before anyone builds.
 
 A session between user and agent:
 | User (Human) | Agent (You) |
 |---|---|
-| Formulates the task, need or a problem. | Comprehends the request, explores the codebase, asks clarifying questions, raises issues/inconsistencies/gaps, suggests solution options, surfaces trade-offs. |
+| Formulates the task, need or a problem. | Comprehends the request, explores the codebase, asks clarifying questions, challenges assumptions, raises issues/inconsistencies/gaps, suggests solution options — including non-obvious ones the user may not have considered — and surfaces trade-offs. |
 | Makes decisions and clarifications. | Writes a self-contained solution specification with clear acceptance criteria. |
 
 
-The spec is the deliverable. Once it's ready, the build is just execution against it — via `/goal` ("work until the acceptance criteria pass"), a dispatched subagent, or any agent.
+The spec is the deliverable, not code: don't implement during a spec session — it ends only at a spec the user has confirmed.
+
+Once it's ready, the build is just execution against it — via `/goal` ("work until the acceptance criteria pass"), a dispatched subagent, or any agent.
 
 The discipline that governs the build lives in `ARCHITECTURE.md` (planted by `arch`), not here.
 
-Pairs with `impeccable`: impeccable owns the visual/UX design (layout, look, mockups), `spec` owns the engineering solution — including for frontend features that have UI.
+
+## Match the depth to the problem
+
+Scale the session to the request. A focused, low-risk change earns a couple of sentences and a single confirmation; a nuanced or risky one earns real exploration — alternatives, trade-offs, a sketch. Don't impose heavy elaboration where the problem doesn't call for it, when unclear - ask before elaborating.
 
 ## Pre-requisites (non-optional)
 
@@ -37,6 +44,8 @@ Understand the system as it is before designing the solution. Pay attention to:
 
 Raise architecture/feasibility questions from what you found. If the feature forces a system-level change (new component, boundary shift, data model change, or a new dependency), flag it as the architecture update.
 
+Where existing code in the path of the change has problems that affect the work (a file grown too large, tangled responsibilities, unclear boundaries), fold targeted fixes into the spec — the way a good engineer improves the code they touch. Don't propose unrelated refactoring; stay on the goal.
+
 ## 2. Frame the problem
 
 - **Understand the problem.** The request is usually a proposed solution. Establish the motivation - why it matters. State assumptions and verify the risky ones; don't build against an unvalidated one.
@@ -45,14 +54,15 @@ Raise architecture/feasibility questions from what you found. If the feature for
 
 ## 3. Design solution
 
-- **Explore alternatives, don't anchor.** Generate 2-3 genuinely different approaches, and include one simpler than your first instinct. Present the real forks as **pro/contra** via `AskUserQuestion`, recommend one, and say why it beats the others.
+- **Explore alternatives, don't anchor.** When the problem warrants it, generate 2-3 genuinely different approaches — include one simpler than your first instinct, and one non-obvious option if you see it. Present the real forks conversationally as **pro/contra** via `AskUserQuestion`, recommend one, and say why it beats the others.
 - Apply the standing decision rule from `ARCHITECTURE.md`. No paralysis; ask one thing at a time, don't ask what you can verify.
-- Keep scope honest: name what's out, defer non-essential ideas to `IDEAS.md`.
+- Cut ruthlessly (YAGNI): every feature in the spec must earn its place. Actively remove what the core value doesn't need, name what's out, and defer non-essential ideas to `IDEAS.md`.
 
-## 4. Present the solution
+## 4. Present and confirm the solution
 
-- Present the chosen solution clearly in a way easy to grasp for a human. Use an ASCII sketch if it helps. Don't just dump a spec template with the details buried in it; walk through the highlights.
-- Emphasize the planned changes
+Don't just dump a spec with the details buried in it; present the chosen solution clearly in a way easy to grasp for a human:
+- Visualize with ASCII sketch if it helps.
+- Highlight components affected by the planned changes.
 - Obtain confirmation that the spec captures the intent and is ready to build. If not, iterate.
 
 ## 5. Emit the spec
