@@ -29,19 +29,31 @@ Map existing files before creating any: check `PRODUCT.md`, `ARCHITECTURE.md`, `
 
 ## Greenfield: define with the user
 
-1. Read `PRODUCT.md` for purpose, users, constraints.
-2. Propose architecture and stack — proven over trendy, complexity matched to the problem. Present real forks (monolith vs. services, pre-built vs. created, paid vs. open-source, datastore options, etc.) as pro/contra via `AskUserQuestion`; don't bikeshed settled defaults. Architecture and stack shape each other, so iterate to coherence: propose components with preliminary tech, validate the tech against the components, refine both. When drawing boundaries, keep the component dependency graph acyclic — if two components depend on each other, resolve it (merge, extract a shared piece, or invert a dependency). Test each unit for clarity: can you say what it does, how it's used, and what it depends on? Can someone grasp it without reading its internals, and can its internals change without breaking consumers? If not, the boundaries need work.
-3. Write `ARCHITECTURE.md` using [reference/architecture-template.md](reference/architecture-template.md).
-4. Write the `Rules and Conventions` section of `ARCHITECTURE.md`, seeding from [reference/rules/](reference/rules/): always fold `rules-general.md`; others -- by applicability. Read each, adapt with the user via `AskUserQuestion`, keep only the non-obvious or project-specific.
+1. **Read context.** `PRODUCT.md` for purpose, users, constraints.
+
+2. **Propose architecture and stack.**
+   - **Start simple.** KISS, YAGNI. Complexity matched to the problem.
+   - **Important:** Architecture and stack shape each other — iterate to coherence: propose components with preliminary tech, validate the tech against the components, refine both.
+   - **Explore alternatives.** Present substantial forks: 2-3 options and recommend one via `AskUserQuestion`. Don't bikeshed settled defaults; riskier decisions are closer to data and API boundaries. Examples: monolith vs. services, pre-built vs. created, paid vs. open-source, concurrent vs. sequential, relational vs. object, message queue vs database, persistent vs. in-memory, etc.
+
+3. **Write `ARCHITECTURE.md`** using [reference/architecture-template.md](reference/architecture-template.md).
+
+4. **Seed `Rules and Conventions`** from [reference/rules/](reference/rules/). Read each, choose or generate by applicability and the tech stack. Adapt with the user, keep only the non-obvious or project-specific.
+
 
 ## Brownfield: derive from the code, then confirm
 
 1. Explore build files, layout, entry points, data layer, external calls. Read `README.md` as a source but verify it against the code.
-2. Draft `ARCHITECTURE.md` ([reference/architecture-template.md](reference/architecture-template.md)) describing the system as it *is*.
-3. Surface questionable parts (dead seams, inconsistent patterns, risky deps) as findings — don't discard working decisions.
-4. Confirm with the user, then write `ARCHITECTURE.md`, including a `Rules and Conventions` section for the patterns the code already follows.
+2. Draft `ARCHITECTURE.md` ([reference/architecture-template.md](reference/architecture-template.md)) describing the system as it is.
+3. Surface questionable parts as findings — don't discard working decisions. Suggest parking improvements in `IDEAS.md`.
+4. Confirm with the user, then write `ARCHITECTURE.md`, including a `Rules and Conventions` section for the patterns and practices the code already follows.
 5. If README restates structure, slim it to a pointer to `ARCHITECTURE.md`.
 
+## Architecture quality checklist
+
+Apply when drawing or revisiting component boundaries:
+- [ ] **Acyclic dependencies.** Keep the component dependency graph acyclic — if two components depend on each other, resolve it (merge, extract a shared piece, or invert a dependency).
+- [ ] **Boundaries clarity.** For each unit you should be able to say what it does, how it's used, and what it depends on. Can someone grasp it without reading its internals, and can its internals change without breaking consumers? If not, the boundaries need rework.
 
 ## Wire CLAUDE.md / AGENTS.md
 

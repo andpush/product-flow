@@ -19,9 +19,9 @@ Link `PRODUCT.md` for the why.
 
 Each component/module: its responsibility (one line) and its stack. Table or list.
 
-| Component | Location | Responsibility | Tech Stack |
-|---|---|---|---|
-| … | … | … | … |
+| Component | Location | Responsibility | Tech Stack | Entry point |
+|---|---|---|---|---|
+| … | … | … | … | … |
 
 ## System Architecture
 

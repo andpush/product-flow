@@ -1,8 +1,5 @@
 <!--
 Skeleton for docs/specs/YYYY-MM-DD-nnn-<slug>.md, the implementation handoff.
-Include intent, decisions, files/patterns to reuse, scope, test approach, acceptance criteria.
-Exclude generated code, step-by-step task lists, and restatements of
-PRODUCT.md / ARCHITECTURE.md (link instead). Omit any section that doesn't apply.
 -->
 
 # <Feature> — Spec
@@ -13,7 +10,8 @@ PRODUCT.md / ARCHITECTURE.md (link instead). Omit any section that doesn't apply
 
 ## Goal
 
-What this delivers and the user value. State key assumptions.
+What this delivers, the motivation and value.
+State key assumptions.
 
 ## Acceptance criteria
 

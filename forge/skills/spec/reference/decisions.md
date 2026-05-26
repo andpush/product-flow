@@ -5,7 +5,7 @@ Keep the durable trail terse — capture decisions, not novels.
 ## Where
 
 - **Decisions** → `DECISIONS.md` or `ADR.md` — whichever the repo already has. If neither
-  exists, create `DECISIONS.md` (or `ADR.md` if the project prefers the ADR name). Append-only.
+  exists, create `DECISIONS.md`. Append-only.
 - **Ideas** → `IDEAS.md` — anything worth considering later but not elaborated now.
 
 Auto-detect the existing file before creating a new one; don't introduce a second log.
@@ -30,7 +30,7 @@ Two to four lines. Follow the repo's established format if it differs.
 ## Idea entry format
 
 ```markdown
-- YYYY-MM-DD · [area] — the idea in one line (why it might matter).
+- [ ] YYYY-MM-DD · [area] — the idea in one line (why it might matter).
 ```
 
 ## When
