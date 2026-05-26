@@ -1,4 +1,6 @@
-# Rules
+# General Rules
+<!-- Seed for the `arch` skill. Adapt and fold into ARCHITECTURE.md's Conventions section.
+     Keep only what isn't obvious to a competent backend engineer. -->
 
 ## Coding rules
 
