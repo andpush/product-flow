@@ -15,7 +15,7 @@
     },
     {
       "name": "forge",
-      "description": "Lightweight engineering skills: teach (establish project architecture, stack, conventions) and spec (turn intent into a buildable spec with verifiable acceptance criteria, executed via /goal or a subagent).",
+      "description": "Lightweight engineering workflow: prod (define the product), arch (define architecture, stack, conventions), spec (turn intent into a buildable spec with verifiable acceptance criteria).",
       "source": "./forge",
       "category": "development"
     }

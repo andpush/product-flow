@@ -1,13 +1,17 @@
 ---
 name: prod
-description: Use to define the product — purpose, users, value, constraints, and MVP scope — into a durable PRODUCT.md that `arch` and `spec` rely on. (Triggers: "define the product", "what are we building", "write PRODUCT.md".)
+description: Use to define the product — WHAT we are building - the purpose, users, value, constraints, and MVP scope — into a durable PRODUCT.md that `arch` and `spec` rely on.
 ---
 
-Establish the durable product context a project needs — who it's for, what it does, why it matters, what's in and out — either by defining it with the user (greenfield) or deriving it from existing material (brownfield), into a `PRODUCT.md` that the rest of forge builds on.
+Establish the durable product context — who it's for, what it does, why it matters, what's in and out — either by defining it with the user (greenfield) or deriving it from existing material (brownfield), into a `PRODUCT.md` that the rest of forge builds on.
 
 Run once at project start; again only when the product direction shifts.
 
-`prod` owns the engineering-facing product definition; `arch` consumes it. The design counterpart is the impeccable plugin (https://impeccable.style): `/impeccable teach` establishes the visual/UX design (DESIGN.md) and can also seed `PRODUCT.md` for design-led projects. If a `PRODUCT.md` already exists — from impeccable or by hand — adopt and extend it; never write a second one.
+`prod` owns the product definition; `arch` consumes it.
+
+For design-led projects `PRODUCT.MD` can be created by the impeccable plugin (https://impeccable.style): `/impeccable teach`.
+
+If a `PRODUCT.md` already exists — from impeccable or by hand — adopt and extend it; never write a second one.
 
 ## Detect first
 
@@ -16,7 +20,7 @@ Check for `PRODUCT.md` before creating one. Also check casing/variants like `doc
 ## Greenfield: define with the user
 
 1. Read whatever seed material exists (brief, notes, README). Treat the initial request as a proposed solution, not the problem.
-2. Interview to pin down: the **problem** and **who has it**, the **core value**, the hard **constraints** (tech, budget, timeline, compliance, non-negotiables), and what **success** looks like. Surface assumptions; challenge vague or contradictory answers — one question at a time via `AskUserQuestion`, no question-answering theatre.
+2. Interview to pin down: the **problem** and **who has it**, the **solution** (the product concept that solves it — not the technical design), the **core value**, the hard **constraints** (tech, budget, timeline, compliance, non-negotiables), and what **success** looks like. Surface assumptions; challenge vague or contradictory answers — one question at a time via `AskUserQuestion`, no question-answering theatre.
 3. Settle **MVP scope**: what ships first vs. what's explicitly deferred. Park non-essential ideas in `IDEAS.md` rather than widening scope.
 4. Write `PRODUCT.md` using [reference/product-template.md](reference/product-template.md).
 

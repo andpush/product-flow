@@ -1,9 +1,9 @@
 ---
 name: arch
-description: Use to define or derive project architecture, stack, and conventions in a durable way that the `spec` skill can rely on. (Triggers: "define the architecture", "choose the stack", "write ARCHITECTURE.md".)
+description: Use to define or derive project architecture, stack, and conventions - into a durable ARCHITECTURE.md that the `spec` skill can rely on.
 ---
 
-Establish the durable engineering context a software project needs — architecture, component/module map, tech stack, and coding conventions — either by defining them with the user (greenfield) or deriving them from existing code (brownfield), and wiring CLAUDE.md/AGENTS.md as thin pointers.
+Establish the durable engineering context for a software project — architecture, component/module map, tech stack, and coding conventions — either by defining them with the user (greenfield) or deriving them from existing code (brownfield), and wiring CLAUDE.md/AGENTS.md as thin pointers.
 
 Run once; again only when foundations change.
 
@@ -14,18 +14,18 @@ Consumes `PRODUCT.md` (from `prod`); produces `ARCHITECTURE.md`, which `spec` co
 | File | Holds | Created by |
 |---|---|---|
 | `PRODUCT.md` | purpose, users, constraints | `prod` (or `/impeccable teach`) |
-| `ARCHITECTURE.md` | components, stacks, boundaries, layout, entrypoints, **conventions** |  this `arch` skill or manually |
+| `ARCHITECTURE.md` | components, stacks, boundaries, layout, entrypoints, conventions |  this `arch` skill or manually |
 | `ADR.md` \| `DECISIONS.md` | why choices were made | appended over time |
 | `README.md` | human onboarding | human; read as a source |
 | `CLAUDE.md` \| `AGENTS.md` | onboarding for agents | this `arch` skill or manually |
 
 ## Detect first
 
-Map existing files before creating any: check `PRODUCT.md`, `ARCHITECTURE.md`, `ADR.md` / `DECISIONS.md`, plus variants like `docs/product.md`, `docs/architecture.md`, `docs/adr/*`, `README.md`, `CLAUDE.md`, and `AGENTS.md`. Forge's durable files are `PRODUCT.md` and `ARCHITECTURE.md`: use variants as source material to avoid losing context, but write/adopt the root files and mention any duplicate/rename decision to the user. If the repo already keeps conventions in their own file (`rules*.md`, `CONVENTIONS.md`), reference them from `ARCHITECTURE.md` instead of restating.
+Map existing files before creating any: check `PRODUCT.md`, `ARCHITECTURE.md`, `ADR.md` / `DECISIONS.md`, plus variants like `docs/product.md`, `docs/architecture.md`, `docs/adr/*`, `README.md`, `CLAUDE.md`, and `AGENTS.md`. Forge's durable files are `PRODUCT.md` and `ARCHITECTURE.md`: use variants as source material to avoid losing context, mention any duplicate/refactoring decision to the user. If the repo already keeps conventions in their own file (`rules*.md`, `CONVENTIONS.md`), reference them from `ARCHITECTURE.md` instead of restating.
 
 ## Product gate
 
-`arch` requires a substantive `PRODUCT.md`. If `PRODUCT.md` is missing or placeholder-only, stop and ask the user to run `prod` first, or to provide enough product context to create `PRODUCT.md`. If only a variant like `docs/product.md` exists, read it as source material and ask the user to adopt it into `PRODUCT.md` before continuing. Do not invent product purpose, users, or constraints from architecture preferences alone.
+`arch` requires a substantive `PRODUCT.md`, which provides high level context on WHAT we build. If it is missing or placeholder-only, stop and ask the user to run `prod` first, or use external tool like `impeccable teach` or create manually. Do not invent product purpose, users, or constraints from architecture preferences alone.
 
 ## Greenfield: define with the user
 

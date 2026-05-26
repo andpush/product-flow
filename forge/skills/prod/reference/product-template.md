@@ -11,11 +11,16 @@ not a roadmap. Omit a section only if it genuinely doesn't apply. Link out rathe
 
 ## Purpose
 
-The problem and why it matters now — one or two lines. Not the proposed solution.
+The problem and why it matters now — one or two lines. Motivation, not the solution.
 
 ## Users
 
 Who has the problem and the context they're in. Primary user first; note secondary users only if they change the product.
+
+## Solution
+
+A product concept we believe solves the problem.
+The north star that holds even as features change. Aspirational, concise, not a feature list.
 
 ## Value
 
@@ -23,17 +28,23 @@ The core jobs the product does for those users — what they can do that they co
 
 ## Constraints
 
-The hard limits that shape the build: tech mandates, budget, timeline, compliance/regulatory, and any explicit non-negotiables.
+The hard limits that shape the build: tech mandates, budget, timeline, compliance/regulatory, accessibility, and any explicit non-negotiables.
 
-## MVP scope
+## Scope
 
-- **In:** what ships first to deliver the core value.
-- **Out / later:** what is explicitly deferred (parked ideas go to `IDEAS.md`).
+### Core Features (MVP)
+
+What ships first to deliver the core value.
+
+### Out / Later
+
+What is explicitly deferred.
+Parked ideas go to `IDEAS.md`.
 
 ## Success signals
 
 How we'll know it works — observable outcomes or metrics, not vanity numbers.
 
-## Related
+## References
 
-Link `ARCHITECTURE.md` (how it's built), `DESIGN.md` (visual/UX, if using impeccable), `DECISIONS.md`/`ADR.md` (why).
+Link related materials: UIUX
