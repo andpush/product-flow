@@ -19,19 +19,23 @@ Link `PRODUCT.md` for the why.
 
 Each component/module: its responsibility (one line) and its stack. Table or list.
 
-| Component | Responsibility | Stack |
-|---|---|---|
-| … | … | … |
+| Component | Location | Responsibility | Tech Stack |
+|---|---|---|---|
+| … | … | … | … |
 
-## Boundaries & data flow
+## System Architecture
 
-How components talk (calls, queues, shared DB) and the trust/ownership boundaries. ASCII diagram
-when the interaction is non-trivial. The dependency graph between components must be acyclic — call
-out any cycle and how it's broken.
+Visualize with ASCII diagrams how components talk (calls, queues, shared DB) and the trust/ownership boundaries.
+Select 2-3 more relevant aspects:
+ (1) High Level System Design - core system modules interaction.
+ (2) Data Flow, Sequence or Activity Diagram; BPMN - for complex flow.
+ (3) Core entities / ERD from business perspective.
+ (4) State diagram if state machine is central
 
 ## Data model
 
 The key entities and their relationships at a high level — not a full schema.
+Use diagram or table view per schema.
 
 ## Directory layout
 
