@@ -34,7 +34,7 @@ Map existing files before creating any: check `PRODUCT.md`, `ARCHITECTURE.md`, `
 2. **Propose architecture and stack.**
    - **Start simple.** KISS, YAGNI. Complexity matched to the problem.
    - **Important:** Architecture and stack shape each other — iterate to coherence: propose components with preliminary tech, validate the tech against the components, refine both.
-   - **Explore alternatives.** Present substantial forks: 2-3 options and recommend one via `AskUserQuestion`. Don't bikeshed settled defaults; riskier decisions are closer to data and API boundaries. Examples: monolith vs. services, pre-built vs. created, paid vs. open-source, concurrent vs. sequential, relational vs. object, message queue vs database, persistent vs. in-memory, etc.
+   - **Explore alternatives.** Present substantial forks: 2-3 options and recommend one via `AskUserQuestion`. Don't bikeshed settled defaults; riskier decisions are closer to data and API boundaries. Examples: monolith vs. services, pre-built vs. bespoke, paid vs. open-source, concurrent vs. sequential, relational vs. object, message queue vs database, persistent vs. in-memory, etc.
 
 3. **Write `ARCHITECTURE.md`** using [reference/architecture-template.md](reference/architecture-template.md).
 

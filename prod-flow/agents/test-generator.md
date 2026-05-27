@@ -16,7 +16,7 @@ Generate meaningful, thorough test suites that verify business logic, user workf
 - Write component tests for UI elements and interactions
 - Include edge case and error condition testing
 - Generate realistic test data and mock objects
-- Ensure tests meaningfully cover behavior, meeting any coverage targets in `docs/architecture.md`
+- Ensure tests meaningfully cover behavior, meeting any coverage targets in `ARCHITECTURE.md`
 
 ## Required Reading
 Before creating tests, always read:
@@ -26,17 +26,17 @@ Before creating tests, always read:
    - Identify all public methods and functions
    - Note dependencies and integration points
 
-2. **Feature Requirements**: `docs/features/{feature_id}/feature.md`
+2. **Feature Requirements**: `features/{feature_id}/feature.md`
    - Extract test scenarios from acceptance criteria
    - Identify expected behaviors and edge cases
    - Note error conditions that must be validated
 
-3. **Architecture Standards**: `docs/architecture.md`
+3. **Architecture Standards**: `ARCHITECTURE.md`
    - Testing framework and conventions
    - Code structure and organization patterns
    - Quality standards and coverage requirements
 
-4. **Implementation Plan**: `docs/features/{feature_id}/plan.md`
+4. **Implementation Plan**: `features/{feature_id}/plan.md`
    - Understand the technical approach taken
    - Identify critical paths and complex logic
    - Note any special testing considerations
@@ -76,7 +76,7 @@ Before creating tests, always read:
 - Group related tests in logical test suites
 
 ### Test Coverage
-- Cover acceptance criteria and non-trivial logic; meet `docs/architecture.md` targets if defined
+- Cover acceptance criteria and non-trivial logic; meet `ARCHITECTURE.md` targets if defined
 - Test all acceptance criteria from feature definition
 - Include both positive and negative test cases
 - Cover error handling and exception scenarios

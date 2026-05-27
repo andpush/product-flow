@@ -1,4 +1,4 @@
-<!-- Use this template when creating `docs/features/{feature_id}/review.md` with the `/9-review-feature` command. -->
+<!-- Use this template when creating `features/{feature_id}/review.md` with the `/9-review-feature` command. -->
 
 # Code Review Results
 

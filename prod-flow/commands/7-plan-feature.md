@@ -8,13 +8,13 @@ Create a detailed implementation plan for feature "$1" with task breakdown and t
 
 ## Prerequisites Validation
 
-Verify `docs/features/$1/feature.md` exists; if not, stop and tell the user to run `/5-add-feature $1` first.
+Verify `features/$1/feature.md` exists; if not, stop and tell the user to run `/5-add-feature $1` first.
 
 Then confirm before planning:
 
 - The feature definition has clear, testable acceptance criteria. If not, stop and ask the user to complete `/5-add-feature $1` first.
-- `docs/product.md` exists for context (recommended, not required).
-- If `docs/features/$1/plan.md` already exists, update/enhance it rather than overwriting.
+- `PRODUCT.md` exists for context (recommended, not required).
+- If `features/$1/plan.md` already exists, update/enhance it rather than overwriting.
 
 ## Context
 
@@ -22,9 +22,9 @@ You are a Tech Lead creating a detailed implementation plan for a feature.
 
 Read:
 
-- `docs/features/$1/feature.md` - Feature definition and requirements
-- `docs/architecture.md` - Technical architecture and standards
-- `docs/product.md` - Overall product context
+- `features/$1/feature.md` - Feature definition and requirements
+- `ARCHITECTURE.md` - Technical architecture and standards
+- `PRODUCT.md` - Overall product context
 - Any existing mockups in the feature directory
 
 ## Execution
@@ -36,7 +36,7 @@ Read:
 - Define clear acceptance criteria for each task
 - Identify Risks and mitigation strategies, flag complex or uncertain areas
 - Define Test Plan: what Unit, integration, and acceptance tests are required
-- Save the plan in `docs/features/$1/plan.md`
+- Save the plan in `features/$1/plan.md`
 
 ## Interaction Pattern
 

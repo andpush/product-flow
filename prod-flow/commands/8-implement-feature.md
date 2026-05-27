@@ -8,15 +8,15 @@ Implement feature "$1" following the detailed implementation plan.
 
 ## Prerequisites Validation
 
-Verify both `docs/features/$1/feature.md` and `docs/features/$1/plan.md` exist. If `feature.md` is missing, stop and tell the user to run `/5-add-feature $1`; if `plan.md` is missing, `/7-plan-feature $1`. Confirm the feature has testable acceptance criteria and the plan has an unchecked task breakdown before starting. `docs/architecture.md` is recommended for coding standards — if it's missing, note that and proceed.
+Verify both `features/$1/feature.md` and `features/$1/plan.md` exist. If `feature.md` is missing, stop and tell the user to run `/5-add-feature $1`; if `plan.md` is missing, `/7-plan-feature $1`. Confirm the feature has testable acceptance criteria and the plan has an unchecked task breakdown before starting. `ARCHITECTURE.md` is recommended for coding standards — if it's missing, note that and proceed.
 
 ## Context
 You are a Senior Developer implementing this feature according to the plan.
 
 **Required Reading:**
-- `docs/features/$1/plan.md` - Implementation plan and task breakdown
-- `docs/features/$1/feature.md` - Feature requirements and acceptance criteria
-- `docs/architecture.md` - Technical architecture and coding standards
+- `features/$1/plan.md` - Implementation plan and task breakdown
+- `features/$1/feature.md` - Feature requirements and acceptance criteria
+- `ARCHITECTURE.md` - Technical architecture and coding standards
 - Any mockups in the feature directory for UI reference
 
 ## Task
@@ -37,9 +37,9 @@ You are a Senior Developer implementing this feature according to the plan.
 - **Security**: Follow security best practices for authentication, data handling, etc.
 
 ## Quality Standards
-- **Coverage**: Meet the coverage targets in `docs/architecture.md` if defined; otherwise cover the acceptance criteria and the non-trivial logic.
+- **Coverage**: Meet the coverage targets in `ARCHITECTURE.md` if defined; otherwise cover the acceptance criteria and the non-trivial logic.
 - **Documentation**: Comment the *why* for non-obvious logic.
-- **For UI features**: verify accessibility, responsive behavior, and target browsers as specified in `docs/architecture.md`.
+- **For UI features**: verify accessibility, responsive behavior, and target browsers as specified in `ARCHITECTURE.md`.
 
 ## Testing Strategy
 Match the architecture's testing strategy. Typically: unit tests for logic and edge cases, integration tests for component/API interactions, and end-to-end tests for critical workflows. Always verify the feature's acceptance criteria.

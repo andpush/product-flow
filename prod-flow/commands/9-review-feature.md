@@ -8,7 +8,7 @@ Perform a comprehensive code review for feature `$1` using the `code-reviewer` s
 
 ## Prerequisites Validation
 
-Verify both `docs/features/$1/feature.md` and `docs/features/$1/plan.md` exist; if either is missing, stop and tell the user to run `/5-add-feature` and `/7-plan-feature` first.
+Verify both `features/$1/feature.md` and `features/$1/plan.md` exist; if either is missing, stop and tell the user to run `/5-add-feature` and `/7-plan-feature` first.
 
 Before reviewing, confirm the implementation is actually done — the plan's tasks should be checked off (`- [x]`). If it looks unfinished, tell the user and ask whether to review the partial work. A git repository is recommended so changes can be analyzed.
 
@@ -31,7 +31,7 @@ The subagent will:
 - **Acceptance Criteria**: Verify all requirements from feature definition are met
 
 ## Output
-- Comprehensive review report saved to `docs/features/$1/review.md`
+- Comprehensive review report saved to `features/$1/review.md`
 - Issues categorized by severity (🔴 Critical, 🟡 Important, 🟢 Suggestion)
 - Specific recommendations for improvements
 - Approval status and any blocking issues

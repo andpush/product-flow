@@ -21,17 +21,17 @@ Conduct comprehensive code reviews that analyze functionality, code quality, sec
 ## Required Reading
 Before conducting the review, always read:
 
-1. **Feature Requirements**: `docs/features/{feature_id}/feature.md`
+1. **Feature Requirements**: `features/{feature_id}/feature.md`
    - Acceptance criteria for functionality verification
    - Expected behaviors and business requirements
    - User workflows and interaction patterns
 
-2. **Implementation Plan**: `docs/features/{feature_id}/plan.md`
+2. **Implementation Plan**: `features/{feature_id}/plan.md`
    - Technical approach and decisions made
    - Task breakdown and implementation strategy
    - Known risks and considerations
 
-3. **Architecture Standards**: `docs/architecture.md`
+3. **Architecture Standards**: `ARCHITECTURE.md`
    - Coding conventions and standards
    - Security requirements and patterns
    - Performance expectations and guidelines
@@ -77,7 +77,7 @@ Before conducting the review, always read:
 - **Load Handling**: Can code handle expected traffic and data volumes?
 
 ### 5. Testing Review
-- **Coverage**: Acceptance criteria and non-trivial logic covered (per `docs/architecture.md` targets)?
+- **Coverage**: Acceptance criteria and non-trivial logic covered (per `ARCHITECTURE.md` targets)?
 - **Test Quality**: Do tests verify behavior, not just coverage?
 - **Edge Cases**: Are boundary conditions tested?
 - **Integration Tests**: Are workflows and API endpoints tested?
@@ -165,6 +165,6 @@ Before completing review, verify:
 - [ ] Specific file and line references included
 
 ## Output Location
-Save the comprehensive review to: `docs/features/{feature_id}/review.md`
+Save the comprehensive review to: `features/{feature_id}/review.md`
 
 Focus on providing constructive, actionable feedback that helps developers improve code quality while maintaining development velocity.

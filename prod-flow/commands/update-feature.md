@@ -1,17 +1,17 @@
 ---
-description: Sync feature definition with new files in feature folder or changes in product.md
+description: Sync feature definition with new files in feature folder or changes in PRODUCT.md
 argument-hint: [Feature ID]
 ---
 # Command Instructions
 
 Update the feature definition for "$1" by syncing with:
 - New files added to the feature directory (mockups, documents, user stories, images)
-- Changes in `docs/product.md` that affect this feature
+- Changes in `PRODUCT.md` that affect this feature
 - User-specified updates based on conversation context
 
 ## Prerequisites Validation
 
-Verify `docs/features/$1/feature.md` exists; if not, stop and tell the user to run `/5-add-feature $1` first.
+Verify `features/$1/feature.md` exists; if not, stop and tell the user to run `/5-add-feature $1` first.
 
 ## Context
 
@@ -19,26 +19,26 @@ You are a Senior Business Analyst updating a feature definition to reflect new i
 
 **Required Reading:**
 
-- `docs/features/$1/feature.md` - Current feature definition
-- `docs/product.md` (if exists) - Product context and any recent changes
-- All files in `docs/features/$1/` - New mockups, docs, images, user stories
+- `features/$1/feature.md` - Current feature definition
+- `PRODUCT.md` (if exists) - Product context and any recent changes
+- All files in `features/$1/` - New mockups, docs, images, user stories
 - Use the `ba` skill which provides the feature template structure
 
 ## Task
 
 1. **Detect Changes**: Identify what has changed since feature.md was last updated
    - Check modification dates: feature.md vs other files in the directory
-   - Compare product.md updated date vs feature.md updated date
+   - Compare PRODUCT.md updated date vs feature.md updated date
    - Review conversation context for user-specified changes
 
 2. **Analyze New Content**:
-   - List all files in `docs/features/$1/` directory
+   - List all files in `features/$1/` directory
    - Identify new mockups (*.html, *.png, *.jpg, *.pdf)
    - Find new documentation (*.md files other than feature.md)
    - Look for user stories, requirements docs, or design references
 
-3. **Sync Product Changes** (if product.md exists and was updated):
-   - Check if feature priority changed in product.md
+3. **Sync Product Changes** (if PRODUCT.md exists and was updated):
+   - Check if feature priority changed in PRODUCT.md
    - Look for updated business context or strategic changes
    - Identify new dependencies or constraints affecting this feature
 
@@ -49,7 +49,7 @@ You are a Senior Business Analyst updating a feature definition to reflect new i
 
 5. **Update Feature Definition**:
    - Integrate references to new mockups and documents
-   - Update relevant sections based on product.md changes
+   - Update relevant sections based on PRODUCT.md changes
    - Apply user-requested modifications
    - Update metadata: Updated Date, Status (if appropriate)
    - Preserve existing content unless explicitly updating
@@ -97,13 +97,13 @@ E. Explain what changed and let me decide
 
 Current changes detected:
 - {list of new files found}
-- {product.md changes if any}
+- {PRODUCT.md changes if any}
 - {user context if provided}
 ```
 
 ## Output Requirements
 
-- Update `docs/features/$1/feature.md` with synced content
+- Update `features/$1/feature.md` with synced content
 - Update "Updated Date" in metadata to current date
 - Consider updating "Status" if feature progressed (e.g., Discovery → Defined)
 - Preserve template structure and formatting

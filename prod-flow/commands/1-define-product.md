@@ -1,5 +1,5 @@
 ---
-description: Define `docs/product.md` based on initial documents in `docs/initial/`
+description: Define `PRODUCT.md` based on initial documents in `docs/`
 argument-hint: product name
 ---
 # Command Instructions
@@ -10,22 +10,17 @@ Create a comprehensive product definition from initial documents and stakeholder
 
 Use the `ba` skill and the template below to guide the analysis.
 
-The result is generated or updated `docs/product.md`.
+The result is generated or updated `PRODUCT.md`.
 
 ## Context
 
 User provided short [PRODUCT_NAME] as an argument to this command: $ARGUMENTS .
 If command arguments not provided, deduce it from the context.
 
-Explore the following files:
+Source material:
 
-```bash
-docs/
-├── initial/**    # Initial documents to research
-├── product.md         # (if exists) previous definition to update
-```
-
-Explore `docs/initial/` recursively and read the relevant files.
+- `docs/` - any initial documents to research (notes, briefs, requirements, designs). Do not assume a particular folder structure inside it; explore recursively and read the relevant files.
+- `PRODUCT.md` - (if exists) previous definition to update.
 
 Look for the files containing the most relevant and up-to-date information about the product, try to figure out following pieces of information:
 

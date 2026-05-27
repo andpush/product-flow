@@ -1,5 +1,5 @@
 <!--
-Use this template when creating `docs/features/[feature_id]/plan.md` with the `/7-plan-feature` command.
+Use this template when creating `features/[feature_id]/plan.md` with the `/7-plan-feature` command.
 -->
 # Implementation Plan
 
@@ -218,8 +218,8 @@ Use this template when creating `docs/features/[feature_id]/plan.md` with the `/
 
 ## Monitoring
 
-- **Error Rate**: Alert threshold per the SLA in `docs/architecture.md`
-- **Performance**: Latency alert threshold per the SLA in `docs/architecture.md`
+- **Error Rate**: Alert threshold per the SLA in `ARCHITECTURE.md`
+- **Performance**: Latency alert threshold per the SLA in `ARCHITECTURE.md`
 - **Usage**: Track feature adoption and usage patterns
 
 ## Business Success Metrics

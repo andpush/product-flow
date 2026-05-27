@@ -8,7 +8,7 @@ Generate a UI mockup based on the provided Figma design, extracting visual style
 
 ## Validation Gate
 
-Verify `docs/product.md` exists; if not, stop and tell the user to run `/1-define-product` first.
+Verify `PRODUCT.md` exists; if not, stop and tell the user to run `/1-define-product` first.
 
 A Figma URL is required. If `$ARGUMENTS` contains no `figma.com` URL, stop and show usage:
 `/figma-mockup <figma_url> [additional_instructions]`
@@ -16,7 +16,7 @@ A Figma URL is required. If `$ARGUMENTS` contains no `figma.com` URL, stop and s
 ## Execution
 
 1. Parse the Figma URL and any extra instructions from `$ARGUMENTS`
-2. Read product requirements: `docs/product.md` and other files referenced there
+2. Read product requirements: `PRODUCT.md` and other files referenced there
 3. Invoke tools in Figma MCP to get all the information about the design, neccessary to build pixel perfect copy in the form of html file with assets folder.
 4. Build HTML Mockup:
    - Apply extracted design system (colors, fonts, spacing)

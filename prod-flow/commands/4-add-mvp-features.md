@@ -1,25 +1,25 @@
 ---
-description: Create detailed feature definitions based on all MVP features from product.md and using documentation analysis.
+description: Create detailed feature definitions based on all MVP features from PRODUCT.md and using documentation analysis.
 ---
 # Command Instructions
 
 ## Validation Gate
 
-Verify `docs/product.md` exists; if not, stop and tell the user to run `/1-define-product` first.
+Verify `PRODUCT.md` exists; if not, stop and tell the user to run `/1-define-product` first.
 
 ## Your Mission
 
 You are a Senior Business Analyst responsible for elaborating all MVP features defined in the product specification.
 
-For each feature in the MVP scope from `docs/product.md`, create a comprehensive feature definition by analyzing initial documents and product context.
+For each feature in the MVP scope from `PRODUCT.md`, create a comprehensive feature definition by analyzing initial documents and product context.
 
 ## Read
 
 1. **Product Context**:
-   - Read `docs/product.md` to understand the product and extract all MVP features
+   - Read `PRODUCT.md` to understand the product and extract all MVP features
 
 2. **Initial Documentation**:
-   - Explore all files in `docs/initial/` folder and its subfolders.
+   - Explore all files in `docs/` folder and its subfolders.
    - Look for information relevant to each feature:
      - User requirements and use cases
      - Business rules and workflows
@@ -28,14 +28,14 @@ For each feature in the MVP scope from `docs/product.md`, create a comprehensive
      - Stakeholder requirements
 
 3. **Existing Features**:
-   - Check `docs/features/` directory for any existing feature definitions
+   - Check `features/` directory for any existing feature definitions
    - Review existing features to avoid duplication and ensure consistency
 
 ## Execution Strategy
 
 For each identified feature in MVP scope perform the following steps:
 
-1. **Extract Feature Information** from product.md:
+1. **Extract Feature Information** from PRODUCT.md:
    - Feature name (e.g., 'user-signup')
    - Feature description
    - Epic it belongs to
@@ -49,7 +49,7 @@ For each identified feature in MVP scope perform the following steps:
 
 After processing all MVP features:
 
-1. **Feature Files**: Each feature should have `docs/features/[feature-id]/feature.md`
+1. **Feature Files**: Each feature should have `features/[feature-id]/feature.md`
 2. **Summary Report**: Provide a brief summary including:
    - Total number of MVP features processed
    - Features successfully defined

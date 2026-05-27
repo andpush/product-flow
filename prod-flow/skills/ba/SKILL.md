@@ -16,6 +16,7 @@ Perform business analysis of provided materials to discover business needs, user
 - Focus on "what" and "why", not "how"
 - Business-oriented features, not technical tasks
 - Flag identified gaps at early stage for clarification with stakeholders
+- Think about right-size decomposition of required features
 
 ## Functionality Decomposition
 

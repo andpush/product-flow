@@ -6,9 +6,9 @@ argument-hint: [add_context]
 
 ## Validation Gate
 
-Verify `docs/product.md` exists; if not, stop and tell the user to run `/1-define-product` first.
+Verify `PRODUCT.md` exists; if not, stop and tell the user to run `/1-define-product` first.
 
-If `docs/initial/` is missing or empty, warn the user (vision docs, requirements, screenshots, and reference materials belong there) and ask whether to continue before generating mockups.
+If `docs/` is missing or empty, warn the user (vision docs, requirements, screenshots, and reference materials belong there) and ask whether to continue before generating mockups.
 
 ## Task Instructions
 
