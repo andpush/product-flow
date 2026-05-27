@@ -3,7 +3,7 @@ name: prod
 description: Use to define the product — WHAT we are building and WHY - the purpose, users, solution, value, constraints, and scope — into a durable PRODUCT.md that `arch` and `spec` rely on.
 ---
 
-Establish the durable product context — who it's for, what it does, why it matters, what's in and out — either by defining it with the user (greenfield) or deriving it from existing material (brownfield), into a `PRODUCT.md` that the rest of forge builds on.
+Establish the durable product context — who it's for, what it does, why it matters, what's in and out — either by defining it with the user (greenfield) or deriving it from existing material (brownfield), into a `PRODUCT.md` that the rest of craft builds on.
 
 Run once at project start; again only when the product direction shifts.
 
@@ -15,7 +15,7 @@ If a `PRODUCT.md` already exists — from impeccable or by hand — adopt and ex
 
 ## Detect first
 
-Check for `PRODUCT.md` before creating one. Also check casing/variants like `docs/product.md` to avoid missing existing context: if a variant exists but `PRODUCT.md` does not, use the variant as source material, then create `PRODUCT.md` as the durable forge file and mention the duplicate/rename decision to the user. Read `README.md`, any brief/notes/seed docs the user points to, and `IDEAS.md` if present. Don't synthesize a product from nothing — if there's no material and no user to interview, stop and say so.
+Check for `PRODUCT.md` before creating one. Also check casing/variants like `docs/product.md` to avoid missing existing context: if a variant exists but `PRODUCT.md` does not, use the variant as source material, then create `PRODUCT.md` as the durable craft file and mention the duplicate/rename decision to the user. Read `README.md`, any brief/notes/seed docs the user points to, and `IDEAS.md` if present. Don't synthesize a product from nothing — if there's no material and no user to interview, stop and say so.
 
 ## Greenfield: define with the user
 

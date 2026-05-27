@@ -2,30 +2,36 @@
 
 Product development workflow for agentic development. From idea to production.
 
+This repo ships two plugins:
+
+- **`craft`** *(recommended)* — a lightweight engineering workflow (`prod` → `arch` → `spec`). Best for most projects.
+- **`forge`** — the heavyweight, full-ceremony pipeline documented below (staged `/1`–`/9` commands). Reach for it when you want the full structured process.
+
 ## Installation
 
 ```claude
 /plugin marketplace add andpush/product-flow
-/plugin install prod-flow
+/plugin install craft     # recommended
+/plugin install forge     # heavyweight, full pipeline
 ```
 
-## Workflow Overview
+## Workflow Overview (forge)
 
-Product Flow guides you through structured product development:
+`forge` guides you through structured product development:
 
-```
+```text
 ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────────────┐
 │ Your vision docs │     │ /1-define-product│     │ /2-mockup-product        │
-│ docs/initial/**  │────▶│ docs/product.md  │────▶│ docs/mockups/ (optional) │
+│ docs/**          │────▶│ PRODUCT.md       │────▶│ mockups/ (optional)      │
 └──────────────────┘     └───┬──────────────┘     └──────────────────────────┘
                              │
                      ┌───────┴──────────┐
                      ▼                  ▼
          ┌────────────────────────┐  ┌────────────────────────┐
-         │ /3-define-architecture │  │ /4-add-mvp-features    │
-         │ architecture.md        │  │ docs/features/F001-*/  │
-         └────────────────────────┘  │ feature.md             │
-                                     └───────┬────────────────┘
+         │ /3-define-architecture │  │ /4-add-mvp-features     │
+         │ ARCHITECTURE.md        │  │ features/F001-*/        │
+         └────────────────────────┘  │ feature.md              │
+                                      └───────┬─────────────────┘
                                              │
                                              ▼
                                   ┌─────────────────-----------─┐
@@ -57,7 +63,7 @@ Product Flow guides you through structured product development:
 
 **1. Create your vision documents:**
 ```bash
-mkdir -p docs/initial
+mkdir -p docs
 # Add your product vision, requirements, user research...
 ```
 
@@ -65,31 +71,31 @@ mkdir -p docs/initial
 ```claude
 /1-define-product my-startup
 ```
-Creates `docs/product.md` with structured specs: problem, solution, features, success metrics.
+Creates `PRODUCT.md` with structured specs: problem, solution, features, success metrics.
 
 **3. Design UI mockups:**
 ```claude
 /2-mockup-product
 ```
-Generates interactive HTML mockups in `docs/mockups/`.
+Generates interactive HTML mockups in `mockups/`.
 
 **4. Define architecture:**
 ```claude
 /3-define-architecture
 ```
-Creates `docs/architecture.md` with tech stack, components, data model, deployment plan.
+Creates `ARCHITECTURE.md` with tech stack, components, data model, deployment plan.
 
 **5. Break down into features:**
 ```claude
 /4-add-mvp-features
 ```
-Generates feature specs in `docs/features/F001-*/feature.md`.
+Generates feature specs in `features/F001-*/feature.md`.
 
 **6. Plan a feature:**
 ```claude
-/5-plan-feature F001-UserAuth
+/7-plan-feature F001-UserAuth
 ```
-Creates implementation plan in `docs/features/F001-UserAuth/plan.md`.
+Creates implementation plan in `features/F001-UserAuth/plan.md`.
 
 **7. Build the feature:**
 ```claude
@@ -101,30 +107,29 @@ Creates feature branch, implements code and tests.
 ```claude
 /9-review-feature F001-UserAuth
 ```
-Generates comprehensive review in `docs/features/F001-UserAuth/review.md`.
+Generates comprehensive review in `features/F001-UserAuth/review.md`.
 
 ## What Gets Created
 
-Product Flow organizes everything in a `docs/` directory:
+`forge` reads your input from `docs/` and writes generated artifacts to the project root:
 
-```
-docs/
-├── initial/        # Your input: vision, requirements, research
-├── product.md           # Generated: structured product definition
-├── architecture.md      # Generated: tech stack, components, data model
-├── adr.md               # Generated: Architecture Decision Records
-├── mockups/             # Generated: product-level UI mockups (HTML)
-├── features/
-│   └── F001-*/
-│       ├── feature.md   # Generated: feature specification
-│       ├── plan.md      # Generated: implementation plan
-│       ├── review.md    # Generated: code quality review
-│       └── mockups/     # Generated: feature-level UI mockups
+```text
+docs/                    # Your input: vision, requirements, research (any structure)
+PRODUCT.md               # Generated: structured product definition
+ARCHITECTURE.md          # Generated: tech stack, components, data model
+mockups/                 # Generated: product-level UI mockups (HTML)
+features/
+└── F001-*/
+    ├── feature.md       # Generated: feature specification
+    ├── plan.md          # Generated: implementation plan
+    ├── review.md        # Generated: code quality review
+    └── mockups/         # Generated: feature-level UI mockups
 ```
 
 ## Skills & Agents
 
 **Skills** (invoke with "use the X skill"):
+
 - `ba` - Business analysis and requirements decomposition
 - `sa` - Software architecture design
 - `code-explorer` - Codebase exploration and understanding
@@ -133,6 +138,7 @@ docs/
 - `uiux-design` - UI/UX design expertise
 
 **Agents** (autonomous specialists):
+
 - `code-reviewer` - Automated code review agent
 - `test-generator` - Test generation agent
 - `ui-mockup-designer` - UI mockup design agent

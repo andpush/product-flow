@@ -1,4 +1,4 @@
-# forge
+# craft
 
 A lightweight engineering workflow: make the decisions that are expensive to get wrong (product,
 architecture, feature design) and capture them in durable, scannable files — so the build is just
@@ -39,5 +39,5 @@ spec <feature>  # frame a feature into a spec
 For local Claude plugin testing:
 
 ```bash
-claude --plugin-dir /path/to/forge
+claude --plugin-dir /path/to/craft
 ```

@@ -8,5 +8,5 @@ See `./README.md`.
 
 Test plugin locally:
 ```bash
-claude --plugin-dir /path/to/product-flow/prod-flow
+claude --plugin-dir /path/to/product-flow/forge
 ```

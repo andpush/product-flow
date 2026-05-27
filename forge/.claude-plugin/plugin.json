@@ -1,6 +1,6 @@
 {
-  "name": "prod-flow",
-  "description": "AI-first product development workflow. From idea to production.",
+  "name": "forge",
+  "description": "Heavyweight, full-ceremony product development workflow — staged commands from idea to production (define product, architecture, MVP features, mockups, plan, implement, review). For most projects the lighter `craft` plugin is recommended; reach for forge when you want the full structured pipeline.",
   "version": "1.0.0",
   "author": {
     "name": "Andrei Pushkin",

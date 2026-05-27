@@ -8,14 +8,14 @@
   },
   "plugins": [
     {
-      "name": "prod-flow",
-      "description": "AI-first product development workflow. From idea to production.",
-      "source": "./prod-flow",
+      "name": "craft",
+      "description": "Recommended. Lightweight engineering workflow: prod (define the product), arch (define architecture, stack, conventions), spec (turn intent into a buildable spec with verifiable acceptance criteria).",
+      "source": "./craft",
       "category": "development"
     },
     {
       "name": "forge",
-      "description": "Lightweight engineering workflow: prod (define the product), arch (define architecture, stack, conventions), spec (turn intent into a buildable spec with verifiable acceptance criteria).",
+      "description": "Heavyweight, full-ceremony alternative — staged commands from idea to production (define product, architecture, MVP features, mockups, plan, implement, review). Most projects should prefer craft.",
       "source": "./forge",
       "category": "development"
     }
