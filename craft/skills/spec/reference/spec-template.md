@@ -23,7 +23,7 @@
 
 *Describe the solution approach.*
 
-### Architecture  *[diagram for any structural change]*
+### Architecture  *[if any structural change]*
 
 *ASCII diagram of components, boundaries, interactions, data flow - what applicable to depict the change.*
 
@@ -31,7 +31,7 @@
 <ascii>
 ```
 
-### Key decisions & rejected approaches
+### Key decisions & rejected approaches *[if any]*
 
 *Brief summary ~ one line per decision. Rejected approaches should answer WHY?*
 
@@ -74,9 +74,9 @@
 
 *For a refactor: define safety net that locks current behavior before any code moves, and the per-commit migration order that keeps the suite green.*
 
-### Open questions
+### Open questions that block implementation *[if any]*
 
-*Anything unresolved that could block the build, and decisions to flag for the user before building.*
+*Anything that should be resolved before building.*
 
 ## Verification
 
