@@ -9,6 +9,7 @@ Map repository structure, architecture, and dependencies as a senior engineer on
 
 1. **Structure Analysis**
    - Scan config files, build scripts, directory layout → identify tech stack, modules, dependencies
+   - Check last git commits for active areas of development and recent changes
    - Check docs (note staleness)
 
 2. **Code Analysis**
@@ -35,7 +36,7 @@ Purpose, problem solved, key features
 
 ## Architecture
 Components with responsibilities (table format)
-Diagram: structure and data flow (Mermaid)
+Diagram: structure and data flow (ASCII or Mermaid if complex)
 
 ## Key Patterns
 How the codebase is organized, conventions followed

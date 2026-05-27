@@ -5,19 +5,30 @@ Product development workflow for agentic development. From idea to production.
 This repo ships two plugins:
 
 - **`craft`** *(recommended)* — a lightweight engineering workflow (`prod` → `arch` → `spec`). Best for most projects.
-- **`forge`** — the heavyweight, full-ceremony pipeline documented below (staged `/1`–`/9` commands). Reach for it when you want the full structured process.
+- **`forge`** — the heavyweight, full-ceremony workflow documented below (staged `/1`–`/9` commands). Reach for it when you want the full structured process.
 
 ## Installation
 
 ```claude
 /plugin marketplace add andpush/product-flow
 /plugin install craft     # recommended
-/plugin install forge     # heavyweight, full pipeline
+/plugin install forge     # heavyweight, full workflow
 ```
 
-## Workflow Overview (forge)
+## `Craft` plugin workflow
 
-`forge` guides you through structured product development:
+The workflow consists of 3 skills: `prod`, `arch`, `spec`:
+
+1. Call `prod` to collaboratively create (or update) `PRODUCT.md` that is required for further steps. You can also use other skills like `impeccable teach` from https://impeccable.style/, or create it manually. One time, so prefer bigger models/thinking efforts, e.g. Opus/high.
+2. Call `arch` to collaboratively create (or update) `ARCHITECTURE.md` that is required for further steps. One time, so prefer bigger models/thinking efforts, e.g. Opus/high.
+3. Call `spec` to collaboratively create a solution spec that is ready for the execution. Prefer medium models/efforts combinations: Opus/low, Sonnet/medium, GPT-5.5/medium.
+4. Use built-in `/goal` command in a new/clean session to implement the spec till completion. You can use faster models here (Sonnet/low, Gemini 3.5 Flash). This session usually can work unattended or in a headless subagent as long as permissions are granted or auto mode is on.
+
+Optionally you can run `simplify` or `review` skill (not included, use from any vendor you trust) in a clear context to ensure code quality and reuse. Having context cleared helps remove creator bias, using a different model (e.g. GPT-5.5) helps as well.
+
+## `Forge` plugin workflow
+
+`forge` guides you through more structured product development:
 
 ```text
 ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────────────┐
