@@ -37,7 +37,9 @@
 
 ### Architectural changes *[if any]*
 
-*Significant architecural changes in terse format, that should be added verbatim to `ADR.md` by the build.*
+*Significant architecural changes in terse form.*
+
+Add verbatim to `ADR.md` at implementation.
 
 ```markdown
 ## YYYY-MM-DD · [component] · Short title
@@ -99,9 +101,3 @@ The delegated build (`/goal` or any executing agent) is done only when **every**
 - [ ] Memory updated: inlined *Architectural changes* transcribed to `ADR.md`; deferred ideas to `IDEAS.md`; `README.md` and `ARCHITECTURE.md` updated to stay in sync if required.
 - [ ] Spec `Status` flipped to `Done (YYYY-MM-DD)` — the final act, only once every box above holds.
 - [ ] Changes committed with proper message.
-
-## `IDEAS.md` entry format
-
-```markdown
-- [ ] YYYY-MM-DD · [area] — the idea in one line (why it might matter).
-```

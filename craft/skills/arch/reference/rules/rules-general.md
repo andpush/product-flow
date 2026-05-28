@@ -15,9 +15,3 @@
 - Don't refactor unrelated code.
 - Remove imports/functions/variables that YOUR changes made unused.
 - Every changed line should trace directly to the request.
-
-## Architectural decisions
-
-- On any architectural choice: surface the trade-off, prefer the simpler option, challenge a weak default with a better concrete one.
-- Ask when discovered. No paralysis, no question-answering theatre.Ask only what affects the solution.
-- Document substantial architectural changes in `ADR.md` in a terse form.
