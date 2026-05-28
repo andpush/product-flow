@@ -7,76 +7,50 @@ sections for stacks the project doesn't use.
 
 # Conventions seed
 
-## General
+General:
 
-- Avoid duplications, use DRY principle.
-- Avoid artificial complexity, stick to KISS/YAGNI principles.
-- Prefer immutable data structures.
-- Ground the implementation on requirements. Strictly adhere to the provided context. Do not invent or hallucinate features, technologies, or dependencies that aren't specified.
-- Separate concerns with a clear folder structure; package by feature where practical.
+- Build only what the spec calls for — don't invent features, dependencies, or tech that isn't specified.
+- Surgical edits: touch only what the task needs, match surrounding style, don't refactor unrelated code, and drop imports/symbols your change orphaned.
+- Package by feature, not by layer; don't pre-create `service`/`repository`/`utils` scaffolding just in case.
 
-**Surgical Changes:**
+Backend:
 
-- Touch only what you must. Match existing style.
-- Minimum code/complexity that solves the problem.
-- Don't refactor unrelated code.
-- Remove imports/functions/variables that YOUR changes made unused.
-- Every changed line should trace directly to the request.
+- Simplified layering: API → Service → Store; expose over REST unless another protocol is specified.
+- No parallel `*Dto` unless the wire shape genuinely differs.
 
-## Testing
 
-- **TDD** for APIs and before refactoring: RED → GREEN → REFACTOR.
-- **Pyramid**: many unit (fast), some integration, few end-to-end (Playwright) — slow but load-bearing.
-- Test behavior through the public surface, not implementation details; one clear intent per test, named for the behavior it pins.
-- Fake only true boundaries (network, filesystem, clock, randomness, payments); never mock your own business logic.
-- Cover the acceptance criteria and the non-trivial/error paths — not lines for their own sake.
+Testing:
 
-## Backend
+- TDD for APIs and before refactoring: RED → GREEN → REFACTOR.
+- Pyramid: many fast unit, fewer integration, few slow end-to-end.
+- Fake only true boundaries (network, filesystem, clock, randomness, payments); never mock your own logic.
+- Pin behavior through the public surface, one intent per test; cover acceptance criteria and error paths, not line count.
 
-- Simplified layered architecture: API -> Service -> Store.
-- Expose services via REST unless another protocol is explicitly specified.
-- Prepare for containerization and cloud deployment.
+Webapp:
 
-## Web app
-
-- One component library and one styling system per app — don't mix paradigms.
-- Component-first: small, composable, single-purpose components over large ones.
-- Keep state close to where it's used; lift it only when genuinely shared.
+- One component library and one styling system — don't mix paradigms.
+- Keep state local; lift it only when genuinely shared.
 - Accessibility is a requirement, not a polish pass: semantic HTML, keyboard paths, WCAG AA.
-- Fetch the framework's current docs when unsure rather than guessing an API.
 
-## Mobile
+Flutter:
 
-- Follow the platform/language's official style guide (e.g. Effective Dart for Dart).
-- Pick one state-management approach and apply it consistently; don't mix paradigms.
-- Theme centrally (e.g. `MaterialApp.theme`); don't hardcode colors/sizes in widgets.
-- Separate concerns with a clear folder structure; package by feature where practical.
-- Small, composable widgets over large ones.
-- Responsive by construction: prefer flex/relative sizing over hardcoded dimensions.
-- Use the platform logger (e.g. `dart:developer` `log`), never `print`/`debugPrint`.
+- Follow official style guide `Effective Dart`.
+- One state-management approach, applied consistently.
+- Theme centrally (e.g. `MaterialApp.theme`); never hardcode colors/sizes in widgets.
+- Responsive sizing — flex/relative over fixed dimensions.
+- Log via the platform logger (e.g. `dart:developer` `log`), never `print`/`debugPrint`.
 
-## Kotlin
+Kotlin:
 
-- Prefer immutable `val` and `data class`; model absence with nullables, not sentinels.
-- Use sealed classes/interfaces for closed sets of states; exhaustive `when` (no `else` catch-all).
-- Functional decomposition first; package by feature, not by layer. Don't pre-create
-  `service`/`repository`/`mapper` layers "in case".
-- Keep functions small and pure where practical; push side effects to the edges.
-- Fail fast with clear exceptions or a `Result`/sealed error type — pick one per module, don't mix.
-- No `!!` outside tests. Handle null at the boundary.
-- Structured concurrency with coroutines; scope tied to lifecycle. No `GlobalScope`.
-- Suspend functions for I/O; never block a coroutine dispatcher thread.
+- Immutable `val`/`data class`; model absence with nullables, not sentinels.
+- Sealed types for closed state sets; exhaustive `when`, no `else` catch-all.
+- One error convention per module — exceptions or a `Result`/sealed type, not both.
+- No `!!` outside tests; resolve null at the boundary.
+- Structured concurrency only — scope to lifecycle, no `GlobalScope`; suspend for I/O, never block a dispatcher.
 
-## TypeScript
+TypeScript:
 
-- `strict` on. No `any`; use `unknown` + narrowing at boundaries. Prefer `type`/`interface` over
-  loose objects.
-- One shared type per concept across client/server/store. **No parallel `*Dto`** unless the wire
-  shape genuinely differs — validate at the edge (e.g. zod) and reuse the inferred type inward.
+- `strict` on; no `any` — use `unknown` + narrowing at boundaries.
 - Discriminated unions for closed state sets; exhaustive `switch` with a `never` default guard.
-- Package by feature, not by layer. Don't pre-create `services/`/`models/`/`utils/` scaffolding
-  before there's something to put in them.
-- Small pure functions; isolate side effects (I/O, DOM, network).
-- `async/await`, not raw `.then` chains. Never leave a promise unawaited (`no-floating-promises`).
-- Throw `Error` subclasses or return a typed result — one convention per module.
-- One package manager, committed lockfile. Type-check and lint in CI; format on commit.
+- One error convention per module — a thrown `Error` subclass or a typed result.
+- Never leave a promise unawaited (`no-floating-promises`).
