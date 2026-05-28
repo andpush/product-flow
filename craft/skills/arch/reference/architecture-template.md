@@ -51,4 +51,4 @@ scalability, observability, caching, reliability.
 
 ## Rules and Conventions
 
-The coding conventions that aren't obvious or that this project deviates on — per stack if several, a subsection each.
+The coding conventions that aren't obvious or that this project deviates on — per stack if several, a subsection each. Keep only what matters for this system.

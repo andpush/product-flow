@@ -22,7 +22,7 @@ Consumes `PRODUCT.md` (from `prod`); produces `ARCHITECTURE.md`, which `spec` co
 
 ## Detect first
 
-Map existing files before creating any: check `PRODUCT.md`, `ARCHITECTURE.md`, `ADR.md` / `DECISIONS.md`, plus variants like `docs/product.md`, `docs/architecture.md`, `docs/adr/*`, `README.md`, `CLAUDE.md`, and `AGENTS.md`. Forge's durable files are `PRODUCT.md` and `ARCHITECTURE.md`: use variants as source material to avoid losing context, mention any duplicate/refactoring decision to the user. If the repo already keeps conventions in their own file (`rules*.md`, `CONVENTIONS.md`), reference them from `ARCHITECTURE.md` instead of restating.
+Map the well-known files above before creating any, plus variants like `docs/product.md`, `docs/architecture.md`, and `docs/adr/*`. Craft's durable files are `PRODUCT.md` and `ARCHITECTURE.md`: use variants as source material to avoid losing context, and mention any duplicate/refactoring decision to the user. If the repo already keeps conventions in their own file (`rules*.md`, `CONVENTIONS.md`), reference them from `ARCHITECTURE.md` instead of restating.
 
 ## Product gate
 
@@ -39,7 +39,7 @@ Map existing files before creating any: check `PRODUCT.md`, `ARCHITECTURE.md`, `
 
 3. **Write `ARCHITECTURE.md`** using [reference/architecture-template.md](reference/architecture-template.md).
 
-4. **Seed `Rules and Conventions`** from [reference/rules/](reference/rules/). Read each, choose or generate by applicability and the tech stack. Adapt with the user, keep only the non-obvious or project-specific.
+4. **Seed `Rules and Conventions`** from [reference/conventions-seed.md](reference/conventions-seed.md). Take only the sections that fit the chosen stack, adapt with the user, keep only the non-obvious or project-specific.
 
 
 ## Brownfield: derive from the code, then confirm
@@ -62,8 +62,11 @@ Ensure both exist as thin pointers — never copy bulk in. Keep their existing s
 
 ```markdown
 # Project context
-Read `./ARCHITECTURE.md` for components, stacks, layout, and conventions.
-Read `./README.md` for the overview, `./ADR.md` for decision history.
+Read `PRODUCT.md`, `ARCHITECTURE.md` for durable context.
+When needed, peek into:
+- `README.md` for onboarding;
+- `IDEAS.md` for parked thoughts;
+- `ADR.md`/`DECISIONS.md`for decision history.
 ```
 
 ## Done

@@ -24,7 +24,7 @@ Use [reference/product-template.md](reference/product-template.md) as a guide fo
 ## Greenfield: define with the user
 
 1. Read whatever seed material exists (brief, notes, README). Treat the initial request as a proposed solution, not the problem.
-2. Interview to pin down: the **problem** and **who has it**, the **solution** (the product concept that solves it — not the technical design), the **core value**, the hard **constraints** (tech, budget, timeline, compliance, non-negotiables), and what **success** looks like. Surface assumptions; challenge vague or contradictory answers.
+2. Discover, don't interrogate — a conversation, not a form. Reach a shared, confirmed view of: the **problem** and **who has it**, the **solution** (the product concept that solves it — not the technical design), the **core value**, the hard **constraints** (tech, budget, timeline, compliance, non-negotiables), and what **success** looks like. Ask about each as it comes up, name the assumptions you're making, and challenge vague or contradictory answers rather than recording them.
 3. Settle **MVP scope**: what ships first vs. what's explicitly deferred. Park non-essential ideas in `IDEAS.md` rather than widening scope.
 4. Write `PRODUCT.md` using [reference/product-template.md](reference/product-template.md).
 

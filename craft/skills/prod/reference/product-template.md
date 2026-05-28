@@ -47,4 +47,4 @@ How we'll know it works — observable outcomes or metrics, not vanity numbers.
 
 ## References
 
-Link related materials: UIUX
+Link related materials — briefs, research, design (`DESIGN.md`), prior art.
