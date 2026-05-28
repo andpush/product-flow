@@ -15,12 +15,16 @@ If a `PRODUCT.md` already exists — from impeccable or by hand — adopt and ex
 
 ## Detect first
 
-Check for `PRODUCT.md` before creating one. Also check casing/variants like `docs/product.md` to avoid missing existing context: if a variant exists but `PRODUCT.md` does not, use the variant as source material, then create `PRODUCT.md` as the durable craft file and mention the duplicate/rename decision to the user. Read `README.md`, any brief/notes/seed docs the user points to, and `IDEAS.md` if present. Don't synthesize a product from nothing — if there's no material and no user to interview, stop and say so.
+Check for `PRODUCT.md` before creating one. Also check casing/variants like `docs/product.md` to avoid missing existing context: if a variant exists but `PRODUCT.md` does not, use the variant as source material, then create `PRODUCT.md` as the durable craft file and mention the duplicate/rename decision to the user. Read `README.md`, any brief/notes/seed docs the user points to, and `IDEAS.md` if present.
+
+Don't synthesize a product from nothing — interview the user to elicit the product context. If the user provides a product description in the initial request, treat it as a proposed vision to be refined, not the final problem statement.
+
+Use [reference/product-template.md](reference/product-template.md) as a guide for the content and structure of `PRODUCT.md`, adapt as needed.
 
 ## Greenfield: define with the user
 
 1. Read whatever seed material exists (brief, notes, README). Treat the initial request as a proposed solution, not the problem.
-2. Interview to pin down: the **problem** and **who has it**, the **solution** (the product concept that solves it — not the technical design), the **core value**, the hard **constraints** (tech, budget, timeline, compliance, non-negotiables), and what **success** looks like. Surface assumptions; challenge vague or contradictory answers — one question at a time via `AskUserQuestion`, no question-answering theatre.
+2. Interview to pin down: the **problem** and **who has it**, the **solution** (the product concept that solves it — not the technical design), the **core value**, the hard **constraints** (tech, budget, timeline, compliance, non-negotiables), and what **success** looks like. Surface assumptions; challenge vague or contradictory answers.
 3. Settle **MVP scope**: what ships first vs. what's explicitly deferred. Park non-essential ideas in `IDEAS.md` rather than widening scope.
 4. Write `PRODUCT.md` using [reference/product-template.md](reference/product-template.md).
 
@@ -28,7 +32,7 @@ Check for `PRODUCT.md` before creating one. Also check casing/variants like `doc
 
 1. Read `README.md`, existing docs, and enough code to infer what the product does and for whom. Verify docs against the code.
 2. Draft `PRODUCT.md` describing the product as it *is*; surface gaps, contradictions, or unstated assumptions as findings — don't invent intent.
-3. Confirm with the user, then write `PRODUCT.md`. If `README.md` restates the product, slim it to a pointer.
+3. Discuss and confirm with the user, then write `PRODUCT.md`. If `README.md` restates the product, slim it to a pointer.
 
 ## Done
 

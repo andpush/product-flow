@@ -37,7 +37,7 @@
 
 ### Architectural changes *[if any]*
 
-*Decisions flagged as significant architectural changes that should be added verbatim to `ADR.md` by the build.*
+*Significant architecural changes in terse format, that should be added verbatim to `ADR.md` by the build.*
 
 ```markdown
 ## YYYY-MM-DD · [component] · Short title
@@ -89,7 +89,9 @@
 
 ### Definition of Done
 
-The build (`/goal` or any executing agent) is done only when **every** box below holds — stop-conditions alongside the acceptance criteria.
+*This section should be included unchanged.*
+
+The delegated build (`/goal` or any executing agent) is done only when **every** box below holds — stop-conditions alongside the acceptance criteria.
 
 - [ ] Tests written for the new/changed behavior and passing — `<test command>` green. *(refactor: characterization safety net + existing suite green.)*
 - [ ] All acceptance criteria above met.
@@ -97,3 +99,9 @@ The build (`/goal` or any executing agent) is done only when **every** box below
 - [ ] Memory updated: inlined *Architectural changes* transcribed to `ADR.md`; deferred ideas to `IDEAS.md`; `README.md` and `ARCHITECTURE.md` updated to stay in sync if required.
 - [ ] Spec `Status` flipped to `Done (YYYY-MM-DD)` — the final act, only once every box above holds.
 - [ ] Changes committed with proper message.
+
+## `IDEAS.md` entry format
+
+```markdown
+- [ ] YYYY-MM-DD · [area] — the idea in one line (why it might matter).
+```

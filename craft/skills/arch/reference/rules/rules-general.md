@@ -18,5 +18,6 @@
 
 ## Architectural decisions
 
-- On any architectural choice: surface the trade-off, prefer the simpler option, challenge a weak default with a better concrete one — then move. No paralysis, no question-answering theatre. Ask the user one thing at a time; don't ask what you can verify.
+- On any architectural choice: surface the trade-off, prefer the simpler option, challenge a weak default with a better concrete one.
+- Ask when discovered. No paralysis, no question-answering theatre.Ask only what affects the solution.
 - Document substantial architectural changes in `ADR.md` in a terse form.

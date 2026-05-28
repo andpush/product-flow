@@ -24,13 +24,12 @@ For each component/module: its responsibility (one line) and its stack.
 
 ## System Architecture
 
-Visualize how components talk (calls, queues, shared DB) and the trust/ownership boundaries.
+Visualize the structure, interactions and the trust/ownership boundaries.
 Prefer ASCII diagrams with <120 characters in width, mermaid for larger diagrams.
-Select 2-3 relevant diagrams:
- (1) High Level System Design - core system modules boundaries and interaction (mandatory).
- (2) Data Flow, Sequence or Activity Diagram; BPMN - for complex flow.
- (3) Core persistent entities or ERD from business perspective - for modules with persistent data.
- (4) State diagram if state machine is central.
+Include general system view, add more if it affect decisions:
+- Data flow / sequence / activity view — for complex flow.
+- Entity / ERD view — for modules with persistent data.
+- State view — when state machine is central.
 
 ## Data model
 
@@ -45,13 +44,10 @@ Where things live: top-levels tree of dirs/modules and what each holds. Enough t
 
 The commands and entrypoints to build, run, test, and deploy.
 
-## Non-functional requirements
+## Architecture drivers / risks
 
-Only those, affecting the solution architecture
-
-## Crosscutting aspects
-
-Deployment strategy, Scalability, Observability, APM, caching.
+Only constraints and risks that shape architecture: performance, security, compliance, deployment,
+scalability, observability, caching, reliability.
 
 ## Rules and Conventions
 

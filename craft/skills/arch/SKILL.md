@@ -16,6 +16,7 @@ Consumes `PRODUCT.md` (from `prod`); produces `ARCHITECTURE.md`, which `spec` co
 | `PRODUCT.md` | purpose, users, constraints | `prod` (or `/impeccable teach`) |
 | `ARCHITECTURE.md` | components, stacks, boundaries, layout, entrypoints, conventions |  this `arch` skill or manually |
 | `ADR.md` \| `DECISIONS.md` | why choices were made | appended over time |
+| `IDEAS.md` | parked ideas, future scope, items needing elaboration | appended over time |
 | `README.md` | human onboarding | human; read as a source |
 | `CLAUDE.md` \| `AGENTS.md` | onboarding for agents | this `arch` skill or manually |
 

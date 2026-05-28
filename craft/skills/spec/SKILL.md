@@ -1,20 +1,24 @@
 ---
 name: spec
-description: Use before building any non-trivial software change — a feature, service, API, data model, schema, behavior change, or refactor — to turn an intent into a self-contained, build-ready solution spec through collaborative dialogue. Analyse the problem, capture requirements, explore the codebase, decide the approach, and emit verifiable acceptance criteria.
+description: Use when asked to build any non-trivial software change — a feature, service, API, data model, schema, behavior change, or refactor — to analyse the intent, discover requirements , decide and plan the approach.
 ---
 
-Turn an idea into a build-ready solution spec through natural collaborative dialogue: understand the project context, refine the intent one question at a time, weigh approaches, define acceptance criteria, confirm.
+Turn an intent into a self-contained, build-ready solution spec through collaborative dialogue.
+
+During the collaborative session: understand context -> refine intent -> discover hidden decisions and surface tradeoffs -> define the approach -> define acceptance criteria, confirm readiness for delegated build.
 
 A session between user and agent:
 | User (Human) | Agent (You) |
 |---|---|
 | Formulates the task, need or a problem. | Comprehends the request, explores the codebase, asks clarifying questions, challenges assumptions, raises issues/inconsistencies/gaps, suggests solution options — including non-obvious ones the user may not have considered — and surfaces trade-offs. |
-| Makes decisions and clarifications.   Validates the suggested appoach | Writes a self-contained solution specification with clear acceptance criteria. |
+| Makes decisions and clarifications. Validates the suggested approach. | Writes a self-contained solution specification with clear acceptance criteria. |
 
 
 The spec is the deliverable, not code: don't implement during a spec session — it ends only at a spec the user has confirmed.
 
-Once it's ready, the build is just execution against it — via `/goal` ("work until the acceptance criteria and Definition of Done pass"), a dispatched subagent, or any agent.
+Once it's ready, the build is delegated execution — via `/goal` ("work until the acceptance criteria and Definition of Done pass"), a dispatched subagent, or any agent.
+
+The spec is ready when another agent can execute it cold, without redesign.
 
 The discipline that governs the build lives in `ARCHITECTURE.md` (planted by `arch`), not here.
 
@@ -33,49 +37,44 @@ Read `PRODUCT.md`, `ARCHITECTURE.md`, the decision log (`ADR.md`/`DECISIONS.md`)
 
 Scale the session to the request. A focused, low-risk change earns a couple of sentences and a single confirmation; a nuanced or risky one earns real exploration — alternatives, trade-offs, a sketch. Don't impose heavy elaboration where the problem doesn't call for it, when unclear - ask before elaborating.
 
-## 1. Explore project context
-
+## 1. Explore the context
 Understand the ground you're building on:
-- Read `PRODUCT.md`, `ARCHITECTURE.md`, `IDEAS.md`, and the decision log (`ADR.md`/`DECISIONS.md`)
-- Check files, docs and recent commits
-- Understand layers and components boundaries
-
+- Read `PRODUCT.md`, `ARCHITECTURE.md`, `IDEAS.md`, decision log (`ADR.md`/`DECISIONS.md`), relevant files, docs, recent commit log.
 ## 2. Frame the problem
+In touch with user, turn vague requests into concrete goals. If the request is a proposed solution, establish the motivation. Verify risky assumptions. Challenge contradictions and gaps. Push for clarity on the core value and the acceptance criteria.
+If the request spans several independent subsystems, or assumes too many changes, confirm if the user wants to split it and suggest options.
 
-- **Understand the problem.** If the request is a proposed solution - establish the motivation - why it matters.
-- Transform vague requests into concrete goals.
-- **State assumptions** and verify the risky ones; don't build against an unvalidated one.
-- **Right-size** If the request spans several independent subsystems, or assumes too many changes, confirm if the user wants to split it and suggest options.
+## 3. Design the solution
 
-- **Gap analysis** — what's ambiguous, missing, or contradictory; only what blocks building.
+Define the approach. If the problem warrants it, generate 2-3 genuinely different approaches — include one simpler, and one non-obvious option if useful. Recommend one and say why it beats the others.
 
-## 3. Design solution
+Ask questions when they arise. Don't ask what you can verify or that don't affect the solution. Push back when warranted.
 
-- **Explore alternatives, don't anchor.** When the problem warrants it, generate 2-3 genuinely different approaches — include one simpler, and one non-obvious option if you see it. Present the forks conversationally via `AskUserQuestion`, recommend one, and say why it beats the others.
-- Ask one thing at a time, don't ask what you can verify. Push back when warranted.
-- YAGNI: Remove what the core value doesn't need, name what's out, and defer non-essential ideas to `IDEAS.md`.
+Follow rules and conventions in `ARCHITECTURE.md`.
+
+## 4. Write the spec
+
+- Use template [reference/spec-template.md](reference/spec-template.md).
+- Be concrete, avoid prose, duplications, restatements of `PRODUCT.md`/`ARCHITECTURE.md` - link instead.
+- YAGNI: Focus on the core value, and defer non-essential ideas to `IDEAS.md`.
 - If the existing code has smells/problems in the path of the change (a file grown too large, tangled responsibilities, unclear boundaries), fold targeted fixes into the spec — the way a good engineer improves the code they touch. But don't propose unrelated refactoring; stay on the goal.
-- If the feature forces a system-level change (new component, boundary shift, data model change, or a new dependency), flag it as the architecture update that need to be put in the changelog.
-- Avoid duplications and restatements of `PRODUCT.md`/`ARCHITECTURE.md` - link instead.
-- **Be concrete.** Favor artifacts — trees, schemas, signatures — over prose that restates them. Foundational contracts as real/pseudo code belong in the spec; full implementations don't. (The template defines the blocks and their formats.)
-- **Capture decisions inline** as you settle them; don't write `ADR.md`/`IDEAS.md` during the session — the build propagates them.
-- **A refactor is governed by TDD:** establish a green safety net (characterization tests first if coverage is thin) before restructuring; the criterion is behavior preserved, not new behavior.
-- **The acceptance criteria** are the linchpin — phrase them as checkable conditions; they become the build's stop-condition.
-- **The Definition of Done** travels in every spec as the build's quality gate; fill its test command for real, not a placeholder. (The template carries the DoD items.)
-- **Status lifecycle:** `spec` sets `Draft` → `Ready to build`; the build flips it to `Done`. A scan of `Status:` lines across `docs/specs/` is the progress trail — no separate file.
+- Flag significant architectural changes - in case the feature forces a system-level change (new component, boundary shift, data model change, or a new dependency).
 
-## 4. Present and confirm the solution
+
+- **A refactor** is governed by TDD: establish a green safety net before restructuring.
+- The **acceptance criteria** are the linchpin — phrase them as checkable conditions; they become the build's stop-condition.
+
+## 5. Present and confirm
 
 Don't just dump a spec with the details buried in it; present the chosen solution clearly in a way easy to grasp for a human:
 - Visualize with ASCII sketch if it helps.
 - Highlight components affected by the planned changes.
 - Obtain confirmation that the spec captures the intent and is ready to build. If not, iterate.
 
-## 5. Emit the spec
+## 6. Emit the spec
 
 Write `docs/specs/YYYY-MM-DD-nnn-<slug>.md` using [reference/spec-template.md](reference/spec-template.md) (`nnn` = next sequence for the date; `<slug>` = kebab feature name).
 
-Decisions live **inline** in the spec's *Decisions* section in the format from [reference/decisions.md](reference/decisions.md); the build propagates them to `ADR.md` and deferred ideas to `IDEAS.md` as part of the DoD — don't write the logs during the session.
 
 ## Quality checklist
 
@@ -93,7 +92,6 @@ Self-review the spec with fresh eyes before declaring it ready:
 
 **When done:**
 - confirm the spec path
+- set status `Ready to build`
 - commit the spec
 - report it's ready to execute and give the one-line `/goal` (or subagent brief) as the next step that builds it. A few lines, no narrative.
-
-
