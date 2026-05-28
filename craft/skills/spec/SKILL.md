@@ -1,6 +1,6 @@
 ---
 name: spec
-description: Use when asked to build any non-trivial software change — a feature, service, API, data model, schema, behavior change, or refactor — to analyse the intent, discover requirements , decide and plan the approach.
+description: Must be used when asked to build any non-trivial changes to the software — a feature, service, API, data model, schema, behavior change, or refactoring — to analyse user intent, discover requirements, brainstorm and plan the approach.
 ---
 
 Turn an intent into a self-contained, build-ready solution spec through collaborative dialogue.
