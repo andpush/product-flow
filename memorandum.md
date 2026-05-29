@@ -1,4 +1,4 @@
-# Craft Memorandum
+# Craft skills memorandum - May, 2026
 
 Craft is an SDD plugin for people who want to stay top-level decision makers: product owners, directors, CTOs.
 
