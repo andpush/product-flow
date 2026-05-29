@@ -3,9 +3,9 @@ name: spec
 description: Must be used when asked to build any non-trivial changes to the software — a feature, service, API, data model, schema, behavior change, or refactoring — to analyse user intent, discover requirements, brainstorm and plan the approach.
 ---
 
-Turn an intent into a self-contained, build-ready solution spec through collaborative dialogue.
+Turn an intent into a self-contained, build-ready solution spec through collaborative dialogue. The spec is a handout for a build agent, so it must be clear and concrete enough to execute from cold, without further clarifications or design decisions.
 
-During the collaborative session: understand context -> refine intent -> discover hidden decisions and surface tradeoffs -> define the approach -> define acceptance criteria, confirm readiness for delegated build.
+During this collaborative session: understand context -> refine intent -> discover hidden decisions and surface tradeoffs -> define the approach -> define acceptance criteria, confirm readiness for delegated build.
 
 A session between user and agent:
 | User (Human) | Agent (You) |
@@ -16,16 +16,17 @@ A session between user and agent:
 
 The spec is the deliverable, not code: don't implement during a spec session — it ends only at a spec the user has confirmed.
 
-The spec is ready when another agent can execute it, without clarifications or redesign. Once it's ready, the implementation is a delegated execution — via `/goal`, a dispatched subagent, or any agent.
+Once it's ready, the implementation is a delegated execution — via `/goal`, a dispatched subagent, or any agent.
 
-## Pre-requisites
+## Context gates — detect, don't dead-end
 
-These are prerequisites for producing a valid spec. If one fails, explain the need to build missing project context.
+`spec` builds on `PRODUCT.md` and `ARCHITECTURE.md`. Map them first (and variants — `docs/product.md`, casing) so existing context isn't missed.
 
-| Gate | To do if fail |
-|---|---|
-| `PRODUCT.md` exists and not placeholder | Ask the user to run `/prod` (or `/impeccable teach` for design-led projects). Never synthesize it from the prompt. |
-| `ARCHITECTURE.md` exists and is substantive (components, stack, conventions). | Ask the user to run `/arch`. |
+If either is missing or placeholder-only, don't wall off — offer a fork:
+- **Establish now** — run `prod`/`arch` in this session, scaled to the request (a quick minimal doc for a small change; full discovery for a new project), then continue the spec.
+- **Defer** — name what's missing and why it matters, then stop so the user runs `/prod`/`/arch` separately.
+
+Never synthesize `PRODUCT.md`/`ARCHITECTURE.md` from the prompt — the offer is to establish them properly, not fabricate.
 
 ## Core Principles
 
@@ -35,11 +36,11 @@ Scale the session to the request. A focused, low-risk change earns a couple of s
 
 ### User interaction
 
-Proactively involve user in the discovery process, this way you get precious information, while user gets sense of direction and able to steer.
+Proactively involve user in the discovery: you get precious information, they gain direction and can steer.
 
-Ask questions as they arise. No paralysis, no question-answering theatre. Ask only what affects the solution. Push back when warranted.
+Speak as a professional collaborator: you are tech lead, user is busy domain expert. Value their time, be terse, pragmatic, ask only what affects the solution. Ask questions as they arise; skip Q&A theatre. Push back when warranted.
 
-## Workflow
+## Process
 
 ### 1. Explore the context
 Understand the ground you're building on:
@@ -48,12 +49,15 @@ Understand the ground you're building on:
 
 ### 2. Frame the problem
 
-In touch with user, turn vague requests into concrete goals. If the request is a proposed solution, establish the motivation. Verify risky assumptions. Challenge contradictions and gaps. Push for clarity on the core value and the acceptance criteria.
+In touch with user, turn vague requests into concrete goals. Grasp the problem, not just gather requirements. If the request is a proposed solution, establish the motivation. Verify risky assumptions. Challenge contradictions and gaps. Push for clarity on the core value and the acceptance criteria.
+
 If the request spans several independent subsystems, or assumes too many changes, confirm if the user wants to split it and suggest options.
 
 ### 3. Design the solution
 
-Define the approach. Start simple, surface trade-offs.
+Define the approach. Start simple, surface trade-offs, involve the user.
+
+As new information arises, iterate between the solution and the problem framing — they shape each other. Refer to the codebase when context required.
 
 If the problem warrants it, generate 2-3 genuinely different approaches — include one simpler, and one non-obvious option if useful. Recommend one and say why it beats the others.
 

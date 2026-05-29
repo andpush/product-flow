@@ -11,7 +11,6 @@ A lightweight SDD workflow: **prod** -> **arch** -> **spec** -> **build** for:
 Make expensive decisions visible early: product, architecture, feature design. Capture them in
 durable, scannable files so build becomes execution against a clear spec.
 
-
 ## Skills
 
 | Skill | Produces |
@@ -27,10 +26,16 @@ and adopts existing files rather than clobbering them.
 prod → arch → spec → build (/goal, a subagent, or any agent)
 ```
 
-The spec's acceptance criteria double as the build's stop-condition. Conventions and the decision
-rule live in `ARCHITECTURE.md`, not in each spec. Decisions go to `ADR.md` by default, or existing
-`DECISIONS.md`; deferred ideas go to `IDEAS.md`. Resume any time by reading these files — no
-archaeology.
+## Well known files
+
+| File | Holds | Created by |
+|---|---|---|
+| `PRODUCT.md` | purpose, users, constraints | `prod` (or `/impeccable teach`) |
+| `ARCHITECTURE.md` | components, stacks, boundaries, layout, entrypoints, conventions |  this `arch` skill or manually |
+| `ADR.md` \| `DECISIONS.md` | why choices were made | appended over time |
+| `IDEAS.md` | parked ideas, future scope, items needing elaboration | appended over time |
+| `README.md` | human onboarding | human; read as a source |
+| `CLAUDE.md` \| `AGENTS.md` | onboarding for agents | `arch` skill or manually |
 
 ## Usage
 

@@ -9,9 +9,7 @@ Run once at project start; again only when the product direction shifts.
 
 `prod` owns the product definition; `arch` consumes it.
 
-For design-led projects `PRODUCT.MD` can be created by the impeccable plugin (https://impeccable.style): `/impeccable teach`.
-
-If a `PRODUCT.md` already exists — from impeccable or by hand — adopt and extend it; never write a second one.
+If a `PRODUCT.md` already exists — written by hand or by the impeccable plugin (https://impeccable.style, `/impeccable teach`, for design-led projects) — adopt and extend it; never write a second one.
 
 ## Detect first
 

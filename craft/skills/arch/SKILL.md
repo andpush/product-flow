@@ -7,26 +7,21 @@ Establish the durable engineering context for a software project — architectur
 
 Run once; again only when foundations change.
 
-Consumes `PRODUCT.md` (from `prod`); produces `ARCHITECTURE.md`, which `spec` consumes. The design counterpart is the impeccable plugin (https://impeccable.style) — it owns the product's visual/UX design (DESIGN.md); `arch` owns the engineering architecture. Both apply to a project that has a UI.
+Consumes `PRODUCT.md` (from `prod`); produces `ARCHITECTURE.md`, which `spec` consumes.
 
-## Well known files
 
-| File | Holds | Created by |
-|---|---|---|
-| `PRODUCT.md` | purpose, users, constraints | `prod` (or `/impeccable teach`) |
-| `ARCHITECTURE.md` | components, stacks, boundaries, layout, entrypoints, conventions |  this `arch` skill or manually |
-| `ADR.md` \| `DECISIONS.md` | why choices were made | appended over time |
-| `IDEAS.md` | parked ideas, future scope, items needing elaboration | appended over time |
-| `README.md` | human onboarding | human; read as a source |
-| `CLAUDE.md` \| `AGENTS.md` | onboarding for agents | this `arch` skill or manually |
 
 ## Detect first
 
 Map the well-known files above before creating any, plus variants like `docs/product.md`, `docs/architecture.md`, and `docs/adr/*`. Craft's durable files are `PRODUCT.md` and `ARCHITECTURE.md`: use variants as source material to avoid losing context, and mention any duplicate/refactoring decision to the user. If the repo already keeps conventions in their own file (`rules*.md`, `CONVENTIONS.md`), reference them from `ARCHITECTURE.md` instead of restating.
 
-## Product gate
+## Product gate — detect, don't dead-end
 
-`arch` requires a substantive `PRODUCT.md`, which provides high level context on WHAT we build. If it is missing or placeholder-only, stop and ask the user to run `prod` first, or use external tool like `impeccable teach` or create manually. Do not invent product purpose, users, or constraints from architecture preferences alone.
+`arch` builds on `PRODUCT.md` for high-level context on WHAT we build (the `Detect first` mapping above covers variants). If it's missing or placeholder-only, don't wall off — offer a fork:
+- **Establish now** — run `prod` in this session (scaled to the request), then continue.
+- **Defer** — name what's missing and why, then stop so the user runs `/prod` separately.
+
+Never invent product purpose, users, or constraints from architecture preferences alone.
 
 ## Greenfield: define with the user
 
@@ -44,7 +39,10 @@ Map the well-known files above before creating any, plus variants like `docs/pro
 
 ## Brownfield: derive from the code, then confirm
 
-1. Explore build files, layout, entry points, data layer, external calls. Read `README.md` as a source but verify it against the code.
+1. **Explore the codebase:**
+- Orient first (`PRODUCT.md`, readme, layout, config, dir tree);
+- Large repo -> fan out `Explore` agents partitioned by territory, each reports its slice along fixed dimensions — purpose, entry points & boundaries, data, external calls, conventions & tests, backed by `file:line` and snippets. Consolidate in the main context
+- Small, flat, or tangled repo -> do a single pass yourself, reading code and taking notes.
 2. Draft `ARCHITECTURE.md` ([reference/architecture-template.md](reference/architecture-template.md)) describing the system as it is.
 3. Surface questionable parts as findings — don't discard working decisions. Suggest parking improvements in `IDEAS.md`.
 4. Confirm with the user, then write `ARCHITECTURE.md`, including a `Rules and Conventions` section for the patterns and practices the code already follows.
@@ -71,4 +69,4 @@ When needed, peek into:
 
 ## Done
 
-Report whether `ARCHITECTURE.md` was created vs. adopted and the next step (`spec <first feature>`). A few lines.
+Report whether `ARCHITECTURE.md` was created vs. adopted and the next step (`/spec <first feature>`). A few lines.
