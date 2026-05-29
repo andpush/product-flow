@@ -5,6 +5,16 @@
 **Status:** Draft | Ready to build | Done (YYYY-MM-DD)
 **Target:** <components / area this touches>
 
+## Review Brief
+
+*The fast human-review surface — enough to approve the approach without reading the execution detail below. Keep it compressed; link down, don't restate.*
+
+- **Building:** what changes and the value, in a line.
+- **Approach:** the chosen solution in a sentence.
+- **Key tradeoffs:** the decisions that were live and what was chosen, one line each → `### Key decisions & rejected approaches`.
+- **Impact:** components / data / API touched; architectural change? yes/no + one line.
+- **Out / risk:** main risk and what's explicitly not done → `### Non-goals`.
+
 ## Goal
 
 *What this delivers, the expected behavior, the motivation and value.*
@@ -60,7 +70,11 @@ Add verbatim to `ADR.md` at implementation.
 
 ### Data model & migrations *[as appropriate]*
 
-*Affected/new entities / schema changes (DDL or type shapes) / required migrations.*
+*Affected/new entities / schema changes (DDL or type shapes) / required migrations. Note the source of truth / owner when an entity is new or its ownership shifts.*
+
+### State & lifecycle  *[as appropriate]*
+
+*State sets and transitions, who owns each transition, and lifecycle rules (creation, validity, expiry, deletion) — when the change introduces or alters them.*
 
 ### UI changes  *[as appropriate]*
 

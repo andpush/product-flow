@@ -48,6 +48,22 @@ Never invent product purpose, users, or constraints from architecture preference
 4. Confirm with the user, then write `ARCHITECTURE.md`, including a `Rules and Conventions` section for the patterns and practices the code already follows.
 5. If README restates structure, slim it to a pointer to `ARCHITECTURE.md`.
 
+## Decisions — flag, agree, record now
+
+When a fork or risk that shapes the architecture surfaces — in either mode — flag it to the user, framing the tradeoff by what future options each choice keeps or forecloses, not by technical label alone. Don't postpone it:
+- **Agreed** → reflect it in `ARCHITECTURE.md` *and* append an `ADR.md` record in the same pass.
+- **Rejected** → drop it, or park it in `IDEAS.md` if it's a maybe-later.
+
+Never leave an agreed decision unwritten or deferred to build time.
+
+ADR record shape:
+
+```markdown
+## YYYY-MM-DD · [component] · Short title
+**Decision:** one sentence — what we chose.
+**Why:** one or two sentences — why it beat the alternative (and what was rejected).
+```
+
 ## Architecture quality checklist
 
 Apply when drawing or revisiting component boundaries:

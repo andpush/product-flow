@@ -62,11 +62,14 @@ As new information arises, iterate between the solution and the problem framing 
 
 If the problem warrants it, generate 2-3 genuinely different approaches — include one simpler, and one non-obvious option if useful. Recommend one and say why it beats the others.
 
+When the change touches them, surface the decisions that cause expensive rewrites — data ownership / source of truth, state and lifecycle rules, boundaries, contracts — while they're still cheap to change; don't let them first surface in the written spec.
+
 Follow defined rules and conventions.
 
 ### 4. Write the spec
 
 - Use template [reference/spec-template.md](reference/spec-template.md).
+- Lead with the **Review Brief**: the scannable decision surface a human approves from. Keep execution detail below it, and only where it's needed.
 - Be concrete, avoid prose, duplications, restatements of `PRODUCT.md`/`ARCHITECTURE.md` - link instead.
 - YAGNI: Focus on the core value, and defer non-essential ideas to `IDEAS.md`.
 - If the change path crosses code smells (oversized file, tangled responsibilities, unclear boundaries), fold targeted fixes into the spec — improve what you touch. Don't propose unrelated refactoring.
@@ -97,6 +100,7 @@ Write `docs/specs/YYYY-MM-DD-nnn-<slug>.md` using [reference/spec-template.md](r
 
 Self-review the spec with fresh eyes before declaring it ready:
 - [ ] The spec should be minimal but sufficient to implement from cold (on empty context)
+- [ ] The Review Brief lets a human approve the approach without reading the execution detail
 - [ ] The acceptance criteria should be verifiable
 - [ ] Testing approach is defined
 - [ ] No full implementations or step-by-step task lists; no duplications
