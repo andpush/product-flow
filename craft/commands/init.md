@@ -1,5 +1,5 @@
 ---
-description: Bootstrap a small project's durable context in one session — run prod, then arch, scaled down.
+description: Run `prod` then `arch` skills to quickstart with `PRODUCT.md` and `ARCHITECTURE.md`.
 argument-hint: [one-line idea or repo note]
 ---
 # Command Instructions
