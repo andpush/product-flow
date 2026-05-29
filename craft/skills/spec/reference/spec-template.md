@@ -72,9 +72,9 @@ Add verbatim to `ADR.md` at implementation.
 
 ### Testing approach
 
-*What to test and at which layer, and how (frameworks, fakes, fixtures). Follow testing pyramid: unit tests > integration tests > e2e tests.*
+*What to test and at which layer, and how (tools, mocks, fixtures).*
 
-*For a refactor: define safety net that locks current behavior before any code moves, and the per-commit migration order that keeps the suite green.*
+*For a refactor: define green safety net that locks current behavior before any code moves.*
 
 ### Open questions that block implementation *[if any]*
 
@@ -91,13 +91,16 @@ Add verbatim to `ADR.md` at implementation.
 
 ### Definition of Done
 
-*This section should be included unchanged.*
+*This section should be included unchanged for the build agent.*
 
-The delegated build (`/goal` or any executing agent) is done only when **every** box below holds — stop-conditions alongside the acceptance criteria.
+The implementation is done only when **every** box below holds:
 
-- [ ] Tests written for the new/changed behavior and passing — `<test command>` green. *(refactor: characterization safety net + existing suite green.)*
-- [ ] All acceptance criteria above met.
-- [ ] No duplication, no dead code, no obvious security issues; consistent with `ARCHITECTURE.md`.
-- [ ] Memory updated: inlined *Architectural changes* transcribed to `ADR.md`; deferred ideas to `IDEAS.md`; `README.md` and `ARCHITECTURE.md` updated to stay in sync if required.
-- [ ] Spec `Status` flipped to `Done (YYYY-MM-DD)` — the final act, only once every box above holds.
-- [ ] Changes committed with proper message.
+- [ ] Tests written for the new/changed behavior and passing green. *(refactor: characterization safety net + existing suite green.)*
+- [ ] All acceptance criteria above met
+- [ ] Code is buildable and runnable without errors
+- [ ] `simplify` or similar skill invoked: no duplications, no dead code, no unjustified complexity
+- [ ] `code-review` and `security-review` (or similar skill) agents spawed and finished, without pointing to any major issues
+- [ ] Code is consistent with `ARCHITECTURE.md`
+- [ ] Memory updated: inlined *Architectural changes* transcribed to `ADR.md`; deferred ideas to `IDEAS.md`; `README.md` and `ARCHITECTURE.md` updated to stay in sync if required
+- [ ] Spec `Status` flipped to `Done (YYYY-MM-DD)` — the final act, only once every box above holds
+- [ ] Changes committed with proper message

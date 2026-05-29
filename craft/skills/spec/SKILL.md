@@ -46,6 +46,7 @@ Speak as a professional collaborator: you are tech lead, user is busy domain exp
 Understand the ground you're building on:
 - Read `PRODUCT.md`, `ARCHITECTURE.md`.
 - Peek into dir tree, recent commit log, `IDEAS.md`, `ADR.md` if warranted.
+- Explore additional context and zoom in as needed.
 
 ### 2. Frame the problem
 
@@ -68,10 +69,10 @@ Follow defined rules and conventions.
 - Use template [reference/spec-template.md](reference/spec-template.md).
 - Be concrete, avoid prose, duplications, restatements of `PRODUCT.md`/`ARCHITECTURE.md` - link instead.
 - YAGNI: Focus on the core value, and defer non-essential ideas to `IDEAS.md`.
-- If the existing code has smells/problems in the path of the change (a file grown too large, tangled responsibilities, unclear boundaries), fold targeted fixes into the spec — the way a good engineer improves the code they touch. But don't propose unrelated refactoring; stay on the goal.
-- Flag significant architectural changes - in case the feature forces a system-level change (new component, boundary shift, data model change, or a new dependency).
-- **A refactor** is governed by TDD: establish a green safety net before restructuring.
-- The **acceptance criteria** are the linchpin — phrase them as checkable conditions; they become the build's stop-condition.
+- If the change path crosses code smells (oversized file, tangled responsibilities, unclear boundaries), fold targeted fixes into the spec — improve what you touch. Don't propose unrelated refactoring.
+- Flag architectural impact when the feature forces a system-level change: new component, boundary shift, data model change, or new dependency.
+- Define a feature-relevant testing approach following the testing pyramid. For UI changes, consider e2e (Playwright or similar). Gate refactoring with TDD: establish a green safety net before restructuring.
+- Acceptance criteria are the implementation agent's stop condition. Minimum: code builds and runs, no lint errors, tests green, behavior change observable. Add criteria where needed to pin down intent.
 
 ### 5. Present and confirm
 
@@ -95,14 +96,15 @@ Write `docs/specs/YYYY-MM-DD-nnn-<slug>.md` using [reference/spec-template.md](r
 ## Quality checklist
 
 Self-review the spec with fresh eyes before declaring it ready:
-- [ ] The spec should be minimal but sufficient to build from cold (on empty context).
-- [ ] The acceptance criteria should be verifiable, to be directly used as `/goal` stop-conditions.
+- [ ] The spec should be minimal but sufficient to implement from cold (on empty context)
+- [ ] The acceptance criteria should be verifiable
 - [ ] Testing approach is defined
-- [ ] No full implementations or step-by-step task lists; no duplications.
-- [ ] No contradictions between sections (e.g. scope vs. acceptance criteria).
+- [ ] No full implementations or step-by-step task lists; no duplications
+- [ ] No contradictions between sections (e.g. scope vs. acceptance criteria)
 - [ ] No requirement that reads two ways
 
-**When done:**
+## When done
+
 - confirm the spec path
 - if no open blockers - set status `Ready to build`, otherwise `Draft`
 - commit the spec
