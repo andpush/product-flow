@@ -42,9 +42,13 @@ prod → arch → spec → build (/goal, a subagent, or any agent)
 Invoke the skills by name in your agent host:
 
 ```text
+/craft:init      # small project: run prod then arch in one scaled-down session
 /prod            # define the product with user
 /arch            # define the architecture with user
 /spec <feature>  # frame a feature into a spec with user
 /clear          # clear context
 /goal <spec_file> # work on spec till done - unattended.
 ```
+
+`/craft:init` is a convenience macro for small/fresh projects — it just chains `prod` then `arch`.
+For larger or evolving projects, run `/prod` and `/arch` separately so each can be revisited on its own.
