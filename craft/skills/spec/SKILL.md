@@ -20,13 +20,11 @@ Once it's ready, the implementation is a delegated execution — via `/goal`, a 
 
 ## Context gates — detect, don't dead-end
 
-`spec` builds on `PRODUCT.md` and `ARCHITECTURE.md`. Map them first (and variants — `docs/product.md`, casing) so existing context isn't missed.
+`spec` builds on `PRODUCT.md` and `ARCHITECTURE.md`.
 
-If either is missing or placeholder-only, don't wall off — offer a fork:
-- **Establish now** — run `prod`/`arch` in this session, scaled to the request (a quick minimal doc for a small change; full discovery for a new project), then continue the spec.
-- **Defer** — name what's missing and why it matters, then stop so the user runs `/prod`/`/arch` separately.
-
-Never synthesize `PRODUCT.md`/`ARCHITECTURE.md` from the prompt — the offer is to establish them properly, not fabricate.
+If either is missing or placeholder-only — offer a fork:
+- **Establish now** — run `prod`/`arch` skills in this session, then continue the spec.
+- **Defer** — name what's missing and why it matters, then stop so the user runs `/init` separately.
 
 ## Core Principles
 
@@ -38,7 +36,7 @@ Scale the session to the request. A focused, low-risk change earns a couple of s
 
 Proactively involve user in the discovery: you get precious information, they gain direction and can steer.
 
-Speak as a professional collaborator: you are tech lead, user is busy domain expert. Value their time, be terse, pragmatic, ask only what affects the solution. Ask questions as they arise; skip Q&A theatre. Push back when warranted.
+Speak as a professional collaborator: you are tech lead, user is domain expert. Value their time, be terse, pragmatic, ask only what affects the solution. Ask questions as they arise; skip Q&A theatre. Push back when warranted.
 
 ## Process
 

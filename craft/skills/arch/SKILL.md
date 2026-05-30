@@ -7,35 +7,32 @@ Establish the durable engineering context for a software project — architectur
 
 Run once; again only when foundations change.
 
-Consumes `PRODUCT.md` (from `prod`); produces `ARCHITECTURE.md`, which `spec` consumes.
+Consumes `PRODUCT.md` (from `prod`); produces or updates `ARCHITECTURE.md`, which `spec` consumes.
 
+## Initial context
 
-
-## Detect first
-
-Map the well-known files above before creating any, plus variants like `docs/product.md`, `docs/architecture.md`, and `docs/adr/*`. Craft's durable files are `PRODUCT.md` and `ARCHITECTURE.md`: use variants as source material to avoid losing context, and mention any duplicate/refactoring decision to the user. If the repo already keeps conventions in their own file (`rules*.md`, `CONVENTIONS.md`), reference them from `ARCHITECTURE.md` instead of restating.
-
-## Product gate — detect, don't dead-end
-
-`arch` builds on `PRODUCT.md` for high-level context on WHAT we build (the `Detect first` mapping above covers variants). If it's missing or placeholder-only, don't wall off — offer a fork:
+Refer to `PRODUCT.md` for high-level context on WHAT we build. If it's missing or placeholder — offer a fork:
 - **Establish now** — run `prod` in this session (scaled to the request), then continue.
 - **Defer** — name what's missing and why, then stop so the user runs `/prod` separately.
 
 Never invent product purpose, users, or constraints from architecture preferences alone.
 
+Map the well-known files. If the repo already contains conventions (e.g. `rules*.md`), reference them from `ARCHITECTURE.md` instead of restating.
+
+Load [reference/architecture-template.md](reference/architecture-template.md) as a guide for the architecture context structure.
+
 ## Greenfield: define with the user
 
-1. **Read context.** `PRODUCT.md` for purpose, users, constraints.
+1. Understand the product purpose, users, constraints.
 
-2. **Propose architecture and stack.**
+2. Propose architecture and stack.
    - **Start simple.** KISS, YAGNI. Complexity matched to the problem.
    - **Important:** Architecture and stack shape each other — iterate to coherence: propose components with preliminary tech, validate the tech against the components, refine both.
    - **Explore alternatives.** Present substantial forks: 2-3 options and recommend one via `AskUserQuestion`. Don't bikeshed settled defaults; riskier decisions are closer to data and API boundaries. Examples: monolith vs. services, pre-built vs. bespoke, paid vs. open-source, concurrent vs. sequential, relational vs. object, message queue vs database, persistent vs. in-memory, etc.
 
-3. **Write `ARCHITECTURE.md`** using [reference/architecture-template.md](reference/architecture-template.md).
+3. **Write `ARCHITECTURE.md`** in collaboration with the user, link to existing docs instead of restating them.
 
 4. **Seed `Rules and Conventions`** from [reference/conventions-seed.md](reference/conventions-seed.md). Take only the sections that fit the chosen stack, adapt with the user, keep only the non-obvious or project-specific.
-
 
 ## Brownfield: derive from the code, then confirm
 

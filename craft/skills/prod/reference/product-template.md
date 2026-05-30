@@ -39,7 +39,6 @@ What ships first to deliver the core value.
 ### Out / Later
 
 What is explicitly deferred.
-Parked ideas go to `IDEAS.md`.
 
 ## Success signals
 
