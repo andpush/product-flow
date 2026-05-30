@@ -7,13 +7,13 @@
 
 ## Review Brief
 
-*The fast human-review surface — enough to approve the approach without reading the execution detail below. Keep it compressed; link down, don't restate.*
+*Terse summary for fast human-review.*
 
-- **Building:** what changes and the value, in a line.
-- **Approach:** the chosen solution in a sentence.
-- **Key tradeoffs:** the decisions that were live and what was chosen, one line each → `### Key decisions & rejected approaches`.
-- **Impact:** components / data / API touched; architectural change? yes/no + one line.
-- **Out / risk:** main risk and what's explicitly not done → `### Non-goals`.
+- **Goal:** What to be done and why, in a line.
+- **Approach:** the solution approach in a sentence.
+- **Key decisions and tradeoffs:** summary, details are below.
+- **Impact:** components / data / API touched.
+- **Risks:** main risk and what's explicitly not done.
 
 ## Goal
 
@@ -98,22 +98,12 @@ Add verbatim to `ADR.md` at implementation.
 
 ### Acceptance criteria
 
-*Verifiable conditions. For a behavior change, observable conditions; for a refactor - behavior unchanged, suite green.*
+*Append the checklist below to enforce additional criteria of Done for the implementing agent.*
 
-- [ ] <e.g. "POST /x with body Y returns 201 and persists Z">
-- [ ] <e.g. "`./gradlew test` green; no public API change">
-
-### Definition of Done
-
-*This section should be included unchanged for the build agent.*
-
-The implementation is done only when **every** box below holds:
-
-- [ ] Tests written for the new/changed behavior and passing green. *(refactor: characterization safety net + existing suite green.)*
-- [ ] All acceptance criteria above met
+- [ ] Tests written and passing green
 - [ ] Code is buildable and runnable without errors
 - [ ] `simplify` or similar skill invoked: no duplications, no dead code, no unjustified complexity
-- [ ] `code-review` and `security-review` (or similar skill) agents spawed and finished, without pointing to any major issues
+- [ ] `code-review` and `security-review` (or similar) agents spawed and finished, without pointing to any major issues
 - [ ] Code is consistent with `ARCHITECTURE.md`
 - [ ] Memory updated: inlined *Architectural changes* transcribed to `ADR.md`; deferred ideas to `IDEAS.md`; `README.md` and `ARCHITECTURE.md` updated to stay in sync if required
 - [ ] Spec `Status` flipped to `Done (YYYY-MM-DD)` — the final act, only once every box above holds

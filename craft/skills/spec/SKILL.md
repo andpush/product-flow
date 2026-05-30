@@ -97,17 +97,13 @@ Write `docs/specs/YYYY-MM-DD-nnn-<slug>.md` using [reference/spec-template.md](r
 ## Quality checklist
 
 Self-review the spec with fresh eyes before declaring it ready:
-- [ ] The spec should be minimal but sufficient to implement from cold (on empty context)
-- [ ] The Review Brief lets a human approve the approach without reading the execution detail
-- [ ] The acceptance criteria should be verifiable
+- [ ] The spec is minimal but sufficient to implement from cold (on empty context)
+- [ ] The acceptance criteria is verifiable
 - [ ] Testing approach is defined
-- [ ] No full implementations or step-by-step task lists; no duplications
 - [ ] No contradictions between sections (e.g. scope vs. acceptance criteria)
 - [ ] No requirement that reads two ways
 
 ## When done
 
-- confirm the spec path
-- if no open blockers - set status `Ready to build`, otherwise `Draft`
-- commit the spec
+- if no open blockers - set status `Ready to build` and commit, otherwise `Draft`
 - report it's ready to execute and give the one-line `/goal` (or subagent brief) as the next step that builds it. A few lines, no narrative.
