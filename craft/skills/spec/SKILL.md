@@ -3,7 +3,7 @@ name: spec
 description: Must be used when asked to build any non-trivial changes to the software — a feature, service, API, data model, schema, behavior change, or refactoring — to analyse user intent, discover requirements, brainstorm and plan the approach.
 ---
 
-Turn an intent into a self-contained, build-ready solution spec through collaborative dialogue. The spec is a handout for a build agent, so it must be clear and concrete enough to execute from cold, without further clarifications or design decisions.
+Turn an intent into a self-contained, build-ready solution spec through collaborative dialogue. The spec is a handoff for a build agent, so it must be clear and concrete enough to execute from cold, without further clarifications or design decisions.
 
 During this collaborative session: understand context -> refine intent -> discover hidden decisions and surface tradeoffs -> define the approach -> define acceptance criteria, confirm readiness for delegated build.
 
