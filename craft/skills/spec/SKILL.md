@@ -72,7 +72,7 @@ Follow defined rules and conventions.
 - YAGNI: Focus on the core value, and defer non-essential ideas to `IDEAS.md`.
 - If the change path crosses code smells (oversized file, tangled responsibilities, unclear boundaries), fold targeted fixes into the spec — improve what you touch. Don't propose unrelated refactoring.
 - Flag architectural impact when the feature forces a system-level change: new component, boundary shift, data model change, or new dependency.
-- Define a feature-relevant testing approach following the testing pyramid. For UI changes, consider e2e (Playwright or similar). Gate refactoring with TDD: establish a green safety net before restructuring.
+- Define a feature-relevant testing approach following the testing pyramid. For UI changes, consider e2e using playwright-cli skill or similar. Gate refactoring with TDD: establish a green safety net before restructuring.
 - Acceptance criteria are the implementation agent's stop condition. Minimum: code builds and runs, no lint errors, tests green, behavior change observable. Add criteria where needed to pin down intent.
 
 ### 5. Present and confirm

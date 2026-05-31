@@ -15,6 +15,11 @@ This repo ships two plugins:
 /plugin install forge     # heavyweight, full workflow
 ```
 
+It is recommended to have these skills configured:
+    - simplify
+    - code-review
+    - playwright-cli
+
 ## `Craft` plugin workflow
 
 The workflow consists of 3 skills: `prod`, `arch`, `spec`:
