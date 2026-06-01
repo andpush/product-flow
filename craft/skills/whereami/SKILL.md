@@ -15,20 +15,9 @@ ls -1 docs/specs/*.md 2>/dev/null | sort
 - Specs that are not done (Draft / Ready to build):
 ```bash
 grep -L 'Status:\*\* Done' docs/specs/*.md 2>/dev/null
-```
-- Branch status:
-```bash
-git branch --format='%(HEAD) %(refname:short) -> [%(upstream:short) %(upstream:track)] %(committerdate:relative): %(contents:subject)'
-# Unmerged branches:
-git branch --no-merged
-```
-- Recent moves:
-```bash
-git status -s
-git log --oneline -15 --all --graph --format='%h %cd %s' --date=short
-```
+
 - `ADR.md` tail — recent architectural changes, if any.
-- `IDEAS.md` — parked work / likely TBD (entries are dated `- [ ] YYYY-MM-DD · …`).
+- `IDEAS.md` — parked work / likely TBD as the next steps.
 
 ## Infer
 
@@ -37,6 +26,8 @@ git log --oneline -15 --all --graph --format='%h %cd %s' --date=short
 - Next: Spec drafts or ready for impl, parked ideas, uncommitted files, feature branches not merged.
 
 ## Report (terse — fits one screen)
+
+Emit every section below. The last three are verbatim pass-throughs of the gathered git output — never summarize or drop them because TIMELINE overlaps; they are separate on purpose.
 
 PROJECT  <one line: what it is>
 NOW      <current focus / last thing touched / if stuck indicators, explain why>
@@ -50,8 +41,20 @@ TIMELINE (up to 15 entries)
 2026-06-01 spec TODO - Export data to CSV ← here
   Summary of the current (not done) spec.
 >
-GIT BRANCHES <indicate current, upstream, ahead/behind, days since last commit, last commit message>
+GIT BRANCHES
+<verbatim
+```bash
+git branch --format='%(HEAD) %(refname:short) -> [%(upstream:short) %(upstream:track)] %(committerdate:relative): %(contents:subject)'
+```
+>
 UNMERGED BRANCHES
-RECENT COMMIT LOG
-N uncommitted files: <infer what's there>
+<verbatim `git branch --no-merged` output; "none" if empty>
+RECENT COMMITS
+<verbatim
+```bash
+git log --oneline -15 --all --graph --format='%h %cd %s' --date=short
+```
+>
+N uncommitted files:
+<based on `git status --porcelain` output. Infer what changes are there>
 
