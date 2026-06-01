@@ -36,12 +36,13 @@ NOW      <current focus / last thing touched / if stuck indicators, explain why>
 NEXT     <infer from IDEAS or current specs>
 
 TIMELINE
+<Example:
 2026-05-28 spec done - Auth with OAuth
 2026-05-29 idea open - Caching mechanism for API responses
 2026-05-29 adr  done - Billing integration with Stripe
 2026-06-01 spec TODO - Export data to CSV ← here
   Summary of the current (not done) spec.
-
+>
 GIT BRANCHES <indicate current, upstream, ahead/behind, days since last commit, last commit message>
 UNMERGED BRANCHES <`git branch --no-merged`>
 RECENT MOVES (from log of 15 recent commits)
