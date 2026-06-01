@@ -8,12 +8,16 @@ Reload the user's mental context in seconds. Read the artifacts, infer the story
 ## Gather (skip what's absent)
 
 - `PRODUCT.md` first line — what this is.
-- `docs/specs/*.md` — list, newest by filename date. Read the 1–2 most recent and not done.
+- `docs/specs/*.md` — list, newest by filename date. Read current (status != `Done`).
 - Git barnches status:
 ```bash
 git branch --format='%(HEAD) %(refname:short) -> [%(upstream:short) %(upstream:track)] %(committerdate:relative): %(contents:subject)'
 ```
-- `git log --oneline -15` and `git status -s` — recent moves + uncommitted work.
+- Git recent moves:
+```bash
+git status -s
+git log --oneline -15 --all --graph --format='%h %cd %s' --date=short
+```
 - `ADR.md` tail — recent architectural changes, if any.
 - `IDEAS.md` — parked work / likely TBD.
 
@@ -41,6 +45,7 @@ TIMELINE
 GIT BRANCHES <indicate current, upstream, ahead/behind, days since last commit, last commit message>
 UNMERGED BRANCHES
 RECENT MOVES
+<use `git log --oneline -15 --all --graph --format='%h %cd %s' --date=short`>
 2026-05-28 <branch> <commit_id> - Implemented OAuth flow
 2026-06-01 feature/stripe - Stripe dependnency added, tests in progress ←
 2 uncommitted files: <infer what's there>
