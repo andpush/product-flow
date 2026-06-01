@@ -8,27 +8,27 @@ Reload the user's mental context in seconds. Read the artifacts, infer the story
 ## Gather (skip what's absent)
 
 - `PRODUCT.md` first lines — what this is.
-- List specs:
+- List specs (newest last):
 ```bash
-!ls -1 docs/specs/*.md | sort
+ls -1 docs/specs/*.md 2>/dev/null | sort
 ```
-- Scan specs that are not done:
+- Specs that are not done (Draft / Ready to build):
 ```bash
-!grep -L 'Status:\*\* Done' docs/specs/*.md
+grep -L 'Status:\*\* Done' docs/specs/*.md 2>/dev/null
 ```
-- Git barnches status:
+- Branch status:
 ```bash
-!git branch --format='%(HEAD) %(refname:short) -> [%(upstream:short) %(upstream:track)] %(committerdate:relative): %(contents:subject)'
-# Unnerged branches:
-!git branch --no-merged
+git branch --format='%(HEAD) %(refname:short) -> [%(upstream:short) %(upstream:track)] %(committerdate:relative): %(contents:subject)'
+# Unmerged branches:
+git branch --no-merged
 ```
-- Git recent moves:
+- Recent moves:
 ```bash
-!git status -s
-!git log --oneline -15 --all --graph --format='%h %cd %s' --date=short
+git status -s
+git log --oneline -15 --all --graph --format='%h %cd %s' --date=short
 ```
 - `ADR.md` tail — recent architectural changes, if any.
-- `IDEAS.md` — parked work / likely TBD.
+- `IDEAS.md` — parked work / likely TBD (entries are dated `- [ ] YYYY-MM-DD · …`).
 
 ## Infer
 
@@ -52,6 +52,6 @@ TIMELINE (up to 15 entries)
 >
 GIT BRANCHES <indicate current, upstream, ahead/behind, days since last commit, last commit message>
 UNMERGED BRANCHES
-RECENT COMMITS
+RECENT COMMIT LOG
 N uncommitted files: <infer what's there>
 
