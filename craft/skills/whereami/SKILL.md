@@ -52,9 +52,8 @@ UNMERGED BRANCHES
 RECENT COMMITS
 <verbatim
 ```bash
-git log --oneline -15 --all --graph --format='%h %cd %s' --date=short
-```
->
-N uncommitted files:
-<based on `git status --porcelain` output. Infer what changes are there>
+git log --oneline -10 --all --graph --format='%h %cd %s' --date=short
+git status --porcelain
+```>
+N uncommitted files: <Infer what changes are there>
 
