@@ -51,6 +51,7 @@ TIMELINE (up to 15 entries)
 >
 GIT BRANCHES <indicate current, upstream, ahead/behind, days since last commit, last commit message>
 UNMERGED BRANCHES <`git branch --no-merged`>
-RECENT MOVES (up to 15 recent commits)
+RECENT COMMITS
+<!git log --oneline -15 --all --graph --format='%h %cd %s' --date=short>
 N uncommitted files: <infer what's there>
 ```
