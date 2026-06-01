@@ -10,15 +10,17 @@ Reload the user's mental context in seconds. Read the artifacts, infer the story
 - `PRODUCT.md` first lines — what this is.
 - List specs:
 ```bash
-ls -1 docs/specs/*.md | sort
+!ls -1 docs/specs/*.md | sort
 ```
 - Scan specs that are not done:
 ```bash
-grep -L 'Status:\*\* Done' docs/specs/*.md
+!grep -L 'Status:\*\* Done' docs/specs/*.md
 ```
 - Git barnches status:
 ```bash
 !git branch --format='%(HEAD) %(refname:short) -> [%(upstream:short) %(upstream:track)] %(committerdate:relative): %(contents:subject)'
+# Unnerged branches:
+!git branch --no-merged
 ```
 - Git recent moves:
 ```bash
@@ -50,8 +52,7 @@ TIMELINE (up to 15 entries)
   Summary of the current (not done) spec.
 >
 GIT BRANCHES <indicate current, upstream, ahead/behind, days since last commit, last commit message>
-UNMERGED BRANCHES <`git branch --no-merged`>
-RECENT COMMITS
-<!git log --oneline -15 --all --graph --format='%h %cd %s' --date=short>
+UNMERGED BRANCHES
+RECENT COMMITS <git log >
 N uncommitted files: <infer what's there>
 ```
