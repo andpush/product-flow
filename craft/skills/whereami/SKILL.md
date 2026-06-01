@@ -38,7 +38,6 @@ Reload the user's mental context in seconds. Read the artifacts, infer the story
 
 ## Report (terse — fits one screen)
 
-```
 PROJECT  <one line: what it is>
 NOW      <current focus / last thing touched / if stuck indicators, explain why>
 NEXT     <infer from IDEAS or current specs>
@@ -53,6 +52,6 @@ TIMELINE (up to 15 entries)
 >
 GIT BRANCHES <indicate current, upstream, ahead/behind, days since last commit, last commit message>
 UNMERGED BRANCHES
-RECENT COMMITS <git log >
+RECENT COMMITS
 N uncommitted files: <infer what's there>
-```
+
