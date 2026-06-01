@@ -11,12 +11,12 @@ Reload the user's mental context in seconds. Read the artifacts, infer the story
 - `docs/specs/*.md` — list, newest by filename date. Read current (status != `Done`).
 - Git barnches status:
 ```bash
-git branch --format='%(HEAD) %(refname:short) -> [%(upstream:short) %(upstream:track)] %(committerdate:relative): %(contents:subject)'
+!git branch --format='%(HEAD) %(refname:short) -> [%(upstream:short) %(upstream:track)] %(committerdate:relative): %(contents:subject)'
 ```
 - Git recent moves:
 ```bash
-git status -s
-git log --oneline -15 --all --graph --format='%h %cd %s' --date=short
+!git status -s
+!git log --oneline -15 --all --graph --format='%h %cd %s' --date=short
 ```
 - `ADR.md` tail — recent architectural changes, if any.
 - `IDEAS.md` — parked work / likely TBD.
@@ -35,7 +35,7 @@ PROJECT  <one line: what it is>
 NOW      <current focus / last thing touched / if stuck indicators, explain why>
 NEXT     <infer from IDEAS or current specs>
 
-TIMELINE
+TIMELINE (up to 15 entries)
 <Example:
 2026-05-28 spec done - Auth with OAuth
 2026-05-29 idea open - Caching mechanism for API responses
@@ -45,7 +45,6 @@ TIMELINE
 >
 GIT BRANCHES <indicate current, upstream, ahead/behind, days since last commit, last commit message>
 UNMERGED BRANCHES <`git branch --no-merged`>
-RECENT MOVES (from log of 15 recent commits)
-```
+RECENT MOVES (up to 15 recent commits)
 N uncommitted files: <infer what's there>
 ```
