@@ -33,21 +33,21 @@
 
 *Describe the solution approach.*
 
+### Parallelization *[if applicable]*
+
+*When the plan contains independent pieces of work, list which parts can be implemented concurrently so the implementor can parallelize execution. Note any ordering dependencies between them.*
+
 ### Architecture  *[if any structural change]*
 
-*ASCII diagram of components, boundaries, interactions, data flow - what applicable to depict the change.*
-
-```text
-<ascii>
-```
+*Diagrams to depict components, boundaries, interactions, data flow — whatever's relevant to the change. Use ASCII (<120 chars wide) or Mermaid for more complex diagrams.*
 
 ### Key decisions & rejected approaches *[if any]*
 
-*Brief summary ~ one line per decision. Rejected approaches should answer WHY?*
+*Brief ~ one line per decision. Rejected approaches should answer WHY?*
 
 ### Architectural changes *[if any]*
 
-*Significant architecural changes in terse form.*
+*Significant architecural changes that need to be remembered.*
 
 Add verbatim to `ADR.md` at implementation.
 
