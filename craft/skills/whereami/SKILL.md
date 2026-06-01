@@ -7,8 +7,15 @@ Reload the user's mental context in seconds. Read the artifacts, infer the story
 
 ## Gather (skip what's absent)
 
-- `PRODUCT.md` first line — what this is.
-- `docs/specs/*.md` — list, newest by filename date. Read current (status != `Done`).
+- `PRODUCT.md` first lines — what this is.
+- List specs:
+```bash
+ls -1 docs/specs/*.md | sort
+```
+- Scan specs that are not done:
+```bash
+grep -L 'Status:\*\* Done' docs/specs/*.md
+```
 - Git barnches status:
 ```bash
 !git branch --format='%(HEAD) %(refname:short) -> [%(upstream:short) %(upstream:track)] %(committerdate:relative): %(contents:subject)'
@@ -23,10 +30,9 @@ Reload the user's mental context in seconds. Read the artifacts, infer the story
 
 ## Infer
 
-- **Last contribution**: newest spec/commits — what was being solved.
-- **Solved?**: spec acceptance boxes + whether commits/tests followed. Unchecked boxes or uncommitted changes = in-flight.
-- **Stuck?**: spec open but stale commits, WIP/revert/fixup churn, dangling uncommitted edits.
-- **Next**: open acceptance items > top `IDEAS.md` entry.
+- Last contribution: newest spec/commits — what was being solved.
+- Stuck? WIP/revert/fixup churn, dangling uncommitted edits.
+- Next: Spec drafts or ready for impl, parked ideas, uncommitted files, feature branches not merged.
 
 ## Report (terse — fits one screen)
 
