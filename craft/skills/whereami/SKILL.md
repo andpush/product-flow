@@ -45,7 +45,6 @@ TIMELINE
 GIT BRANCHES <indicate current, upstream, ahead/behind, days since last commit, last commit message>
 UNMERGED BRANCHES
 RECENT MOVES
-<use `git log --oneline -15 --all --graph --format='%h %cd %s' --date=short`>
 2026-05-28 <branch> <commit_id> - Implemented OAuth flow
 2026-06-01 feature/stripe - Stripe dependnency added, tests in progress ←
 2 uncommitted files: <infer what's there>
