@@ -43,9 +43,8 @@ TIMELINE
   Summary of the current (not done) spec.
 
 GIT BRANCHES <indicate current, upstream, ahead/behind, days since last commit, last commit message>
-UNMERGED BRANCHES
-RECENT MOVES
-2026-05-28 <branch> <commit_id> - Implemented OAuth flow
-2026-06-01 feature/stripe - Stripe dependnency added, tests in progress ←
-2 uncommitted files: <infer what's there>
+UNMERGED BRANCHES <`git branch --no-merged`>
+RECENT MOVES (from log of 15 recent commits)
+```
+N uncommitted files: <infer what's there>
 ```
