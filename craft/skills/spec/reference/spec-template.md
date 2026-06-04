@@ -11,6 +11,7 @@
 
 - **Goal:** What to be done and why, in a line.
 - **Approach:** the solution approach in a sentence.
+- **Diagram:** a flow/sequence/component sketch a reviewer can grasp at a glance (ASCII <120 chars or Mermaid). Include for any non-trivial change.
 - **Key decisions and tradeoffs:** summary, details are below.
 - **Impact:** components / data / API touched.
 - **Risks:** main risk and what's explicitly not done.
@@ -37,9 +38,9 @@
 
 *When the plan contains independent pieces of work, list which parts can be implemented concurrently so the implementor can parallelize execution. Note any ordering dependencies between them.*
 
-### Architecture  *[if any structural change]*
+### Architecture  *[diagram expected for non-trivial changes]*
 
-*Diagrams to depict components, boundaries, interactions, data flow — whatever's relevant to the change. Use ASCII (<120 chars wide) or Mermaid for more complex diagrams.*
+*The detailed diagram(s): components, boundaries, interactions, data flow, sequence, or state — whatever the change needs. Use ASCII (<120 chars wide) or Mermaid for more complex diagrams. The Review Brief's at-a-glance sketch is the entry point; this is where depth lives.*
 
 ### Key decisions & rejected approaches *[if any]*
 

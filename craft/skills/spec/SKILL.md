@@ -78,7 +78,7 @@ Follow defined rules and conventions.
 ### 5. Present and confirm
 
 Don't just dump a spec with the details buried in it; present the chosen solution clearly in a way easy to grasp for a human:
-- Visualize with ASCII sketch if it helps.
+- Lead the presentation with the diagram — it's the fastest way for a human to grasp and steer the solution.
 - Highlight components affected by the planned changes.
 - Obtain confirmation that the spec captures the intent and is ready to build. If not, iterate.
 
