@@ -31,7 +31,7 @@ Emit every section below. The last three are verbatim pass-throughs of the gathe
 
 PROJECT  <one line: what it is>
 NOW      <current focus / last thing touched / if stuck indicators, explain why>
-NEXT     <infer from IDEAS or current specs>
+NEXT     <infer from IDEAS, current state and project goals: think how would you proceed with the project in general and what can be first steps to move it forward>
 
 TIMELINE (up to 15 entries)
 <Example:
