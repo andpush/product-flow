@@ -26,7 +26,7 @@
 
 ### Non-goals  *[as appropriate]*
 
-*What this explicitly does not do, and briefly why. Deferred ideas go to `IDEAS.md` on build.*
+*What this explicitly does not do, and briefly why. Deferred ideas go to `docs/ideas/` on build.*
 
 ## Solution
 
@@ -106,6 +106,6 @@ Add verbatim to `ADR.md` at implementation.
 - [ ] `simplify` or similar skill invoked: no duplications, no dead code, no unjustified complexity
 - [ ] `code-review` and `security-review` (or similar) agents spawned and finished, without pointing to any major issues
 - [ ] Code is consistent with `ARCHITECTURE.md`
-- [ ] Memory updated: inlined *Architectural changes* transcribed to `ADR.md`; deferred ideas to `IDEAS.md`; `README.md` and `ARCHITECTURE.md` updated to stay in sync if required
+- [ ] Memory updated: inlined *Architectural changes* transcribed to `ADR.md`; deferred ideas to `docs/ideas/`; `README.md` and `ARCHITECTURE.md` updated to stay in sync if required
 - [ ] Spec `Status` flipped to `Done (YYYY-MM-DD)` — the final act, only once every box above holds
 - [ ] Changes committed with proper message

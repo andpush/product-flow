@@ -41,7 +41,7 @@ Load [reference/architecture-template.md](reference/architecture-template.md) as
 - Large repo -> fan out `Explore` agents partitioned by territory, each reports its slice along fixed dimensions — purpose, entry points & boundaries, data, external calls, conventions & tests, backed by `file:line` and snippets. Consolidate in the main context
 - Small, flat, or tangled repo -> do a single pass yourself, reading code and taking notes.
 2. Draft `ARCHITECTURE.md` ([reference/architecture-template.md](reference/architecture-template.md)) describing the system as it is.
-3. Surface questionable parts as findings — don't discard working decisions. Suggest parking improvements in `IDEAS.md`.
+3. Surface questionable parts as findings — don't discard working decisions. Suggest parking improvements in `docs/ideas/`.
 4. Confirm with the user, then write `ARCHITECTURE.md`, including a `Rules and Conventions` section for the patterns and practices the code already follows.
 5. If README restates structure, slim it to a pointer to `ARCHITECTURE.md`.
 
@@ -49,7 +49,7 @@ Load [reference/architecture-template.md](reference/architecture-template.md) as
 
 When a fork or risk that shapes the architecture surfaces — in either mode — flag it to the user, framing the tradeoff by what future options each choice keeps or forecloses, not by technical label alone. Don't postpone it:
 - **Agreed** → reflect it in `ARCHITECTURE.md` *and* append an `ADR.md` record in the same pass.
-- **Rejected** → drop it, or park it in `IDEAS.md` if it's a maybe-later.
+- **Rejected** → drop it, or park it in `docs/ideas/` if it's a maybe-later.
 
 Never leave an agreed decision unwritten or deferred to build time.
 
@@ -76,7 +76,7 @@ Ensure both exist as thin pointers — never copy bulk in. Keep their existing s
 Read `PRODUCT.md`, `ARCHITECTURE.md` for durable context.
 When needed, peek into:
 - `README.md` for onboarding;
-- `IDEAS.md` for parked ideas (candidates, not tasks);
+- `docs/ideas/` for parked ideas (candidates, not tasks);
 - `ADR.md`/`DECISIONS.md` for decision history.
 ```
 

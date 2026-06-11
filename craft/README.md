@@ -18,6 +18,7 @@ durable, scannable files so build becomes execution against a clear spec.
 | `prod` | `PRODUCT.md` — purpose, users, value, constraints, MVP scope |
 | `arch` | `ARCHITECTURE.md` — components, stack, boundaries, conventions |
 | `spec` | `docs/specs/*.md` — one buildable feature spec with verifiable acceptance criteria |
+| `idea` | `docs/ideas/*.md` — one-file idea capture with a quick PRODUCT.md alignment check |
 
 Each works greenfield (define with you) or brownfield (derive from existing code, then confirm),
 and adopts existing files rather than clobbering them.
@@ -33,7 +34,7 @@ prod → arch → spec → build (/goal, a subagent, or any agent)
 | `PRODUCT.md` | purpose, users, constraints | `prod` (or `/impeccable teach`) |
 | `ARCHITECTURE.md` | components, stacks, boundaries, layout, entrypoints, conventions |  this `arch` skill or manually |
 | `ADR.md` \| `DECISIONS.md` | why choices were made | appended over time |
-| `IDEAS.md` | idea backlog — unvalidated candidates, not commitments; `spec` validates on pickup (pursue / defer / reject) | appended over time |
+| `docs/ideas/*.md` | idea backlog, one file per idea (images beside) — unvalidated candidates, not commitments; `spec` validates on pickup (pursue / defer / reject); delete a file to drop an idea | `idea` skill or manually |
 | `README.md` | human onboarding | human; read as a source |
 | `CLAUDE.md` \| `AGENTS.md` | onboarding for agents | `arch` skill or manually |
 
@@ -46,6 +47,7 @@ Invoke the skills by name in your agent host:
 /prod            # define the product with user
 /arch            # define the architecture with user
 /spec <feature>  # frame a feature into a spec with user
+/idea <hunch>    # capture an idea into docs/ideas/, checked against PRODUCT.md
 /clear          # clear context
 /goal <spec_file> # work on spec till done - unattended.
 ```

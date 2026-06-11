@@ -50,14 +50,14 @@ Value their time — be terse, pragmatic, ask only what affects the solution, sk
 ### 1. Explore the context
 Understand the ground you're building on:
 - Read `PRODUCT.md`, `ARCHITECTURE.md`.
-- Peek into dir tree, recent commit log, `IDEAS.md`, `ADR.md` if warranted.
+- Peek into dir tree, recent commit log, `docs/ideas/` listing, `ADR.md` if warranted.
 - Explore additional context and zoom in as needed.
 
 ### 2. Frame the problem
 
 In touch with user, turn vague requests into concrete goals. Grasp the problem, not just gather requirements. If the request is a proposed solution, establish the motivation. Verify risky assumptions. Challenge contradictions and gaps. Push for clarity on the core value and the acceptance criteria.
 
-If the request originates as an idea (picked from `IDEAS.md` or a fresh hunch), validate it before specing: does it serve `PRODUCT.md`, is it worth doing now? Recommend a verdict — **pursue**, **defer**, or **reject** — rejection is a legitimate outcome, not a failure. Record the verdict in `IDEAS.md` (see lifecycle below).
+If the request originates as an idea (picked from `docs/ideas/` or a fresh hunch), validate it before specing: does it serve `PRODUCT.md`, is it worth doing now? Recommend a verdict — **pursue**, **defer**, or **reject** — rejection is a legitimate outcome, not a failure. Record the verdict in the idea file (see Ideas below).
 
 If the request spans several independent subsystems, or assumes too many changes, confirm if the user wants to split it and suggest options.
 
@@ -78,7 +78,7 @@ Follow defined rules and conventions.
 - Use template [reference/spec-template.md](reference/spec-template.md).
 - Lead with the **Review Brief**: the scannable decision surface a human approves from. Keep execution detail below it, and only where it's needed.
 - Be concrete, avoid prose, duplications, restatements of `PRODUCT.md`/`ARCHITECTURE.md` - link instead.
-- YAGNI: Focus on the core value, and defer non-essential ideas to `IDEAS.md`.
+- YAGNI: Focus on the core value, and defer non-essential ideas to `docs/ideas/`.
 - If the change path crosses code smells (oversized file, tangled responsibilities, unclear boundaries), fold targeted fixes into the spec — improve what you touch. Don't propose unrelated refactoring.
 - Flag architectural impact when the feature forces a system-level change: new component, boundary shift, data model change, or new dependency.
 - Define a feature-relevant testing approach following the testing pyramid. For UI changes, consider e2e using playwright-cli skill or similar. Gate refactoring with TDD: establish a green safety net before restructuring.
@@ -96,20 +96,9 @@ Don't just dump a spec with the details buried in it; present the chosen solutio
 Write `docs/specs/YYYY-MM-DD-nnn-<slug>.md` using [reference/spec-template.md](reference/spec-template.md) (`nnn` = next sequence for the date; `<slug>` = kebab feature name).
 
 
-## `IDEAS.md` contract
+## Ideas
 
-Ideas are candidates, not commitments — a capture net so nothing is forgotten while focusing on the main thing, never a to-do list. Capture is one cheap line; validation happens lazily, only when an idea is picked up (see Frame the problem).
-
-Entry format (indent sub-bullets for any attached thinking — don't open a spec for an unvalidated idea):
-
-```markdown
-- [ ] YYYY-MM-DD · [area] — the idea in one line (why it might matter).
-```
-
-Lifecycle on validation:
-- **pursue** → spec it; check the box and link the spec.
-- **defer** → leave as is, optionally note why now is wrong.
-- **reject** → strike through with a one-line reason; keep it so the idea isn't re-proposed.
+`docs/ideas/` holds one file per idea — candidates, not commitments, never a to-do list. Format and lifecycle are owned by the `idea` skill ([../idea/SKILL.md](../idea/SKILL.md)); filenames are the index — scan with a directory listing, open a file only on pickup. On validation (see Frame the problem), record the verdict in the idea's status line: **pursue** → link the spec, **defer** → leave open, **reject** → one-line reason, keep the file. Don't open a spec for an unvalidated idea; deleting idea files is the user's call, never yours.
 
 
 ## Quality checklist

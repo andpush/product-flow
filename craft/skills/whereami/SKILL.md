@@ -17,7 +17,7 @@ ls -1 docs/specs/*.md 2>/dev/null | sort
 grep -L 'Status:\*\* Done' docs/specs/*.md 2>/dev/null
 ```
 - `ADR.md` tail — recent architectural changes, if any.
-- `IDEAS.md` — unvalidated candidates, not commitments; report them parked, not as tasks.
+- Ideas (`ls -1 docs/ideas/*.md`) — unvalidated candidates, not commitments; report them parked, not as tasks. Filenames carry date + slug; don't open the files.
 
 ## Infer
 
@@ -32,9 +32,9 @@ Emit every section below. The last three are verbatim pass-throughs of the gathe
 PROJECT  <one line: what it is>
 NOW      <current focus / last thing touched / if stuck indicators, explain why>
 
-NEXT     <infer from current state: unfinished specs, branches, uncommitted edits, ideas, project goals — what moves the project forward. Recorded IDEAS are candidates, not commitments.>
+NEXT     <infer from current state: unfinished specs, branches, uncommitted edits, ideas, project goals — what moves the project forward. Recorded ideas are candidates, not commitments.>
 
-PARKED   <one line: N ideas in IDEAS.md awaiting validation; name 1-3 standouts. "none" if empty>
+PARKED   <one line: N ideas in docs/ideas/ awaiting validation; name 1-3 standouts. "none" if empty>
 
 TIMELINE (up to 15 entries)
 <Example:
