@@ -1,8 +1,8 @@
 ---
 name: slides
-description: This skill should be used when the user asks to "create slides" or "make a presentation" from text or markdown.
+description: Create slides from plain text; use when asked to make a presentation.
 ---
-Convert the text into a presentation deck in PPTX format.
+Convert text into a presentation deck in PPTX format.
 
 1. Review text first; flag any apparent omissions or inconsistencies.
 
@@ -18,11 +18,11 @@ Format:
       - use 2 or 3 column layout where appropriate, delimiting columns with `||`
       - Speaker Notes: `<!-- Notes: ... -->`
 Instructions:
-   - Group slides by meaning, not size
-   - Preserve original content, it is well thought out
-   - Occasional abbreviations allowed to match concise presentation style:
-      - Move explanatory passages (>2 sentences) to Speaker Notes.
-      - Move duplications into the Speaker Notes.
+   - Group information for slides by meaning, not size only
+   - Preserve original well though out content
+   - Occasional abbreviations allowed to match terse presentation style:
+      - Extract explanatory passages (>2 sentences) to Speaker Notes.
+      - Extract duplications into the Speaker Notes.
    - **Leave multiline code blocks intact**, even if they overflow one slide!
    - Add Agenda slide as the first slide (list all sections/major topics)
 3. Generate PPTX using the `md2pptx.py`:
