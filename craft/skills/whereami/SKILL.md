@@ -15,9 +15,9 @@ ls -1 docs/specs/*.md 2>/dev/null | sort
 - Specs that are not done (Draft / Ready to build):
 ```bash
 grep -L 'Status:\*\* Done' docs/specs/*.md 2>/dev/null
-
+```
 - `ADR.md` tail — recent architectural changes, if any.
-- `IDEAS.md` — parked work / likely TBD as the next steps.
+- `IDEAS.md` — unvalidated candidates, not commitments; report them parked, not as tasks.
 
 ## Infer
 
@@ -31,7 +31,10 @@ Emit every section below. The last three are verbatim pass-throughs of the gathe
 
 PROJECT  <one line: what it is>
 NOW      <current focus / last thing touched / if stuck indicators, explain why>
-NEXT     <infer from IDEAS, current state and project goals: think how would you proceed with the project in general and what can be first steps to move it forward>
+
+NEXT     <infer from current state: unfinished specs, branches, uncommitted edits, ideas, project goals — what moves the project forward. Recorded IDEAS are candidates, not commitments.>
+
+PARKED   <one line: N ideas in IDEAS.md awaiting validation; name 1-3 standouts. "none" if empty>
 
 TIMELINE (up to 15 entries)
 <Example:

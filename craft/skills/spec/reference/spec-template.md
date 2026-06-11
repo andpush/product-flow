@@ -104,7 +104,7 @@ Add verbatim to `ADR.md` at implementation.
 - [ ] Tests written and passing green
 - [ ] Code is buildable and runnable without errors
 - [ ] `simplify` or similar skill invoked: no duplications, no dead code, no unjustified complexity
-- [ ] `code-review` and `security-review` (or similar) agents spawed and finished, without pointing to any major issues
+- [ ] `code-review` and `security-review` (or similar) agents spawned and finished, without pointing to any major issues
 - [ ] Code is consistent with `ARCHITECTURE.md`
 - [ ] Memory updated: inlined *Architectural changes* transcribed to `ADR.md`; deferred ideas to `IDEAS.md`; `README.md` and `ARCHITECTURE.md` updated to stay in sync if required
 - [ ] Spec `Status` flipped to `Done (YYYY-MM-DD)` — the final act, only once every box above holds

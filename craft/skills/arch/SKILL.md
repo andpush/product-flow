@@ -76,8 +76,8 @@ Ensure both exist as thin pointers — never copy bulk in. Keep their existing s
 Read `PRODUCT.md`, `ARCHITECTURE.md` for durable context.
 When needed, peek into:
 - `README.md` for onboarding;
-- `IDEAS.md` for parked thoughts;
-- `ADR.md`/`DECISIONS.md`for decision history.
+- `IDEAS.md` for parked ideas (candidates, not tasks);
+- `ADR.md`/`DECISIONS.md` for decision history.
 ```
 
 ## Done

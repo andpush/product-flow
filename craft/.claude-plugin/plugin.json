@@ -1,7 +1,7 @@
 {
   "name": "craft",
   "description": "Distilled, lightweight engineering workflow — the structured-thinking front end to a build: prod (define the product), arch (define the architecture), spec (frame a feature into a buildable spec).",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": {
     "name": "Andrei Pushkin",
     "email": "[RESTRICTED]"

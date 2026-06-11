@@ -57,6 +57,8 @@ Understand the ground you're building on:
 
 In touch with user, turn vague requests into concrete goals. Grasp the problem, not just gather requirements. If the request is a proposed solution, establish the motivation. Verify risky assumptions. Challenge contradictions and gaps. Push for clarity on the core value and the acceptance criteria.
 
+If the request originates as an idea (picked from `IDEAS.md` or a fresh hunch), validate it before specing: does it serve `PRODUCT.md`, is it worth doing now? Recommend a verdict — **pursue**, **defer**, or **reject** — rejection is a legitimate outcome, not a failure. Record the verdict in `IDEAS.md` (see lifecycle below).
+
 If the request spans several independent subsystems, or assumes too many changes, confirm if the user wants to split it and suggest options.
 
 ### 3. Design the solution
@@ -94,11 +96,20 @@ Don't just dump a spec with the details buried in it; present the chosen solutio
 Write `docs/specs/YYYY-MM-DD-nnn-<slug>.md` using [reference/spec-template.md](reference/spec-template.md) (`nnn` = next sequence for the date; `<slug>` = kebab feature name).
 
 
-## `IDEAS.md` entry format
+## `IDEAS.md` contract
+
+Ideas are candidates, not commitments — a capture net so nothing is forgotten while focusing on the main thing, never a to-do list. Capture is one cheap line; validation happens lazily, only when an idea is picked up (see Frame the problem).
+
+Entry format (indent sub-bullets for any attached thinking — don't open a spec for an unvalidated idea):
 
 ```markdown
 - [ ] YYYY-MM-DD · [area] — the idea in one line (why it might matter).
 ```
+
+Lifecycle on validation:
+- **pursue** → spec it; check the box and link the spec.
+- **defer** → leave as is, optionally note why now is wrong.
+- **reject** → strike through with a one-line reason; keep it so the idea isn't re-proposed.
 
 
 ## Quality checklist

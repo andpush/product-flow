@@ -31,4 +31,4 @@ Discover requirements in a professional conversation. Reach a shared, confirmed 
 
 ## Output
 
-Write the `PRODUCT.md` in a terse, pragamtic tone, link to existing docs instead of restating them, and report on the next step (`arch`), any open product questions the user must still resolve, and whether `PRODUCT.md` was created vs. adopted. A few lines, no narrative.
+Write the `PRODUCT.md` in a terse, pragmatic tone, link to existing docs instead of restating them, and report on the next step (`arch`), any open product questions the user must still resolve, and whether `PRODUCT.md` was created vs. adopted. A few lines, no narrative.
