@@ -16,7 +16,7 @@ ls -1 docs/specs/*.md 2>/dev/null | sort
 ```bash
 grep -L 'Status:\*\* Done' docs/specs/*.md 2>/dev/null
 ```
-- `ADR.md` tail — recent architectural changes, if any.
+- Decisions (`ls -1 docs/adr/*.md 2>/dev/null | tail -5`, or legacy `ADR.md` tail) — recent architectural changes; filenames carry date + slug, open only if needed.
 - Ideas (`ls -1 docs/ideas/*.md`) — unvalidated candidates, not commitments; report them parked, not as tasks. Filenames carry date + slug; don't open the files.
 
 ## Infer

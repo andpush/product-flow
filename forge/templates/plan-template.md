@@ -199,8 +199,7 @@ Use this template when creating `features/[feature_id]/plan.md` with the `/7-pla
 
 - [ ] Code is well-commented
 - [ ] API documentation updated if required
-- [ ] CHANGELOG.md updated
-- [ ] ADR added significant architectural changes were made
+- [ ] ADR added if significant architectural changes were made
 - [ ] README.md updated if required
 
 ### Review and Approval

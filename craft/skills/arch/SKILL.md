@@ -48,18 +48,23 @@ Load [reference/architecture-template.md](reference/architecture-template.md) as
 ## Decisions — flag, agree, record now
 
 When a fork or risk that shapes the architecture surfaces — in either mode — flag it to the user, framing the tradeoff by what future options each choice keeps or forecloses, not by technical label alone. Don't postpone it:
-- **Agreed** → reflect it in `ARCHITECTURE.md` *and* append an `ADR.md` record in the same pass.
+- **Agreed** → reflect it in `ARCHITECTURE.md` *and* record an ADR in the same pass.
 - **Rejected** → drop it, or park it in `docs/ideas/` if it's a maybe-later.
 
 Never leave an agreed decision unwritten or deferred to build time.
 
-ADR record shape:
+Write `docs/adr/YYYY-MM-DD-<slug>.md` — one decision per file, same naming as ideas; filenames are the index:
 
 ```markdown
-## YYYY-MM-DD · [component] · Short title
+# Short title
+
+YYYY-MM-DD · [component]
+
 **Decision:** one sentence — what we chose.
 **Why:** one or two sentences — why it beat the alternative (and what was rejected).
 ```
+
+A legacy single-file `ADR.md` may exist — read it, but write new decisions to `docs/adr/`.
 
 ## Architecture quality checklist
 
@@ -77,7 +82,7 @@ Read `PRODUCT.md`, `ARCHITECTURE.md` for durable context.
 When needed, peek into:
 - `README.md` for onboarding;
 - `docs/ideas/` for parked ideas (candidates, not tasks);
-- `ADR.md`/`DECISIONS.md` for decision history.
+- `docs/adr/` for decision history.
 ```
 
 ## Done

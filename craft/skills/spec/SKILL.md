@@ -50,7 +50,7 @@ Value their time — be terse, pragmatic, ask only what affects the solution, sk
 ### 1. Explore the context
 Understand the ground you're building on:
 - Read `PRODUCT.md`, `ARCHITECTURE.md`.
-- Peek into dir tree, recent commit log, `docs/ideas/` listing, `ADR.md` if warranted.
+- Peek into dir tree, recent commit log, `docs/ideas/` and `docs/adr/` listings if warranted.
 - Explore additional context and zoom in as needed.
 
 ### 2. Frame the problem

@@ -33,7 +33,7 @@ prod → arch → spec → build (/goal, a subagent, or any agent)
 |---|---|---|
 | `PRODUCT.md` | purpose, users, constraints | `prod` (or `/impeccable teach`) |
 | `ARCHITECTURE.md` | components, stacks, boundaries, layout, entrypoints, conventions |  this `arch` skill or manually |
-| `ADR.md` \| `DECISIONS.md` | why choices were made | appended over time |
+| `docs/adr/*.md` | why choices were made, one decision per file | `arch`/`spec` skills, over time |
 | `docs/ideas/*.md` | idea backlog, one file per idea (images beside) — unvalidated candidates, not commitments; `spec` validates on pickup (pursue / defer / reject); delete a file to drop an idea | `idea` skill or manually |
 | `README.md` | human onboarding | human; read as a source |
 | `CLAUDE.md` \| `AGENTS.md` | onboarding for agents | `arch` skill or manually |
