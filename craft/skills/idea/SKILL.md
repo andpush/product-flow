@@ -26,7 +26,7 @@ Don't elaborate beyond what was said. Deleting an idea is just deleting its file
 The status line tracks lazy validation — `spec` renders the verdict when an idea is picked up:
 
 - `open` — captured, unvalidated; deferred ideas stay `open`, optionally with a note on why not now.
-- `pursued → [spec](../specs/YYYY-MM-DD-nnn-<slug>.md)` — specced.
+- `pursued → [spec](../specs/YYYY-MM-DD-<slug>.md)` — specced.
 - `rejected (one-line reason)` — file kept so the idea isn't re-proposed.
 
 ## Check alignment

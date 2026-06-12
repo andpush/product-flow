@@ -93,7 +93,7 @@ Don't just dump a spec with the details buried in it; present the chosen solutio
 
 ### 6. Emit the spec
 
-Write `docs/specs/YYYY-MM-DD-nnn-<slug>.md` using [reference/spec-template.md](reference/spec-template.md) (`nnn` = next sequence for the date; `<slug>` = kebab feature name).
+Write `docs/specs/YYYY-MM-DD-<slug>.md` using [reference/spec-template.md](reference/spec-template.md) (`<slug>` = kebab feature name). If one spec splits into an ordered sequence, insert a letter: `YYYY-MM-DD-A-<slug>.md`, `YYYY-MM-DD-B-<slug>.md`, …
 
 
 ## Ideas
