@@ -25,7 +25,7 @@ For each component:
     - specify responsibilities
     - define trust/ownership boundaries
     - sketch data model
-    - write dev / test / deply commands
+    - write dev / test / deploy commands and config
 
 ## System Architecture
 
