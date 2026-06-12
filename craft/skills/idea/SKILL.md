@@ -12,9 +12,13 @@ Distill the idea to one line. If it's too vague to write down, ask one clarifyin
 Write `docs/ideas/YYYY-MM-DD-<slug>.md` — one idea per file, same naming as specs. The slug carries the idea: filenames are the index, a directory listing is the scan. Format:
 
 ```markdown
-# The idea in one line
+---
+status: open
+updated: YYYY-MM-DD
+target: <area>
+---
 
-YYYY-MM-DD · [area] · open
+# The idea in one line
 
 Why it might matter; attached thinking the user provided, verbatim-ish.
 ```
@@ -23,11 +27,14 @@ Don't elaborate beyond what was said. Deleting an idea is just deleting its file
 
 ## Lifecycle (owned by `spec`, recorded here)
 
-The status line tracks lazy validation — `spec` renders the verdict when an idea is picked up:
+Frontmatter tracks lazy validation — `spec` records the verdict when an idea is picked up:
 
-- `open` — captured, unvalidated; deferred ideas stay `open`, optionally with a note on why not now.
-- `pursued → [spec](../specs/YYYY-MM-DD-<slug>.md)` — specced.
-- `rejected (one-line reason)` — file kept so the idea isn't re-proposed.
+- `status: open` — captured, unvalidated.
+- `status: deferred` — evaluated, not now; stays in the scan pool alongside `open`.
+- `status: pursued` — specced; add `spec: specs/YYYY-MM-DD-<slug>.md`.
+- `status: rejected` — file kept so the idea isn't re-proposed.
+
+When status leaves `open`, set `verdict:` — the one-line rationale (quote it if it contains a colon) — and bump `updated`.
 
 ## Check alignment
 

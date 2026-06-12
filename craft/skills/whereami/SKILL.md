@@ -12,12 +12,12 @@ Reload the user's mental context in seconds. Read the artifacts, infer the story
 ```bash
 ls -1 docs/specs/*.md 2>/dev/null | sort
 ```
-- Specs that are not done (Draft / Ready to build):
+- Specs that are not done (draft / ready):
 ```bash
-grep -L 'Status:\*\* Done' docs/specs/*.md 2>/dev/null
+grep -L '^status: done' docs/specs/*.md 2>/dev/null
 ```
 - Decisions (`ls -1 docs/adr/*.md 2>/dev/null | tail -5`, or legacy `ADR.md` tail) — recent architectural changes; filenames carry date + slug, open only if needed.
-- Ideas (`ls -1 docs/ideas/*.md`) — unvalidated candidates, not commitments; report them parked, not as tasks. Filenames carry date + slug; don't open the files.
+- Ideas (`grep -H '^status:' docs/ideas/*.md 2>/dev/null`) — candidates, not commitments; report them parked, not as tasks. `open`/`deferred` are the live pool. Filenames carry date + slug; don't open the files.
 
 ## Infer
 

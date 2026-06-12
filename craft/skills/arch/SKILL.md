@@ -56,9 +56,12 @@ Never leave an agreed decision unwritten or deferred to build time.
 Write `docs/adr/YYYY-MM-DD-<slug>.md` — one decision per file, same naming as ideas; filenames are the index:
 
 ```markdown
-# Short title
+---
+updated: YYYY-MM-DD
+target: <component>
+---
 
-YYYY-MM-DD · [component]
+# Short title
 
 **Decision:** one sentence — what we chose.
 **Why:** one or two sentences — why it beat the alternative (and what was rejected).

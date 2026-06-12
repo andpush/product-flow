@@ -1,9 +1,10 @@
-# Solution Design Spec
+---
+status: draft   # draft | ready | done
+updated: YYYY-MM-DD
+target: <components / area this touches>
+---
 
-**Title:** <Title>
-**Date:** YYYY-MM-DD
-**Status:** Draft | Ready to build | Done (YYYY-MM-DD)
-**Target:** <components / area this touches>
+# <Title>
 
 ## Review Brief
 
@@ -53,9 +54,12 @@
 At implementation, write each as `docs/adr/YYYY-MM-DD-<slug>.md`:
 
 ```markdown
-# Short title
+---
+updated: YYYY-MM-DD
+target: <component>
+---
 
-YYYY-MM-DD · [component]
+# Short title
 
 **Decision:** one sentence — what we chose.
 **Why:** one or two sentences — why it beat the alternative (and what was rejected).
@@ -110,5 +114,5 @@ YYYY-MM-DD · [component]
 - [ ] `code-review` and `security-review` (or similar) agents spawned and finished, without pointing to any major issues
 - [ ] Code is consistent with `ARCHITECTURE.md`
 - [ ] Memory updated: inlined *Architectural changes* transcribed to `docs/adr/`; deferred ideas to `docs/ideas/`; `README.md` and `ARCHITECTURE.md` updated to stay in sync if required
-- [ ] Spec `Status` flipped to `Done (YYYY-MM-DD)` — the final act, only once every box above holds
+- [ ] Spec frontmatter flipped to `status: done` and `updated` bumped — the final act, only once every box above holds
 - [ ] Changes committed with proper message

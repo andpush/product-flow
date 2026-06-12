@@ -98,7 +98,7 @@ Write `docs/specs/YYYY-MM-DD-<slug>.md` using [reference/spec-template.md](refer
 
 ## Ideas
 
-`docs/ideas/` holds one file per idea — candidates, not commitments, never a to-do list. Format and lifecycle are owned by the `idea` skill ([../idea/SKILL.md](../idea/SKILL.md)); filenames are the index — scan with a directory listing, open a file only on pickup. On validation (see Frame the problem), record the verdict in the idea's status line: **pursue** → link the spec, **defer** → leave open, **reject** → one-line reason, keep the file. Don't open a spec for an unvalidated idea; deleting idea files is the user's call, never yours.
+`docs/ideas/` holds one file per idea — candidates, not commitments, never a to-do list. Format and lifecycle are owned by the `idea` skill ([../idea/SKILL.md](../idea/SKILL.md)); filenames are the index — scan with a directory listing, open a file only on pickup. On validation (see Frame the problem), record the verdict in the idea's frontmatter: set `status:` (**pursued** → add `spec:` path, **deferred**, or **rejected** — keep the file), put the one-line rationale in `verdict:`, bump `updated`. Don't open a spec for an unvalidated idea; deleting idea files is the user's call, never yours.
 
 
 ## Quality checklist
@@ -112,5 +112,5 @@ Self-review the spec with fresh eyes before declaring it ready:
 
 ## When done
 
-- if no open blockers - set status `Ready to build` and commit, otherwise `Draft`
+- if no open blockers - set `status: ready` and commit, otherwise `status: draft`
 - report it's ready to execute and give the one-line `/goal` (or subagent brief) as the next step that builds it. A few lines, no narrative.
