@@ -1,19 +1,15 @@
 ---
 name: arch
-description: Use to define or derive project architecture, stack, and conventions - into a durable ARCHITECTURE.md that the `spec` skill can rely on.
+description: Use to define or derive project architecture - into a durable `ARCHITECTURE.md` that the `spec` skill can rely on.
 ---
 
-Establish the durable engineering context for a software project — architecture, component/module map, tech stack, and coding conventions — either by defining them with the user (greenfield) or deriving them from existing code (brownfield), and wiring CLAUDE.md/AGENTS.md as thin pointers.
+Establish the durable engineering context for a software project — architecture, component/module map, tech stack, and coding conventions — either by defining them with the user (greenfield) or deriving them from existing code (brownfield).
 
-Run once; again only when foundations change.
-
-Consumes `PRODUCT.md` (from `prod`); produces or updates `ARCHITECTURE.md`, which `spec` consumes.
+Produces or updates `ARCHITECTURE.md`, which `spec` consumes. Run once or after foundations change.
 
 ## Initial context
 
-Refer to `PRODUCT.md` for high-level context on WHAT we build. If it's missing or placeholder — offer a fork:
-- **Establish now** — run `prod` in this session (scaled to the request), then continue.
-- **Defer** — name what's missing and why, then stop so the user runs `/prod` separately.
+Refer to `PRODUCT.md` and root `README.md` for context on WHAT we build. If both are missing or placeholder — offer to **Establish product context now** — run `prod` skill in this session, then continue with `arch`.
 
 Never invent product purpose, users, or constraints from architecture preferences alone.
 
@@ -28,7 +24,7 @@ Load [reference/architecture-template.md](reference/architecture-template.md) as
 2. Propose architecture and stack.
    - **Start simple.** KISS, YAGNI. Complexity matched to the problem.
    - **Important:** Architecture and stack shape each other — iterate to coherence: propose components with preliminary tech, validate the tech against the components, refine both.
-   - **Explore alternatives.** Present substantial forks: 2-3 options and recommend one via `AskUserQuestion`. Don't bikeshed settled defaults; riskier decisions are closer to data and API boundaries. Examples: monolith vs. services, pre-built vs. bespoke, paid vs. open-source, concurrent vs. sequential, relational vs. object, message queue vs database, persistent vs. in-memory, etc.
+   - **Explore alternatives.** Present substantial forks: 2-3 options and recommend one via `AskUserQuestion`. Don't bikeshed settled defaults; riskier decisions are closer to data and API boundaries. Examples: monolith vs. services, pre-built vs. bespoke, paid vs. open-source, concurrent vs. sequential, relational vs. object, message queue vs database, persistent vs. in-memory, etc. Additional indirection, async, data stores are complexity — suggest only if justified.
 
 3. **Write `ARCHITECTURE.md`** in collaboration with the user, link to existing docs instead of restating them.
 
@@ -37,57 +33,20 @@ Load [reference/architecture-template.md](reference/architecture-template.md) as
 ## Brownfield: derive from the code, then confirm
 
 1. **Explore the codebase:**
-- Orient first (`PRODUCT.md`, readme, layout, config, dir tree);
+- Orient first (`PRODUCT.md`, `README.md`, layout, config, dir tree);
 - Large repo -> fan out `Explore` agents partitioned by territory, each reports its slice along fixed dimensions — purpose, entry points & boundaries, data, external calls, conventions & tests, backed by `file:line` and snippets. Consolidate in the main context
 - Small, flat, or tangled repo -> do a single pass yourself, reading code and taking notes.
 2. Draft `ARCHITECTURE.md` ([reference/architecture-template.md](reference/architecture-template.md)) describing the system as it is.
-3. Surface questionable parts as findings — don't discard working decisions. Suggest parking improvements in `docs/ideas/`.
+3. Never leave an agreed decision unwritten. Surface questionable parts as findings — don't discard working decisions. Suggest parking improvements using `idea` skill.
 4. Confirm with the user, then write `ARCHITECTURE.md`, including a `Rules and Conventions` section for the patterns and practices the code already follows.
 5. If README restates structure, slim it to a pointer to `ARCHITECTURE.md`.
-
-## Decisions — flag, agree, record now
-
-When a fork or risk that shapes the architecture surfaces — in either mode — flag it to the user, framing the tradeoff by what future options each choice keeps or forecloses, not by technical label alone. Don't postpone it:
-- **Agreed** → reflect it in `ARCHITECTURE.md` *and* record an ADR in the same pass.
-- **Rejected** → drop it, or park it in `docs/ideas/` if it's a maybe-later.
-
-Never leave an agreed decision unwritten or deferred to build time.
-
-Write `docs/adr/YYYY-MM-DD-<slug>.md` — one decision per file, same naming as ideas; filenames are the index:
-
-```markdown
----
-updated: YYYY-MM-DD
-target: <component>
----
-
-# Short title
-
-**Decision:** one sentence — what we chose.
-**Why:** one or two sentences — why it beat the alternative (and what was rejected).
-```
-
-A legacy single-file `ADR.md` may exist — read it, but write new decisions to `docs/adr/`.
 
 ## Architecture quality checklist
 
 Apply when drawing or revisiting component boundaries:
 - [ ] **Acyclic dependencies.** Keep the component dependency graph acyclic — if two components depend on each other, resolve it (merge, extract a shared piece, or invert a dependency).
 - [ ] **Boundaries clarity.** For each unit you should be able to say what it does, how it's used, and what it depends on. Can someone grasp it without reading its internals, and can its internals change without breaking consumers? If not, the boundaries need rework.
+- [ ] **Data ownership.** Each piece of data should have a clear owner — the component responsible for its integrity and lifecycle. If data is shared, there should be a clear contract for access and modification.
 
-## Wire CLAUDE.md / AGENTS.md
-
-Ensure both exist as thin pointers — never copy bulk in. Keep their existing style if present:
-
-```markdown
-# Project context
-Read `PRODUCT.md`, `ARCHITECTURE.md` for durable context.
-When needed, peek into:
-- `README.md` for onboarding;
-- `docs/ideas/` for parked ideas (candidates, not tasks);
-- `docs/adr/` for decision history.
-```
-
-## Done
 
 Report whether `ARCHITECTURE.md` was created vs. adopted and the next step (`/spec <first feature>`). A few lines.
