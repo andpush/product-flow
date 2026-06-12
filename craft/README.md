@@ -19,6 +19,8 @@ durable, scannable files so build becomes execution against a clear spec.
 | `arch` | `ARCHITECTURE.md` — components, stack, boundaries, conventions |
 | `spec` | `docs/specs/*.md` — one buildable feature spec with verifiable acceptance criteria |
 | `idea` | `docs/ideas/*.md` — one-file idea capture with a quick PRODUCT.md alignment check |
+| `audit` | `docs/audit-YYYY-MM-DD.md` — deep repo health check: structure, maintainability, security |
+| `whereami` | report — reorient after a break: current focus, parked ideas, next step |
 
 Each works greenfield (define with you) or brownfield (derive from existing code, then confirm),
 and adopts existing files rather than clobbering them.
@@ -35,6 +37,7 @@ prod → arch → spec → build (/goal, a subagent, or any agent)
 | `ARCHITECTURE.md` | components, stacks, boundaries, layout, entrypoints, conventions |  this `arch` skill or manually |
 | `docs/adr/*.md` | why choices were made, one decision per file | `arch`/`spec` skills, over time |
 | `docs/ideas/*.md` | idea backlog, one file per idea (images beside) — unvalidated candidates, not commitments; `spec` validates on pickup (pursue / defer / reject); delete a file to drop an idea | `idea` skill or manually |
+| `docs/audit-YYYY-MM-DD.md` | repo health snapshot — findings, quality scores, action items | `audit` skill |
 | `README.md` | human onboarding | human; read as a source |
 | `CLAUDE.md` \| `AGENTS.md` | onboarding for agents | `arch` skill or manually |
 
@@ -48,7 +51,9 @@ Invoke the skills by name in your agent host:
 /arch            # define the architecture with user
 /spec <feature>  # frame a feature into a spec with user
 /idea <hunch>    # capture an idea into docs/ideas/, checked against PRODUCT.md
-/clear          # clear context
+/audit           # deep repo health check; writes docs/audit-YYYY-MM-DD.md
+/whereami        # reorient: current focus, parked ideas, next step
+/clear           # clear context
 /goal <spec_file> # work on spec till done - unattended.
 ```
 

@@ -35,6 +35,7 @@ At any point:
 
 - `idea` — park a hunch in `docs/ideas/`; `spec` validates on pickup (pursue / defer / reject).
 - `whereami` — reorient after a break: where you stopped, what's parked, what's next.
+- `audit` — deep repo health check (structure, maintainability, security); writes `docs/audit-YYYY-MM-DD.md`.
 
 Memory is scannable files, not prose: `PRODUCT.md`, `ARCHITECTURE.md`, `docs/specs/`, `docs/ideas/`, `docs/adr/` — one file per spec/idea/decision, filenames are the index. Details: [craft/README.md](craft/README.md).
 
