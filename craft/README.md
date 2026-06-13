@@ -59,3 +59,8 @@ Invoke the skills by name in your agent host:
 
 `/craft:init` is a convenience macro for small/fresh projects — it just chains `prod` then `arch`.
 For larger or evolving projects, run `/prod` and `/arch` separately so each can be revisited on its own.
+
+Closed work is archived, not deleted: when a spec reaches `done` or an idea is `pursued`/`rejected`,
+its file (and any images) move into a `done/` subfolder — `docs/specs/done/`, `docs/ideas/done/` —
+so top-level stays the live set. `/whereami` flags any closed file still sitting at top level and
+suggests the `git mv`.
