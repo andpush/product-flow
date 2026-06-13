@@ -17,7 +17,7 @@ ls -1 docs/specs/*.md 2>/dev/null | sort
 grep -L '^status: done' docs/specs/*.md 2>/dev/null
 ```
 - Decisions (`ls -1 docs/adr/*.md 2>/dev/null | tail -5`, or legacy `ADR.md` tail) — recent architectural changes; filenames carry date + slug, open only if needed.
-- Ideas (`grep -H '^status:' docs/ideas/*.md 2>/dev/null`) — candidates, not commitments; report them parked, not as tasks. `open`/`deferred` are the live pool. Filenames carry date + slug; don't open the files.
+- Ideas (`grep -H '^status:\|^priority:' docs/ideas/*.md 2>/dev/null`) — candidates, not commitments; report them parked, not as tasks. `open`/`deferred` are the live pool. Filenames carry date + slug; don't open the files. Weight by priority: lead with `high`, skip `pursued` and `low` (mention only as a count), and flag ideas with no `priority` as awaiting triage.
 
 ## Infer
 
@@ -34,7 +34,7 @@ NOW      <current focus / last thing touched / if stuck indicators, explain why>
 
 NEXT     <infer from current state: unfinished specs, branches, uncommitted edits, ideas, project goals — what moves the project forward. Recorded ideas are candidates, not commitments.>
 
-PARKED   <one line: N ideas in docs/ideas/ awaiting validation; name 1-3 standouts. "none" if empty>
+PARKED   <one line: N ideas in docs/ideas/ awaiting validation; name 1-3 high-priority standouts. Skip pursued; fold low-priority into the count. If any lack a priority, append "M untriaged — set priority". "none" if empty>
 
 TIMELINE (up to 15 entries)
 <Example:

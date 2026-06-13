@@ -14,6 +14,7 @@ Write `docs/ideas/YYYY-MM-DD-<slug>.md` — one idea per file, same naming as sp
 ```markdown
 ---
 status: open
+priority: high | low      # optional — omit when unset (untriaged)
 updated: YYYY-MM-DD
 target: <area>
 ---
@@ -22,6 +23,8 @@ target: <area>
 
 Why it might matter; attached thinking the user provided, verbatim-ish.
 ```
+
+`priority` is optional. Set it only if the user signals one at capture ("this matters" / "minor, someday"); otherwise omit it — an unset priority means untriaged, and `whereami` will surface it for triage. It can be added or changed by hand later. `high` = pull forward, `low` = backlog.
 
 Don't elaborate beyond what was said. Deleting an idea is just deleting its file — the user's call, never yours.
 
