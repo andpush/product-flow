@@ -17,7 +17,7 @@ durable, scannable files so build becomes execution against a clear spec.
 | --- | --- |
 | `prod` | `PRODUCT.md` — purpose, users, value, constraints, MVP scope |
 | `arch` | `ARCHITECTURE.md` — components, stack, boundaries, conventions |
-| `spec` | `docs/specs/*.md` — one buildable feature spec with verifiable acceptance criteria |
+| `spec` | `docs/specs/*.md` — one buildable feature spec with verifiable acceptance criteria (archived to `docs/specs/done/` once `done`) |
 | `idea` | `docs/ideas/*.md` — one-file idea capture with a quick PRODUCT.md alignment check |
 | `audit` | `docs/audit-YYYY-MM-DD.md` — deep repo health check: structure, maintainability, security |
 | `whereami` | report — reorient after a break: current focus, parked ideas, next step |
@@ -36,7 +36,7 @@ prod → arch → spec → build (/goal, a subagent, or any agent)
 | `PRODUCT.md` | purpose, users, constraints | `prod` (or `/impeccable teach`) |
 | `ARCHITECTURE.md` | components, stacks, boundaries, layout, entrypoints, conventions |  this `arch` skill or manually |
 | `docs/adr/*.md` | why choices were made, one decision per file | `arch`/`spec` skills, over time |
-| `docs/ideas/*.md` | idea backlog, one file per idea (images beside) — unvalidated candidates, not commitments; optional `priority: high\|low` (set at capture or during triage) steers `whereami`; `spec` validates on pickup (pursue / defer / reject); delete a file to drop an idea | `idea` skill or manually |
+| `docs/ideas/*.md` | idea backlog, one file per idea (images beside) — unvalidated candidates, not commitments; optional `priority: high\|low` (set at capture or during triage) steers `whereami`; `spec` validates on pickup (pursue / defer / reject); closed ideas (pursued/rejected) move to `docs/ideas/done/`; delete a file to drop an idea | `idea` skill or manually |
 | `docs/audit-YYYY-MM-DD.md` | repo health snapshot — findings, quality scores, action items | `audit` skill |
 | `README.md` | human onboarding | human; read as a source |
 | `CLAUDE.md` \| `AGENTS.md` | onboarding for agents | `arch` skill or manually |

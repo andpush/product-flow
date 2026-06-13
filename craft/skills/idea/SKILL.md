@@ -39,6 +39,8 @@ Frontmatter tracks lazy validation — `spec` records the verdict when an idea i
 
 When status leaves `open`, set `verdict:` — the one-line rationale (quote it if it contains a colon) — and bump `updated`.
 
+**Archive on close.** On a terminal status (`pursued` or `rejected`), move the idea file — and any same-basename images — into `docs/ideas/done/`. `open` and `deferred` stay at the top level: that's the live scan pool. Create `done/` if absent (`mkdir -p`), and `git mv` when tracked so history follows.
+
 ## Check alignment
 
 Skim `PRODUCT.md`. If the idea conflicts with it or falls outside scope, tell the user in one line and record the tension in the file — still capture it. No verdict: pursue/defer/reject belongs to `spec` on pickup.

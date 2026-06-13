@@ -7,17 +7,19 @@ Reload the user's mental context in seconds. Read the artifacts, infer the story
 
 ## Gather (skip what's absent)
 
+Top-level `docs/specs/` and `docs/ideas/` are the live set; their `done/` subfolders are the archive (specs `done`, ideas `pursued`/`rejected`) — read `done/` for the timeline, not as live work.
+
 - `PRODUCT.md` first lines — what this is.
-- List specs (newest last):
+- List specs, live then archived (newest last):
 ```bash
-ls -1 docs/specs/*.md 2>/dev/null | sort
+ls -1 docs/specs/*.md docs/specs/done/*.md 2>/dev/null | sort
 ```
-- Specs that are not done (draft / ready):
+- Specs that are not done (draft / ready) — the live top level:
 ```bash
 grep -L '^status: done' docs/specs/*.md 2>/dev/null
 ```
 - Decisions (`ls -1 docs/adr/*.md 2>/dev/null | tail -5`, or legacy `ADR.md` tail) — recent architectural changes; filenames carry date + slug, open only if needed.
-- Ideas (`grep -H '^status:\|^priority:' docs/ideas/*.md 2>/dev/null`) — candidates, not commitments; report them parked, not as tasks. `open`/`deferred` are the live pool. Filenames carry date + slug; don't open the files. Weight by priority: lead with `high`, skip `pursued` and `low` (mention only as a count), and flag ideas with no `priority` as awaiting triage.
+- Ideas (`grep -H '^status:\|^priority:' docs/ideas/*.md docs/ideas/done/*.md 2>/dev/null`) — candidates, not commitments; report them parked, not as tasks. Top-level `open`/`deferred` are the live pool; `done/` holds archived `pursued`/`rejected` (timeline only). Filenames carry date + slug; don't open the files. Weight the live pool by priority: lead with `high`, fold `low` into a count, and flag ideas with no `priority` as awaiting triage.
 
 ## Infer
 
