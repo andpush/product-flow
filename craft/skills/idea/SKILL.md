@@ -5,6 +5,8 @@ description: Use to capture a user idea into docs/ideas/ — one small file with
 
 Capture the idea fast and move on. Ideas are candidates, not commitments — `spec` validates lazily on pickup (pursue / defer / reject). This skill only records and sanity-checks; it never opens a spec.
 
+Optional: if the first word of the args is `high` or `low`, treat it as the priority and strip it from the idea text (e.g. `/idea low rename cat→pet`).
+
 ## Capture
 
 Distill the idea to one line. If it's too vague to write down, ask one clarifying question — not an interview.
