@@ -20,6 +20,11 @@ grep -L '^status: done' docs/specs/*.md 2>/dev/null
 ```
 - Decisions (`ls -1 docs/adr/*.md 2>/dev/null | tail -5`, or legacy `ADR.md` tail) — recent architectural changes; filenames carry date + slug, open only if needed.
 - Ideas (`grep -H '^status:\|^priority:' docs/ideas/*.md docs/ideas/done/*.md 2>/dev/null`) — candidates, not commitments; report them parked, not as tasks. Top-level `open`/`deferred` are the live pool; `done/` holds archived `pursued`/`rejected` (timeline only). Filenames carry date + slug; don't open the files. Weight the live pool by priority: lead with `high`, fold `low` into a count, and flag ideas with no `priority` as awaiting triage.
+- Misplaced (closed but still at top level — bookkeeping):
+```bash
+grep -l '^status: done' docs/specs/*.md 2>/dev/null
+grep -lE '^status: (pursued|rejected)' docs/ideas/*.md 2>/dev/null
+```
 
 ## Infer
 
@@ -37,6 +42,8 @@ NOW      <current focus / last thing touched / if stuck indicators, explain why>
 NEXT     <infer from current state: unfinished specs, branches, uncommitted edits, ideas, project goals — what moves the project forward. Recorded ideas are candidates, not commitments.>
 
 PARKED   <one line: N ideas in docs/ideas/ awaiting validation; name 1-3 high-priority standouts. Skip pursued; fold low-priority into the count. If any lack a priority, append "M untriaged — set priority". "none" if empty>
+
+TIDY     <only if the Misplaced gather found any: closed files still at top level — list them and suggest `git mv` into the matching done/ folder. Omit this line when clean.>
 
 TIMELINE (up to 15 entries)
 <Example:
