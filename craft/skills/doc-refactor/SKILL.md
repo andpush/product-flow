@@ -5,7 +5,12 @@ description: "Refactor document(s) into a single deduplicated, restructured docu
 
 # doc-refactor — consolidate & deduplicate document(s)
 
-Decompose inputs into claims, cluster the concerns they serve, dedupe across the union, re-project, and report what was removed. Most valuable when merging multiple sources, where duplication and conflicts cluster.
+Decompose inputs into claims, cluster the concerns they serve, dedupe across the union, re-project, and report what was removed.
+
+Most valuable when:
+- merging multiple sources
+- normalizing source with repeated ideas
+- preparing a document for hand-off to another agent (human or LLM) that will need to understand it without reading the inputs.
 
 ## Principles
 - **Density by cutting duplicate claims**, not by compressing phrasing.
@@ -18,7 +23,7 @@ Decompose inputs into claims, cluster the concerns they serve, dedupe across the
 3. **Concern basis.** Cluster claims *across all inputs* into concerns; tag each with its concern-**set**. One basis over the union is what catches cross-document repeats.
 4. **Detect duplicates.** Cluster by *meaning*; classify per the taxonomy. Test is **same claim, same scope** — never similarity alone.
 5. **CHECKPOINT (human).** Present the concern basis + proposed structure (as a diff against the input skeletons) before any rewrite. Skip only if told the run is unattended — an agent approving its own projection re-introduces the black box.
-6. **Reconstruct.** Default to the input skeleton; change it only where step 4 forces it. Each claim gets **exactly one** home; scope-distinct pairs keep both. A second mention of a cross-cutting claim is a **pointer** ("because Postgres is the source of truth — see Data model"), never a restatement; restating is the point-of-use case below, not a license from thematic overlap. Flatten to **≤3 heading levels** + lists; a needed 4th signals a sibling section or its own doc.
+6. **Reconstruct.** Default to the input skeleton; change it only where step 4 forces it. Each claim gets **exactly one** home; scope-distinct pairs keep both. A second mention of a cross-cutting claim is a **pointer** ("because Postgres is the source of truth — see Data model"), never a restatement; restating is the point-of-use case below, not a license from thematic overlap. The **intro/overview is a home like any other**. Flatten to **≤4 heading levels** + lists; a needed 5th signals a sibling section or its own doc.
 7. **Report.** In your reply (not a file), list each removed/merged claim with a one-word reason — verbatim / semantic / merged / out-of-scope. That's it.
 
 ## Duplicate taxonomy
