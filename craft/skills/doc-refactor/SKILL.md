@@ -7,6 +7,8 @@ description: "Refactor document(s) into a single deduplicated, restructured docu
 
 Decompose inputs into claims, cluster the concerns they serve, dedupe across the union, re-project, and report what was removed.
 
+Inspired by the autoencoder principle — detect features and reduce dimensionality, surfacing the general pathway before digging into details — while staying lossless: the result must still reconstruct every input claim.
+
 Most valuable when:
 - merging multiple sources
 - normalizing source with repeated ideas
@@ -23,7 +25,7 @@ Most valuable when:
 3. **Concern basis.** Cluster claims *across all inputs* into concerns; tag each with its concern-**set**. One basis over the union is what catches cross-document repeats.
 4. **Detect duplicates.** Cluster by *meaning*; classify per the taxonomy. Test is **same claim, same scope** — never similarity alone.
 5. **CHECKPOINT (human).** Present the concern basis + proposed structure (as a diff against the input skeletons) before any rewrite. Skip only if told the run is unattended — an agent approving its own projection re-introduces the black box.
-6. **Reconstruct.** Default to the input skeleton; change it only where step 4 forces it. Each claim gets **exactly one** home; scope-distinct pairs keep both. A second mention of a cross-cutting claim is a **pointer** ("because Postgres is the source of truth — see Data model"), never a restatement; restating is the point-of-use case below, not a license from thematic overlap. The **intro/overview is a home like any other**. Flatten to **≤4 heading levels** + lists; a needed 5th signals a sibling section or its own doc.
+6. **Reconstruct.** Default to the input skeleton; change it only where step 4 forces it. Each claim gets **exactly one** home; scope-distinct pairs keep both. A second mention of a cross-cutting claim is a **pointer** ("because Postgres is the source of truth — see Data model"), never a restatement; restating is the point-of-use case below, not a license from thematic overlap. The **intro/overview is a home like any other**: a claim stated there isn't restated in its section — keep the fuller statement in its home and make the other mention a pointer. Flatten to **≤4 heading levels** + lists; a needed 5th signals a sibling section or its own doc.
 7. **Report.** In your reply (not a file), list each removed/merged claim with a one-word reason — verbatim / semantic / merged / out-of-scope. That's it.
 
 ## Duplicate taxonomy
