@@ -40,6 +40,6 @@ Decompose inputs into claims, cluster the concerns they serve, dedupe across the
 
 ## VERIFY (subagent, fresh context)
 Spawn a subagent given **only** the inputs, output, and removed-claims report — no decomposition notes, so it can't grade its own homework.
-1. **Claim conservation** — every input claim is in the output or the report.
+1. **Reconstruction** — a fresh agent can regenerate every input claim from the output + report alone (present-but-dead claims fail this).
 2. **Reverse-duplication** — re-run steps 2–4 on the output; surviving verbatim/semantic clusters mean dedup failed.
 3. **No-fabrication** — every output claim has a source.
