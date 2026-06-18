@@ -1,23 +1,36 @@
 ---
 name: doc-refactor
-description: "Refactor document(s) into a single deduplicated, restructured document — removing word-for-word and same-meaning duplication, re-projecting onto a clearer hierarchy, and conserving all content. Triggers: 'merge these docs without duplication', 'remove repeated ideas', 'tighten for agent hand-off'."
+description: "Refactor document(s) into a single deduplicated, restructured document — preserving contained knowledge. Triggers: 'merge docs A, B, C -> B without duplication', 'remove repeated ideas', 'tighten for agent hand-off'."
 ---
 
-# doc-refactor — consolidate & deduplicate document(s)
+# doc-refactor — document normalization
 
-Decompose inputs into claims, cluster the concerns they serve, dedupe across the union, re-project, and report what was removed.
-
-Inspired by the autoencoder principle — detect features and reduce dimensionality, surfacing the general pathway before digging into details — while staying lossless: the result must still reconstruct every input claim.
+Normalize a document by cutting word-for-word and same-meaning duplication, and re-projecting onto a clearer hierarchy, while preserving all content.
 
 Most valuable when:
 - merging multiple sources
 - normalizing source with repeated ideas
 - preparing a document for hand-off to another agent (human or LLM) that will need to understand it without reading the inputs.
 
+Inspired by ML concept of feature extraction, applied to human knowledge. As Autoencoder reduce dimensionality preserving required features, we need to hand-off minimal document preserving required knowledge dimensions.
+
+User specifies a set of input documents, output document and (optionally) the goal. If the goal is not specified and not clear from the context or user motives, work in lossless mode - preserve all knowledge found.
+
+How it works:
+- decompose the inputs into claims,
+- cluster the concerns,
+- dedupe across the union,
+- re-project onto a clearer structure.
+
+The result is a denser, more navigable document that still contains all the original knowledge.
+
+
 ## Principles
-- **Density by cutting duplicate claims**, not by compressing phrasing.
-- **Hierarchy is a projection.** Duplication is often an artifact of the *wrong* one — an idea sits in two places because neither is its home; re-project and the duplicate dissolves. So handle content (claims) and structure (skeleton) separately. Re-projection is a tool, not a goal: keep the input skeleton unless duplication or misplacement forces a change.
-- **Flag conflicts** — ask the user if you can.
+- **Terse, pragmatic tone.** But do not overcompress phrasing: achieve density by cutting duplicate claims.
+- **Hierarchy is a projection.** Duplication is often an artifact of the *wrong* one — an idea sits in two places because neither is its home; re-project and the duplicate dissolves. So handle knowledge claims and structure (skeleton) separately. If no misplacement - keep the input structure. Unsure - ask the user.
+- **Flag conflicts** — ask the user if possible.
+- Don't assume orthogonal concerns; don't exceed the approved projection (flag, don't act).
+- On multi-pass runs, reconstruct from the **written** artifacts, not memory.
 
 ## Pipeline
 1. **Skeletons.** Record each input's heading tree as a separate artifact, tagged by source. Never rebuilt from claims, so structure can't dissolve silently.
@@ -25,28 +38,23 @@ Most valuable when:
 3. **Concern basis.** Cluster claims *across all inputs* into concerns; tag each with its concern-**set**. One basis over the union is what catches cross-document repeats.
 4. **Detect duplicates.** Cluster by *meaning*; classify per the taxonomy. Test is **same claim, same scope** — never similarity alone.
 5. **CHECKPOINT (human).** Present the concern basis + proposed structure (as a diff against the input skeletons) before any rewrite. Skip only if told the run is unattended — an agent approving its own projection re-introduces the black box.
-6. **Reconstruct.** Default to the input skeleton; change it only where step 4 forces it. Each claim gets **exactly one** home; scope-distinct pairs keep both. A second mention of a cross-cutting claim is a **pointer** ("because Postgres is the source of truth — see Data model"), never a restatement; restating is the point-of-use case below, not a license from thematic overlap. The **intro/overview is a home like any other**: a claim stated there isn't restated in its section — keep the fuller statement in its home and make the other mention a pointer. Flatten to **≤4 heading levels** + lists; a needed 5th signals a sibling section or its own doc.
-7. **Report.** In your reply (not a file), list each removed/merged claim with a one-word reason — verbatim / semantic / merged / out-of-scope. That's it.
+6. **Reconstruct.** Default to the input skeleton; change it only where step 4 forces it. Flatten to **≤4 heading levels** + lists; a needed 5th signals a sibling section or its own doc, tell the user. Each claim gets **exactly one** home; scope-distinct pairs keep both. The **Intro/Overview is a home like any other**. A second mention of a cross-cutting claim is a **pointer** (e.g.: "... — see `Data model`"), never a restatement.
+7. **Report statistics and flagged claims.** Statistics: % of compression, total number of claims, number of duplications by category (verbatim / semantic), number of claims in the output doc. Flagged lists for user review: (1) claims that changed home (section), and (2) two lists of claims not included in the final doc:
+- contradicted claims
+- out of scope claims
 
 ## Duplicate taxonomy
 | Class | Test | Verdict |
 |---|---|---|
 | Verbatim | Identical wording | Cut — keep one |
-| Semantic | Same claim, same scope, different words | Cut — keep one canonical *(the class LLMs miss)* |
+| Semantic | Same claim, same scope, different words | Cut — keep one canonical |
 | Cross-cutting | Same claim serves several sections | Keep — one home; every other mention is a **pointer** |
-| Point-of-use | Restated to kill a *long-range* dependency a reader can't otherwise follow | Keep + mark intentional — relevance alone doesn't qualify |
-| Scope-distinct | Similar text, **different scope** | Keep both — not a duplicate |
-| Conflict | Same slot, **incompatible values** | Keep both — flag for human |
-
-## Constraints
-- **Preservation invariant:** every input claim is in the output **or** the removed-claims report — nothing leaves silently. Lossless by default; if the user scopes the output (audience, length, relevance), out-of-scope claims go to the report, not the void.
-- **No fabrication:** every output claim traces to an input claim.
-- Depth cap is a step-6 heuristic, not a decomposition rule — capture true structure however deep in steps 1–4.
-- Don't assume orthogonal concerns; don't exceed the approved projection (flag, don't act).
-- On multi-pass runs, reconstruct from the **written** artifacts, not memory.
+| Reader-aid | Avoids a long-range dependency or misreading in rare cases | As an exception - keep shortened + point to full claim |
+| Scope-dependnent | Similar, but **different scope** changes it's meaning | Keep both — not a duplicate |
+| Conflict | Same slot, **incompatible values** | Ask user which holds true, or cut both and flag in the report |
 
 ## VERIFY (subagent, fresh context)
 Spawn a subagent given **only** the inputs, output, and removed-claims report — no decomposition notes, so it can't grade its own homework.
 1. **Reconstruction** — a fresh agent can regenerate every input claim from the output + report alone (present-but-dead claims fail this).
 2. **Reverse-duplication** — re-run steps 2–4 on the output; surviving verbatim/semantic clusters mean dedup failed.
-3. **No-fabrication** — every output claim has a source.
+3. **No-fabrication** — every output claim traces to an input claim.
