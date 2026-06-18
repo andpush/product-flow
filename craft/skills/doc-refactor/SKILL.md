@@ -35,13 +35,13 @@ The result is a denser, more navigable document that preserves the relevant orig
 
 ## Pipeline
 1. **Skeletons.** Record each input's heading tree as a separate artifact, tagged by source. Never rebuilt from claims, so structure can't dissolve silently.
-2. **Decompose → claims.** Break inputs into atomic claims; split conjunctions ("fast **and** secure" → two). Each carries `id`, `text` (short paraphrase, no long verbatim spans), `source`, `address` (path in its skeleton), `scope` (qualifier bounding its truth). No concern tags yet.
+2. **Decompose → claims.** Break inputs into atomic claims; split conjunctions ("fast **and** secure" → two). Each carries `id`, `text` (short paraphrase, no long verbatim spans, preserve code/ids), `source`, `address` (path in its skeleton), `scope` (qualifier bounding its truth). No concern tags yet.
 3. **Concern basis.** Cluster claims *across all inputs* into concerns; tag each with its concern-**set**. One basis over the union is what catches cross-document repeats.
 4. **Detect duplicates.** Cluster by *meaning*; classify per the taxonomy. Test is **same claim, same scope** — never similarity alone.
 5. **Define draft hierarchy** If no misplacement detected, keep the input structure. Otherwise, propose a new hierarchy based on the concern clusters, up to 4 heading levels + lists. If a concern is mostly contained in one input and section, that's a strong signal for its home; if it's split across sections/inputs, that's a strong signal for a new section. If the goal defines relevance, use it to prioritize concerns.
 6. **CHECKPOINT (human, unless unattended).** Present the concerns and the proposed structure as a diff from input skeletons. Flag key moved claims and relevance/conflict calls.
 7. **Reconstruct.** Each claim gets **exactly one** home; scope-distinct pairs keep both. The **Intro/Overview is a home like any other**. A second mention of a cross-cutting claim is a **pointer** (e.g.: "... — see `Data model`"), never a restatement.
-8. **Report.** Produce a removed-claims report containing every claim not present in the final document, with `source`, original `address`, `disposition`, and a short reason. Allowed dispositions: `verbatim`, `semantic`, `merged`, `conflict` and if goal was defined: `not-relevant`. Also report summary statistics: compression %, total input claims, duplicate counts by category, and total output claims.
+8. **Output Report (not save unless asked):** List removed claims, not present in the final document, with `source`, original `address`, `disposition`, and a short reason. Allowed dispositions: `verbatim`, `semantic`, `merged`, `conflict` and if goal was defined: `not-relevant`. Also report summary statistics: compression %, total input claims, duplicate counts by category, and total output claims.
 
 ## Duplicate taxonomy
 | Class | Test | Verdict |
