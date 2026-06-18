@@ -39,9 +39,7 @@ The result is a denser, more navigable document that still contains all the orig
 4. **Detect duplicates.** Cluster by *meaning*; classify per the taxonomy. Test is **same claim, same scope** — never similarity alone.
 5. **CHECKPOINT (human).** Present the concern basis + proposed structure (as a diff against the input skeletons) before any rewrite. Skip only if told the run is unattended — an agent approving its own projection re-introduces the black box.
 6. **Reconstruct.** Default to the input skeleton; change it only where step 4 forces it. Flatten to **≤4 heading levels** + lists; a needed 5th signals a sibling section or its own doc, tell the user. Each claim gets **exactly one** home; scope-distinct pairs keep both. The **Intro/Overview is a home like any other**. A second mention of a cross-cutting claim is a **pointer** (e.g.: "... — see `Data model`"), never a restatement.
-7. **Report statistics and flagged claims.** Statistics: % of compression, total number of claims, number of duplications by category (verbatim / semantic), number of claims in the output doc. Flagged lists for user review: (1) claims that changed home (section), and (2) two lists of claims not included in the final doc:
-- contradicted claims
-- out of scope claims
+7. **Report.** Produce a removed-claims report containing every claim not present in the final document, with `source`, original `address`, `disposition`, and a short reason. Allowed dispositions: `verbatim`, `semantic`, `merged`, `conflict`, `out-of-scope`. Also report summary statistics: compression %, total input claims, duplicate counts by category, and total output claims. Flag separately: claims that changed home.
 
 ## Duplicate taxonomy
 | Class | Test | Verdict |
