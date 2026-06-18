@@ -20,6 +20,7 @@ durable, scannable files so build becomes execution against a clear spec.
 | `spec` | `docs/specs/*.md` — one buildable feature spec with verifiable acceptance criteria (archived to `docs/specs/done/` once `done`) |
 | `idea` | `docs/ideas/*.md` — one-file idea capture with a quick PRODUCT.md alignment check |
 | `audit` | `docs/audit-YYYY-MM-DD.md` — deep repo health check: structure, maintainability, security |
+| `doc-refactor` | normalized document — merge, deduplicate, and restructure docs while preserving relevant knowledge |
 | `whereami` | report — reorient after a break: current focus, parked ideas, next step |
 
 Each works greenfield (define with you) or brownfield (derive from existing code, then confirm),
@@ -52,6 +53,7 @@ Invoke the skills by name in your agent host:
 /spec <feature>  # frame a feature into a spec with user
 /idea <hunch>    # capture an idea into docs/ideas/, checked against PRODUCT.md
 /audit           # deep repo health check; writes docs/audit-YYYY-MM-DD.md
+/doc-refactor <inputs> -> <output> [goal] # merge, dedupe, and restructure docs
 /whereami        # reorient: current focus, parked ideas, next step
 /clear           # clear context
 /goal <spec_file> # work on spec till done - unattended.
