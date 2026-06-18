@@ -14,7 +14,7 @@ Most valuable when:
 
 Inspired by ML concept of feature extraction, applied to human knowledge. In ML Autoencoders reduce dimensions while preserving required features. Similarly, we need to hand-off minimal document, while preserving required knowledge dimensions.
 
-User specifies input documents, an output document, and optionally a goal. The goal defines relevance; without a goal or clear contextual intent, run losslessly and treat all input knowledge as relevant.
+User specifies input documents, an output document or indicate `dryrun`, and optionally a goal. The goal defines relevance; without a goal or clear contextual intent, run losslessly and treat all input knowledge as relevant.
 
 Example: `/doc-refactor PRODUCT.md, README.md -> PRODUCT.md for Product Manager review`.
 
@@ -24,8 +24,7 @@ How it works:
 - dedupe across the union,
 - re-project onto a clearer structure.
 
-The result is a denser, more navigable document that preserves the relevant original knowledge; excluded and conflicting claims are reported.
-
+The result is denser and more navigable; excluded and conflicting claims are reported.
 
 ## Principles
 - **Terse, pragmatic tone.** But do not overcompress phrasing: achieve density by cutting duplicate claims.
@@ -41,7 +40,8 @@ The result is a denser, more navigable document that preserves the relevant orig
 5. **Define draft hierarchy** If no misplacement detected, keep the input structure. Otherwise, propose a new hierarchy based on the concern clusters, up to 4 heading levels + lists. If a concern is mostly contained in one input and section, that's a strong signal for its home; if it's split across sections/inputs, that's a strong signal for a new section. If the goal defines relevance, use it to prioritize concerns.
 6. **CHECKPOINT (human, unless unattended).** Present the concerns and the proposed structure as a diff from input skeletons. Flag key moved claims and relevance/conflict calls.
 7. **Reconstruct.** Each claim gets **exactly one** home; scope-distinct pairs keep both. The **Intro/Overview is a home like any other**. A second mention of a cross-cutting claim is a **pointer** (e.g.: "... — see `Data model`"), never a restatement.
-8. **Output Report (not save unless asked):** List removed claims, not present in the final document, with `source`, original `address`, `disposition`, and a short reason. Allowed dispositions: `verbatim`, `semantic`, `merged`, `conflict` and if goal was defined: `not-relevant`. Also report summary statistics: compression %, total input claims, duplicate counts by category, and total output claims.
+8. Save the output document **unless `dryrun` was requested**.
+9. **Output Report (not save unless asked):** List removed claims, not present in the final document, with `source`, original `address`, `disposition`, and a short reason. Allowed dispositions: `verbatim`, `semantic`, `merged`, `conflict` and if goal was defined: `not-relevant`. Also report summary statistics: compression %, total input claims, duplicate counts by category, and total output claims.
 
 ## Duplicate taxonomy
 | Class | Test | Verdict |
