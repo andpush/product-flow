@@ -12,7 +12,7 @@ Most valuable when:
 - normalizing source with repeated ideas
 - preparing a document for hand-off to another agent (human or LLM) that will need to understand it without reading the inputs.
 
-Inspired by ML concept of feature extraction, applied to human knowledge. In ML Autoencoders reduce dimensions while preserving required features. Similarly, we need to hand-off minimal document, while preserving required knowledge dimensions.
+Inspired by ML concept of feature extraction, applied to human knowledge. In ML Autoencoders reduce dimensions while preserving required features. Similarly, we need to hand-off minimal document, yet enough information for the purpose.
 
 User specifies input documents, an output document or indicate `dryrun`, and optionally a goal. The goal defines relevance; without a goal or clear contextual intent, run losslessly and treat all input knowledge as relevant.
 
