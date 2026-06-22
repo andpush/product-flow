@@ -18,6 +18,7 @@ durable, scannable files so build becomes execution against a clear spec.
 | `prod` | `PRODUCT.md` — purpose, users, value, constraints, MVP scope |
 | `arch` | `ARCHITECTURE.md` — components, stack, boundaries, conventions |
 | `spec` | `docs/specs/*.md` — one buildable feature spec with verifiable acceptance criteria (archived to `docs/specs/done/` once `done`) |
+| `next` | `docs/next/*.md` — terse handoff doc for a small, ready-to-execute task (usually one component, no architecture work); archived to `docs/next/done/` once `done` |
 | `idea` | `docs/ideas/*.md` — one-file idea capture with a quick PRODUCT.md alignment check |
 | `audit` | `docs/audit-YYYY-MM-DD.md` — deep repo health check: structure, maintainability, security |
 | `doc-refactor` | normalized document — merge, deduplicate, and restructure docs while preserving relevant knowledge |
@@ -36,6 +37,7 @@ prod → arch → spec → build (/goal, a subagent, or any agent)
 |---|---|---|
 | `PRODUCT.md` | purpose, users, constraints | `prod` (or `/impeccable teach`) |
 | `ARCHITECTURE.md` | components, stacks, boundaries, layout, entrypoints, conventions |  this `arch` skill or manually |
+| `docs/next/*.md` | small ready-to-execute tasks, one file each — `status: todo` while live, `done` files move to `docs/next/done/`; delete a file to drop a task | `next` skill or manually |
 | `docs/adr/*.md` | why choices were made, one decision per file | `arch`/`spec` skills, over time |
 | `docs/ideas/*.md` | idea backlog, one file per idea (images beside) — unvalidated candidates, not commitments; optional `priority: high\|low` (set at capture or during triage) steers `whereami`; `spec` validates on pickup (pursue / defer / reject); closed ideas (pursued/rejected) move to `docs/ideas/done/`; delete a file to drop an idea | `idea` skill or manually |
 | `docs/audit-YYYY-MM-DD.md` | repo health snapshot — findings, quality scores, action items | `audit` skill |
@@ -51,6 +53,7 @@ Invoke the skills by name in your agent host:
 /prod            # define the product with user
 /arch            # define the architecture with user
 /spec <feature>  # frame a feature into a spec with user
+/next <task>     # frame a small task into a terse handoff doc in docs/next/
 /idea <hunch>    # capture an idea into docs/ideas/, checked against PRODUCT.md
 /audit           # deep repo health check; writes docs/audit-YYYY-MM-DD.md
 /doc-refactor <inputs> -> <output> [goal] # merge, dedupe, and restructure docs
@@ -62,7 +65,7 @@ Invoke the skills by name in your agent host:
 `/craft:init` is a convenience macro for small/fresh projects — it just chains `prod` then `arch`.
 For larger or evolving projects, run `/prod` and `/arch` separately so each can be revisited on its own.
 
-Closed work is archived, not deleted: when a spec reaches `done` or an idea is `pursued`/`rejected`,
-its file (and any images) move into a `done/` subfolder — `docs/specs/done/`, `docs/ideas/done/` —
-so top-level stays the live set. `/whereami` flags any closed file still sitting at top level and
-suggests the `git mv`.
+Closed work is archived, not deleted: when a spec or next-task reaches `done` or an idea is
+`pursued`/`rejected`, its file (and any images) move into a `done/` subfolder — `docs/specs/done/`,
+`docs/next/done/`, `docs/ideas/done/` — so top-level stays the live set. `/whereami` flags any closed
+file still sitting at top level and suggests the `git mv`.
