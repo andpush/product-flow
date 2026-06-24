@@ -1,6 +1,6 @@
 ---
-description: Compare two codebases (repos or folders): analyse their quality output the winner.
-argument-hint: [repo1] [repo2]
+name: compare
+description: Compare two codebases (repos or folders), analyse quality, output the winner.
 skills: code-explorer, code-reviewer
 ---
 

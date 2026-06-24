@@ -1,7 +1,7 @@
 {
   "name": "product-flow",
   "version": "1.0.1",
-  "description": "AI-first product development workflow for Claude Code. From idea to production.",
+  "description": "Product dev workflow. From idea to production.",
   "owner": {
     "name": "Andrei Pushkin",
     "email": "[RESTRICTED]"
@@ -9,14 +9,8 @@
   "plugins": [
     {
       "name": "craft",
-      "description": "Lightweight engineering workflow: prod (define the product), arch (define architecture, stack, conventions), spec (turn intent into a buildable spec with verifiable acceptance criteria).",
+      "description": "SDD workflow: prod->arch->spec",
       "source": "./craft",
-      "category": "development"
-    },
-    {
-      "name": "forge",
-      "description": "Full-ceremony staged commands from idea to production (define product, architecture, MVP features, mockups, plan, implement, review). Most projects should prefer craft.",
-      "source": "./forge",
       "category": "development"
     }
   ]
