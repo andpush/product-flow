@@ -47,6 +47,7 @@ Invoke by name in your agent host (`/prod`, `/spec <feature>`, …).
 | `sa` | architecture design |
 | `code-explorer` | explore a repo |
 | `code-reviewer` | review code quality |
+| `tests-optimizer` | prune low-value tests, prove the suite is faster and still green |
 | `compare` | compare two codebases, with a winner |
 | `slides` | decks from markdown |
 | `ui-mockup` | clickable HTML mockups |
@@ -68,6 +69,7 @@ One file per spec/idea/decision — filenames are the index, content is scannabl
 | `docs/ideas/*.md` | idea backlog (images beside); unvalidated; optional `priority: high\|low` steers `whereami`; `spec` validates on pickup (pursue/defer/reject) | `idea` |
 | `docs/adr/*.md` | why a choice was made, one decision per file | `arch`/`spec`, over time |
 | `docs/audit-*.md` | repo health snapshot: findings, scores, action items | `audit` |
+| `docs/tests-optimizer-*.md` | flagged low-value tests, before/after metrics | `tests-optimizer` |
 | `CLAUDE.md` \| `AGENTS.md` | onboarding for agents | `arch` or manually |
 | `README.md` | onboarding for humans; read as a source | human |
 
